@@ -1,0 +1,56 @@
+@import "src/assets/sass/_variable";
+
+.menu-container {
+  background-color: $primary-color;
+  width: 500px;
+  margin: 0 auto;
+  border-radius: 30px;
+
+  .nav-item {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: white;
+    .icon-user {
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-image: url('http://localhost:4200/assets/icon/icon-home.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+    .icon-home {
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-image: url('http://localhost:4200/assets/icon/icon-user.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+    .icon-food {
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%;
+      background-position: center;
+      background-image: url('http://localhost:4200/assets/icon/icon-food.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+    img {
+
+    }
+  }
+
+  .nav-item:hover {
+    background-color: $secondary-color;
+    .icon-user {
+      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
+    }
+    .icon-home {
+      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
+    }
+    .icon-food {
+      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
+    }
+  }
+}

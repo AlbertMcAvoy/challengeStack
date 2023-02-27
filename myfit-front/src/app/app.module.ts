@@ -7,6 +7,10 @@ import {HomePageComponent} from "./module/HomePageComponent/homePage-component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MenuComponent} from "./component/Menu/menu-component";
 import {MatCardModule} from "@angular/material/card";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import {MatCardModule} from "@angular/material/card";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule
+    MatCardModule,
+    FlexLayoutModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
