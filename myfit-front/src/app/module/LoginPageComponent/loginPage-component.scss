@@ -6,9 +6,7 @@
 }
 
 .example-form {
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center
+  padding: 32px;
 }
 
 .example-full-width {
@@ -24,3 +22,6 @@
   justify-content: center
 }
 
+button {
+  margin-left: 5px;
+}
