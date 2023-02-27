@@ -20,15 +20,11 @@ class UserService {
     public function register(Array $data) {
         $user = new User();
         
-        if (!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['email']) && !empty($data['roles']) && !empty($data['password'])) {
+        if (!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['email']) && !empty($data['password'])) {
             $user->setFirstName($data['firstname'])
             ->setLastName($data['lastname'])
             ->setEmail($data['email'])
-            ->setRoles($data['roles'])
-            ->setAge($data['age'])
-            ->setGender($data['gender'])
-            ->setSubscriptionDate(new DateTime())
-            ->setObjectifWeight($data['objectif_weight']);
+            ->setSubscriptionDate(new DateTime());
 
             $user->setPassword($this->userPasswordHasher->hashPassword($user, $data['password']));
             
