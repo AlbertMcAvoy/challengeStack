@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use App\Exception\UserExistException;
+use App\Exception\UserFieldFromException;
 
 class RegisterController extends AbstractController
 {
@@ -26,13 +27,14 @@ class RegisterController extends AbstractController
 
         }catch(UserExistException $ex) {
             $jsonResponse["status"] = 403;
+            $jsonResponse["message"] = $ex->getMessage();    
+        }catch(UserFieldFromException $ex) {
+            $jsonResponse["status"] = 400;
             $jsonResponse["message"] = $ex->getMessage();
-            
         } catch (\Exception $e) {
             $jsonResponse["status"] = 500;
-            $jsonResponse["message"] = $e->getMessage();
+            $jsonResponse["message"] = "Error When we register the user";
         }
-        //"Error When we register the user"
 
         return $this->json($jsonResponse);
     }

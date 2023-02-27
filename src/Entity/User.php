@@ -49,6 +49,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $objectif_weight = null;
 
+    #[ORM\Column]
+    private ?int $height = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,7 +151,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->gender;
     }
 
-    public function setGender(?int $gender): self
+    public function setGender(?int $gender=null): self
     {
 
        !empty($gender) ? $this->gender = $gender : '';
@@ -161,7 +164,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->age;
     }
 
-    public function setAge(?int $age): self
+    public function setAge(?int $age=null): self
     {
         
         !empty($age) ? $this->age = $age : '';
@@ -174,9 +177,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->phone;
     }
 
-    public function setPhone(?string $phone): self
+    public function setPhone(?string $phone=null): self
     {
-        $this->phone = $phone;
+        !empty($phone) ? $this->phone = $phone : '';
 
         return $this;
     }
@@ -201,6 +204,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setObjectifWeight(?int $objectif_weight): self
     {
         $this->objectif_weight = $objectif_weight;
+
+        return $this;
+    }
+
+    public function getHeight(): ?int
+    {
+        return $this->height;
+    }
+
+    public function setHeight(int $height): self
+    {
+        $this->height = $height;
 
         return $this;
     }
