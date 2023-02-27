@@ -150,7 +150,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setGender(?int $gender): self
     {
-        $this->gender = $gender;
+
+       !empty($gender) ? $this->gender = $gender : '';
 
         return $this;
     }
@@ -162,7 +163,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setAge(?int $age): self
     {
-        $this->age = $age;
+        
+        !empty($age) ? $this->age = $age : '';
 
         return $this;
     }

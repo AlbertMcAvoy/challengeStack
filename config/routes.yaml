@@ -5,3 +5,8 @@ controllers:
     type: attribute
 api_login_check:
     path: /auth/login
+
+api_register:
+    path: /register
+    controller: App\Controller\RegisterController::register
+    format: application/json
