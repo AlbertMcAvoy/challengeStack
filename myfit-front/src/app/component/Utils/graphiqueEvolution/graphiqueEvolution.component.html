@@ -1,0 +1,23 @@
+
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  style="margin-top: 50px"
+>
+  <div
+    style="width: 500px"
+  >
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="'line'">
+    </canvas>
+  </div>
+  <div
+    style="width: 300px; height: 300px; margin: 0 30px"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <img style="width: 100%;" alt="icon" src="http://localhost:4200/assets/images/Chef_Monochromatic.png">
+  </div>
+</div>

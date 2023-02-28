@@ -1,0 +1,88 @@
+<div>
+  <mat-card
+    *ngIf="mealToday"
+    class="mealCard today-meal"
+  >
+    <mat-card-header>
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <div
+          class="mat-card-title"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          style="margin-right: 10px"
+        >
+          <p>Vos repas</p>
+          <p>aujourd’hui</p>
+        </div>
+        <mat-icon>add</mat-icon>
+
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="card-content"
+    >
+
+      <div class="ligne-titre"></div>
+      <p>Petit déjeuner - 650 cal.</p>
+      <p>Petit déjeuner - 650 cal.</p>
+      <p>Petit déjeuner - 650 cal.</p>
+    </mat-card-content>
+  </mat-card>
+  <mat-card
+    *ngIf="!mealToday"
+    class="mealCard historique-meal"
+  >
+    <mat-card-header>
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <div
+          class="mat-card-title"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          style="margin-right: 10px"
+        >
+          <p>Vos repas</p>
+          <p>précédents</p>
+        </div>
+
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="card-content"
+    >
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hier - 2777 cal
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Petit déjeuner - 650 cal.</p>
+          <p>Petit déjeuner - 650 cal.</p>
+          <p>Petit déjeuner - 650 cal.</p>
+          <p>Petit déjeuner - 650 cal.</p>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Avant hier - 2756 cal
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Petit déjeuner - 650 cal.</p>
+          <p>Petit déjeuner - 650 cal.</p>
+          <p>Petit déjeuner - 650 cal.</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </mat-card-content>
+  </mat-card>
+</div>

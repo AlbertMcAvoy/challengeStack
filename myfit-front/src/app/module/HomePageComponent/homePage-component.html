@@ -64,38 +64,118 @@
       <div
         style="margin-top: 110px;"
       >
-        <mat-card class="aperçu-objectif">
-          <mat-card-header
-            fxLayout="column"
-            fxLayoutAlign="center center"
-            class="calories-cercle-container"
-          >
-            <div
-              fxLayout="column"
-              fxLayoutAlign="end center"
-              class="calories-cercle"
-            >
-              <p class="calorie">2777</p>
-              <p class="margin-p">Voici les calories</p>
-              <p class="margin-p">consommées </p>
-              <p>aujourd’hui</p>
-            </div>
-          </mat-card-header>
-          <mat-card-content
-            fxLayout="column"
-            fxLayoutAlign="center center"
-          >
-            <p class="objectif-titre">Votre objectif de poids</p>
-            <p class="poids">70kg</p>
-            <p class="calories-titre">Calories d'hier</p>
-            <p class="calories">2555</p>
-          </mat-card-content>
-        </mat-card>
+        <objectif-view></objectif-view>
       </div>
     </div>
 
     <div class="historique-container">
       <p class="historique-titre">Gardez un historique de vos repas, et accédez à un graphique pour voir votre progression !</p>
     </div>
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      style="width: 90%"
+    >
+      <mealCard
+        [mealToday]="true"
+      ></mealCard>
+      <div
+        style="width: 300px; height: 300px; margin: 0 30px"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <img style="width: 100%;" alt="icon" src="http://localhost:4200/assets/images/Sushi roll_Monochromatic 1.png">
+      </div>
+      <mealCard
+        [mealToday]="false"
+      ></mealCard>
+    </div>
+    <graphique-evolution></graphique-evolution>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <div
+        style="max-width: 800px; padding: 20px;"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          style="height: 170px; width: 170px"
+        >
+          <img
+            style="width: 100%;"  alt="icon" src="http://localhost:4200/assets/images/Question_Monochromatic.png">
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign
+        >
+          <p style="font-size: 34px; font-weight: bold">Mais c’est qui, Track’n’fit ?</p>
+          <div
+            class="question"
+            style="width: 500px; margin-left: 30px"
+          >
+            <p>Track’n’fit, à la base, c’est une équipe de 5 personnes
+              passionnées par le sport et le développement web !
+              Alors on s’est dit “et si on liait nos passions ?”</p>
+          </div>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <div style="width: 500px">
+          <p>
+            Du coup, on s’est allié avec les meilleurs des meilleurs, la crème de la crème, pour vous proposez cette application web !
+            Diététiciens, entraîneurs et nutritionistes ont répondu à notre appel et aujourd’hui nous sommes une équipe de 20 personnes passionnées ! Nous sommes déterminés à vous aider.
+          </p>
+        </div>
+        <div
+          style="height: 170px; width: 170px"
+        >
+          <img  alt="icon" style="width: 100%;" src="http://localhost:4200/assets/images/Doctor_Monochromatic 1.png">
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        style="height: 70px"
+      >
+        <div
+          style="height: 170px; width: 170px"
+        >
+          <img   alt="icon" style="width: 100%;" src="http://localhost:4200/assets/images/Fitness App_Outline 1.png">
+        </div>
+        <div style="width: 500px">
+          <p>
+            Bon, jusque là on avait l’expertise technique et les designers...
+            Mais il nous manquait des professionnels de la santé et des conditions physiques.
+          </p>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+
+        <div style="width: 500px">
+          <p>
+            Cette aventure nous permet de vous proposez une application web enrichie, avec un suivi pertinent de ce que vous mangez, afin de vous guidez dans votre évolution. Nous vous aidons à atteindre votre objectifs... et vous vous aidez entre-vous aussi en rensignant de nouveau plat !
+          </p>
+        </div>
+        <div
+          style="height: 170px; width: 170px"
+        >
+          <img style="width: 100%;" alt="icon" src="http://localhost:4200/assets/images/Team work_Two Color 1.png">
+        </div>
+      </div>
+    </div>
+
+    <button class="inscription" mat-raised-button >Je m'inscris</button>
   </div>
 </div>

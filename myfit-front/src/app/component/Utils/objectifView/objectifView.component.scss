@@ -1,0 +1,40 @@
+@import "src/assets/sass/variable";
+
+
+.aperçu-objectif {
+  width: 300px;
+  position: relative;
+  box-shadow: 0 19px 15px rgba(0, 0, 0, 0.1);
+  .calories-cercle-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    bottom: 200px;
+    .calories-cercle {
+      width: 200px;
+      height: 200px;
+      border-radius: 100px;
+      border: 15px solid $calorie-circle-corlor;
+
+      .calorie {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .margin-p {
+        font-size: 16px;
+        margin: 0;
+      }
+    }
+  }
+  .mat-mdc-card-content {
+    margin-top: 33px;
+  }
+  .objectif-titre, .calories-titre {
+    font-size: 18px;
+  }
+  .poids, .calories {
+    font-size: 24px;
+    padding: 20px 0;
+  }
+
+}
