@@ -9,7 +9,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 export class RegisterPageComponent {
   email : string ="";
   password : string ="";
-  show: boolean= false;
+  show: boolean = false;
   constructor(private _snackBar: MatSnackBar) {}
 
   submit(){

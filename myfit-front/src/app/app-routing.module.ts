@@ -7,15 +7,19 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 const routes: Routes = [
   {
     path : 'home',
-    component : HomePageComponent
+    component : HomePageComponent,
+    title: 'Accueil'
   },
   {
     path : 'login',
-    component : LoginPageComponent
+    component : LoginPageComponent,
+    title: 'Connexion'
+
   },
   {
     path : 'register',
-    component : RegisterPageComponent
+    component : RegisterPageComponent,
+    title: 'Inscription'
   }
 ];
 
