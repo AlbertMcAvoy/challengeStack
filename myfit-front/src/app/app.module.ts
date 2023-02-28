@@ -23,6 +23,7 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import {LoginDAO} from "./model/loginDAO";
 
 @NgModule({
   declarations: [
