@@ -8,7 +8,3 @@ class UserFieldFromException extends \Exception {
         $this->message = "Error on the data send to the api. We cannot create user";
     }
 }
-
-
-
-?>

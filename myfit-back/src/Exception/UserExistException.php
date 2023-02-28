@@ -8,7 +8,3 @@ class UserExistException extends \Exception {
     }
 
 }
-
-
-
-?>
