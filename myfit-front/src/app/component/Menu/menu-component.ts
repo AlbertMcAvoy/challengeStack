@@ -5,13 +5,5 @@ import {Component} from "@angular/core";
   styleUrls: ['menu-component.scss']
 })
 export class MenuComponent {
-  redirectToLogin() {
-    window.location.href = '/login';
-  }
-  redirectToHome() {
-    window.location.href = '/';
-  }
-  redirectToProgram() {
-    window.location.href = '/';
-  }
+
 }
