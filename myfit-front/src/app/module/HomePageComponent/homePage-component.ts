@@ -12,8 +12,4 @@ export class HomePageComponent implements OnInit{
     console.log(this.domain);
   }
 
-  redirectToLogin() {
-    window.location.href = '/login';
-  }
-
 }
