@@ -45,29 +45,41 @@
       </p>
     </div>
     <button class="inscription" mat-raised-button >Je crée un compte</button>
-
     <div
       fxLayout="row"
       class="coup-oeil"
     >
       <div
         fxLayout="column"
-        fxLayoutAlign="center center"
         class="decouvrir"
       >
         <p>Découvrez au premier coup d’oeil combien de calorie vous avez consommées, afin de vous guidez dans votre journée !</p>
         <div
           class="ramen-image"
           fxLayout="row"
-          fxLayoutAlign="center center"
         >
           <img alt="bol de ramen"  src="http://localhost:4200/assets/images/Ramen_Flatline.png">
         </div>
       </div>
       <div
+        style="margin-top: 110px;"
       >
         <mat-card class="aperçu-objectif">
-          <mat-card-header>
+          <mat-card-header
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="calories-cercle-container"
+          >
+            <div
+              fxLayout="column"
+              fxLayoutAlign="end center"
+              class="calories-cercle"
+            >
+              <p class="calorie">2777</p>
+              <p class="margin-p">Voici les calories</p>
+              <p class="margin-p">consommées </p>
+              <p>aujourd’hui</p>
+            </div>
           </mat-card-header>
           <mat-card-content
             fxLayout="column"
@@ -80,6 +92,10 @@
           </mat-card-content>
         </mat-card>
       </div>
+    </div>
+
+    <div class="historique-container">
+      <p class="historique-titre">Gardez un historique de vos repas, et accédez à un graphique pour voir votre progression !</p>
     </div>
   </div>
 </div>
