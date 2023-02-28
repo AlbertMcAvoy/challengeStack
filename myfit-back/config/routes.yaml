@@ -2,6 +2,10 @@ api_login_check:
     path: /auth/login
     methods: POST
 
+api_login_refresh:
+    path: /auth/refresh
+    methods: POST
+
 api_register:
     path: /auth/register
     controller: App\Controller\RegisterController::register
