@@ -12,6 +12,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
+import {HttpClientModule} from "@angular/common/http";
+import {ApiService} from "./services/api/api.service";
 
 @NgModule({
   declarations: [
@@ -29,8 +31,11 @@ import {MatButtonModule} from "@angular/material/button";
     MatFormFieldModule,
     MatTooltipModule,
     MatButtonModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    ApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
