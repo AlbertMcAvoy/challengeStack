@@ -10,10 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/meal')]
 class MealController extends AbstractController
 {
-    #[Route('/', name: 'app_meal_index', methods: ['GET'])]
     public function index(MealRepository $mealRepository): Response
     {
         return $this->render('meal/index.html.twig', [
@@ -21,7 +19,6 @@ class MealController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_meal_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MealRepository $mealRepository): Response
     {
         $meal = new Meal();
@@ -40,7 +37,6 @@ class MealController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_meal_show', methods: ['GET'])]
     public function show(Meal $meal): Response
     {
         return $this->render('meal/show.html.twig', [
@@ -48,7 +44,6 @@ class MealController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_meal_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Meal $meal, MealRepository $mealRepository): Response
     {
         $form = $this->createForm(MealType::class, $meal);
@@ -66,7 +61,6 @@ class MealController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_meal_delete', methods: ['POST'])]
     public function delete(Request $request, Meal $meal, MealRepository $mealRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$meal->getId(), $request->request->get('_token'))) {
