@@ -6,7 +6,7 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 
 const routes: Routes = [
   {
-    path : 'home',
+    path : '',
     component : HomePageComponent,
     title: 'Accueil'
   },

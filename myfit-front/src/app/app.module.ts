@@ -37,7 +37,7 @@ import { ApiService } from "./services/api/api.service";
     FormsModule,
     FlexLayoutModule,
     MatButtonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MatButtonModule,

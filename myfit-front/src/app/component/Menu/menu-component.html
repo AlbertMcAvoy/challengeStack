@@ -11,6 +11,7 @@
         fxLayout="row"
         fxLayoutAlign="center center"
         class="nav-item"
+        (click)="redirectToLogin()"
       >
         <i class="icon-home"></i>
       </div>
@@ -19,6 +20,7 @@
         fxLayoutAlign="center center"
         class="nav-item"
         matTooltip="Mon compte"
+        (click)="redirectToHome()"
       >
         <i class="icon-user"></i>
       </div>
@@ -27,6 +29,7 @@
         fxLayoutAlign="center center"
         class="nav-item"
         matTooltip="Mon évolution"
+        (click)="redirectToProgram()"
       >
         <i class="icon-food"></i>
       </div>
