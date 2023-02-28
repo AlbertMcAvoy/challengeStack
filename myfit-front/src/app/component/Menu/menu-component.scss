@@ -2,19 +2,20 @@
 
 .menu-container {
   background-color: $primary-color;
-  width: 500px;
+  width: 300px;
   margin: 0 auto;
   border-radius: 30px;
 
   .nav-item {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
     cursor: pointer;
     background-color: white;
     .icon-user {
       background-repeat: no-repeat;
-      height: 100%;
+      background-size: contain;
+      height: 76%;
       width: 100%;
       background-position: center;
       background-image: url('http://localhost:4200/assets/icon/icon-home.svg');
@@ -22,7 +23,8 @@
     }
     .icon-home {
       background-repeat: no-repeat;
-      height: 100%;
+      background-size: contain;
+      height: 76%;
       width: 100%;
       background-position: center;
       background-image: url('http://localhost:4200/assets/icon/icon-user.svg');
@@ -30,7 +32,8 @@
     }
     .icon-food {
       background-repeat: no-repeat;
-      height: 100%;
+      background-size: contain;
+      height: 76%;
       width: 100%;
       background-position: center;
       background-image: url('http://localhost:4200/assets/icon/icon-food.svg');

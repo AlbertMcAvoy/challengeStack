@@ -3,3 +3,99 @@
 >
   <menu-component></menu-component>
 </div>
+<div
+  class="homePage"
+  fxLayout="row"
+  fxLayoutAlign="center"
+>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div class="logo">
+      <img alt="Image du logo" src="assets/logo/logo.png">
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center end"
+      class="main-image"
+    >
+      <div
+        class="esprit-saint"
+      >
+        <p>Un esprit sain dans </p>
+        <p>un corps sain...</p>
+        <p> et bien alimenté !</p>
+      </div>
+      <div
+        class="raspberries"
+      >
+        <img alt="image-framboises" src="http://localhost:4200/assets/images/raspberries.png">
+      </div>
+    </div>
+    <div
+      class="bonne-alimentation"
+    >
+      <p>
+        Une bonne alimentation au quotidien est importante pour
+      </p>
+      <p>atteindre vos objectifs !</p>
+      <p>
+        Suivez vos repas, vos objectifs et progressez avec Track’n’fit.
+      </p>
+    </div>
+    <button class="inscription" mat-raised-button >Je crée un compte</button>
+    <div
+      fxLayout="row"
+      class="coup-oeil"
+    >
+      <div
+        fxLayout="column"
+        class="decouvrir"
+      >
+        <p>Découvrez au premier coup d’oeil combien de calorie vous avez consommées, afin de vous guidez dans votre journée !</p>
+        <div
+          class="ramen-image"
+          fxLayout="row"
+        >
+          <img alt="bol de ramen"  src="http://localhost:4200/assets/images/Ramen_Flatline.png">
+        </div>
+      </div>
+      <div
+        style="margin-top: 110px;"
+      >
+        <mat-card class="aperçu-objectif">
+          <mat-card-header
+            fxLayout="column"
+            fxLayoutAlign="center center"
+            class="calories-cercle-container"
+          >
+            <div
+              fxLayout="column"
+              fxLayoutAlign="end center"
+              class="calories-cercle"
+            >
+              <p class="calorie">2777</p>
+              <p class="margin-p">Voici les calories</p>
+              <p class="margin-p">consommées </p>
+              <p>aujourd’hui</p>
+            </div>
+          </mat-card-header>
+          <mat-card-content
+            fxLayout="column"
+            fxLayoutAlign="center center"
+          >
+            <p class="objectif-titre">Votre objectif de poids</p>
+            <p class="poids">70kg</p>
+            <p class="calories-titre">Calories d'hier</p>
+            <p class="calories">2555</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="historique-container">
+      <p class="historique-titre">Gardez un historique de vos repas, et accédez à un graphique pour voir votre progression !</p>
+    </div>
+  </div>
+</div>
