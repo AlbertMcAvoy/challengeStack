@@ -18,6 +18,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { HttpClientModule } from "@angular/common/http";
 import { ApiService } from "./services/api/api.service";
+import {LoginDAO} from "./model/loginDAO";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ApiService } from "./services/api/api.service";
     FormsModule,
     FlexLayoutModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     MatButtonModule,
@@ -50,8 +52,8 @@ import { ApiService } from "./services/api/api.service";
     MatFormFieldModule,
     MatTooltipModule,
     MatButtonModule,
-    HttpClientModule,
-    ApiService
+    ApiService,
+    LoginDAO
   ],
   bootstrap: [AppComponent]
 })

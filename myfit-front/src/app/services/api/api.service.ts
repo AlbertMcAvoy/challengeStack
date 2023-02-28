@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class ApiService {
 
-  private API_URL = 'http://localhost:8000';
+  private API_URL = 'https://localhost:8000';
 
   constructor(
     private http: HttpClient
@@ -37,16 +37,12 @@ export class ApiService {
     input?: any,
     txtResponse: boolean = false,
     jsonContentType: boolean = true,
-    disabledLogoutOn401: boolean = false,
-    withInputAsQueryParams: boolean = true,
     myFitSession: boolean = true,
   ): Observable<any> {
+
     let params: HttpParams = this.getHttpParams(input, jsonContentType, myFitSession);
     let headers: HttpHeaders = this.getHeaders(jsonContentType);
-    let options = {
-      headers,
-      ...(withInputAsQueryParams ? { params } : {}),
-    };
+    let options = { headers };
 
     if (txtResponse) {
     }
