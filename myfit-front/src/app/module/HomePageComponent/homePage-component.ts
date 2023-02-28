@@ -4,8 +4,8 @@ import {Component, OnInit} from "@angular/core";
   templateUrl: 'homePage-component.html',
   styleUrls: ['homePage-component.scss']
 })
-export class HomePageComponent implements OnInit{
 
+export class HomePageComponent implements OnInit{
   domain = window.location.host;
 
   ngOnInit() {
