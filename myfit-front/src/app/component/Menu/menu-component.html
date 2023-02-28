@@ -1,8 +1,34 @@
 <div>
-  <mat-card>
-    <mat-card-content>
-      <div>
-        A
+  <mat-card
+    class="menu-container"
+  >
+    <mat-card-content
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+    >
+      <div
+        matTooltip="Accueil"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+      >
+        <i class="icon-home"></i>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+        matTooltip="Mon compte"
+      >
+        <i class="icon-user"></i>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+        matTooltip="Mon évolution"
+      >
+        <i class="icon-food"></i>
       </div>
     </mat-card-content>
   </mat-card>
