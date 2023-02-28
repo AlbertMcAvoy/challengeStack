@@ -24,6 +24,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {LoginDAO} from "./model/loginDAO";
+import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
+import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import {LoginDAO} from "./model/loginDAO";
     ObjectifViewComponent,
     GraphiqueEvolutionComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ProfileUtilisateurComponent,
+    MonCompteComponent
   ],
   imports: [
     BrowserModule,

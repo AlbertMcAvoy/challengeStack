@@ -1,0 +1,28 @@
+<div
+  class="menu"
+>
+  <menu-component></menu-component>
+</div>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  style="height: 100%;"
+>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    style="height: 100%"
+  >
+    <div>
+      <mealCard [mealToday]="true"></mealCard>
+      <mealCard  [mealToday]="false"></mealCard>
+    </div>
+    <div>
+      <objectif-view></objectif-view>
+    </div>
+    <div>
+      <profile-utilisateur></profile-utilisateur>
+    </div>
+  </div>
+  <graphique-evolution></graphique-evolution>
+</div>
