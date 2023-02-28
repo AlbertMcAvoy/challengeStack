@@ -17,12 +17,16 @@ import {ApiService} from "./services/api/api.service";
 import {MealCardComponent} from "./component/Utils/mealCard/mealCard-component";
 import {MatExpansionModule} from "@angular/material/expansion"
 import {NgChartsModule} from "ng2-charts";
+import {ObjectifViewComponent} from "./component/Utils/objectifView/objectifView.component";
+import {GraphiqueEvolutionComponent} from "./component/Utils/graphiqueEvolution/graphiqueEvolution.component";
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     MenuComponent,
-    MealCardComponent
+    MealCardComponent,
+    ObjectifViewComponent,
+    GraphiqueEvolutionComponent,
   ],
   imports: [
     BrowserModule,
