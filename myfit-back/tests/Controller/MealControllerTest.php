@@ -46,6 +46,8 @@ class MealControllerTest extends WebTestCase
         $this->client->submitForm('Save', [
             'meal[name]' => 'Testing',
             'meal[date_time]' => 'Testing',
+            'meal[food]' => 'Testing',
+            'meal[user]' => 'Testing',
         ]);
 
         self::assertResponseRedirects('/meal/');
@@ -59,6 +61,8 @@ class MealControllerTest extends WebTestCase
         $fixture = new Meal();
         $fixture->setName('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setFood('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -76,6 +80,8 @@ class MealControllerTest extends WebTestCase
         $fixture = new Meal();
         $fixture->setName('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setFood('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -84,6 +90,8 @@ class MealControllerTest extends WebTestCase
         $this->client->submitForm('Update', [
             'meal[name]' => 'Something New',
             'meal[date_time]' => 'Something New',
+            'meal[food]' => 'Something New',
+            'meal[user]' => 'Something New',
         ]);
 
         self::assertResponseRedirects('/meal/');
@@ -92,6 +100,8 @@ class MealControllerTest extends WebTestCase
 
         self::assertSame('Something New', $fixture[0]->getName());
         self::assertSame('Something New', $fixture[0]->getDate_time());
+        self::assertSame('Something New', $fixture[0]->getFood());
+        self::assertSame('Something New', $fixture[0]->getUser());
     }
 
     public function testRemove(): void
@@ -103,6 +113,8 @@ class MealControllerTest extends WebTestCase
         $fixture = new Meal();
         $fixture->setName('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setFood('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
