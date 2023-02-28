@@ -4,7 +4,12 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class ApiService {
-  constructor(private http: HttpClient) {}
+
+  private API_URL = 'http://localhost:8000';
+
+  constructor(
+    private http: HttpClient
+  ) {}
 
   get(
     url: string,
@@ -22,9 +27,8 @@ export class ApiService {
     if (txtResponse) {
     }
 
-
     return this.http
-      .get(url, options)
+      .get(`${this.API_URL}/${url}`, options)
       .pipe();
   }
 
@@ -48,9 +52,10 @@ export class ApiService {
     }
 
     return this.http
-      .post(url, jsonContentType ? input : params, options)
+      .post(`${this.API_URL}/${url}`, jsonContentType ? input : params, options)
       .pipe();
   }
+
   private getHttpParams(
     input: any,
     jsonContent: boolean = true,
@@ -67,13 +72,12 @@ export class ApiService {
   }
 
   private setAdditionalHeaders(baseHeaders: HttpHeaders, additionalHeaders: { [headerKey: string]: string }) {
-    const res = Object.keys(additionalHeaders).reduce(
+    return Object.keys(additionalHeaders).reduce(
       (headers: HttpHeaders, nextHeaderKey: string) => {
         return headers.append(nextHeaderKey, additionalHeaders[nextHeaderKey]);
       },
       baseHeaders,
     );
-    return res;
   }
 
   private getHeaders(jsonContentType: boolean): HttpHeaders {
