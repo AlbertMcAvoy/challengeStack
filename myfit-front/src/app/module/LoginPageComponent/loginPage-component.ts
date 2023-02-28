@@ -12,21 +12,26 @@ export class LoginPageComponent {
   email: string = "";
   password: string = "";
   show: boolean = false;
-
   public userForm:FormGroup; // variable is created of type FormGroup is created
+
   constructor(private _snackBar: MatSnackBar, private fb: FormBuilder) {
     this.userForm = this.fb.group({
       email : new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      password: ''
+      password: new FormControl('', Validators.compose([
+        Validators.required
+      ]))
     });
   }
 
   submit() {
     if (this.userForm.get('email')?.status == 'INVALID') {
-      this._snackBar.open('Le mot de passe ou le mail ne sont pas bons', 'OK');
+      this._snackBar.open('Le mot de passe ou le mail ne sont pas bons', 'OK',{
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
       this.clear();
     }
     this.email = this.userForm.get('email')?.value; // input value retrieved
