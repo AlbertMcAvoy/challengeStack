@@ -9,113 +9,113 @@ api_login_check:
     methods: POST
 
 api_register:
-    path: /register
+    path: /auth/register
     controller: App\Controller\RegisterController::register
     methods: POST
     format: application/json
 
 app_body_index:
-    path: /body
+    path: /api/body
     methods: GET
     controller: App\Controller\BodyController::index
 
 app_body_new:
-    path: /body/new
+    path: /api/body/new
     methods: [GET, POST]
     controller: App\Controller\BodyController::new
 
 app_body_show:
-    path: /body/{id}
+    path: /api/body/{id}
     methods: GET
     controller: App\Controller\BodyController::show
     requirements:
         id: '\d+'
 
 app_body_edit:
-    path: /body/{id}/edit
+    path: /api/body/{id}/edit
     methods: [GET, POST]
     controller: App\Controller\BodyController::edit
     requirements:
         id: '\d+'
 
 app_body_delete:
-    path: /body/{id}
+    path: /api/body/{id}
     methods: POST
     controller: App\Controller\BodyController::delete
     requirements:
         id: '\d+'
 
 app_food_index:
-    path: /food
+    path: /api/food
     controller: App\Controller\FoodController::index
     methods: GET
 
 app_food_new:
-    path: /food/new
+    path: /api/food/new
     controller: App\Controller\FoodController::new
     methods: [GET, POST]
 
 app_food_show:
-    path: /food/{id}
+    path: /api/food/{id}
     controller: App\Controller\FoodController::show
     methods: GET
 
 app_food_edit:
-    path: /food/{id}/edit
+    path: /api/food/{id}/edit
     controller: App\Controller\FoodController::edit
     methods: [GET, POST]
 
 app_food_delete:
-    path: /food/{id}
+    path: /api/food/{id}
     controller: App\Controller\FoodController::delete
     methods: POST
 
 app_meal_index:
-    path: /meal
+    path: /api/meal
     controller: App\Controller\MealController::index
     methods: ["GET"]
 
 app_meal_new:
-    path: /meal/new
+    path: /api/meal/new
     controller: App\Controller\MealController::new
     methods: ["GET", "POST"]
 
 app_meal_show:
-    path: /meal/{id}
+    path: /api/meal/{id}
     controller: App\Controller\MealController::show
     methods: ["GET"]
 
 app_meal_edit:
-    path: /meal/{id}/edit
+    path: /api/meal/{id}/edit
     controller: App\Controller\MealController::edit
     methods: ["GET", "POST"]
 
 app_meal_delete:
-    path: /meal/{id}
+    path: /api/meal/{id}
     controller: App\Controller\MealController::delete
     methods: ["POST"]
 
 app_profile_index:
-    path: /profile
+    path: /api/profile
     methods: GET
     controller: App\Controller\ProfileController::index
 
 app_profile_new:
-    path: /profile/new
+    path: /api/profile/new
     methods: [GET, POST]
     controller: App\Controller\ProfileController::new
 
 app_profile_show:
-    path: /profile/{id}
+    path: /api/profile/{id}
     methods: GET
     controller: App\Controller\ProfileController::show
 
 app_profile_edit:
-    path: /profile/{id}/edit
+    path: /api/profile/{id}/edit
     methods: [GET, POST]
     controller: App\Controller\ProfileController::edit
 
 app_profile_delete:
-    path: /profile/{id}
+    path: /api/profile/{id}
     methods: POST
     controller: App\Controller\ProfileController::delete
