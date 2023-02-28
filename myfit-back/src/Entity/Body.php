@@ -23,6 +23,9 @@ class Body
     #[ORM\Column]
     private ?int $objectif_weight = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bodies')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Body
     public function setObjectifWeight(int $objectif_weight): self
     {
         $this->objectif_weight = $objectif_weight;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

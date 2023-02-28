@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -51,6 +53,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?int $height = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Body::class)]
+    private Collection $bodies;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Meal::class)]
+    private Collection $meals;
+
+    public function __construct()
+    {
+        $this->bodies = new ArrayCollection();
+        $this->meals = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -216,6 +230,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setHeight(int $height): self
     {
         $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Body>
+     */
+    public function getBodies(): Collection
+    {
+        return $this->bodies;
+    }
+
+    public function addBody(Body $body): self
+    {
+        if (!$this->bodies->contains($body)) {
+            $this->bodies->add($body);
+            $body->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBody(Body $body): self
+    {
+        if ($this->bodies->removeElement($body)) {
+            // set the owning side to null (unless already changed)
+            if ($body->getUser() === $this) {
+                $body->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Meal>
+     */
+    public function getMeals(): Collection
+    {
+        return $this->meals;
+    }
+
+    public function addMeal(Meal $meal): self
+    {
+        if (!$this->meals->contains($meal)) {
+            $this->meals->add($meal);
+            $meal->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMeal(Meal $meal): self
+    {
+        if ($this->meals->removeElement($meal)) {
+            // set the owning side to null (unless already changed)
+            if ($meal->getUser() === $this) {
+                $meal->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -45,9 +45,9 @@ class BodyControllerTest extends WebTestCase
 
         $this->client->submitForm('Save', [
             'body[weight]' => 'Testing',
-            'body[height]' => 'Testing',
-            'body[BMI]' => 'Testing',
             'body[date_time]' => 'Testing',
+            'body[objectif_weight]' => 'Testing',
+            'body[user]' => 'Testing',
         ]);
 
         self::assertResponseRedirects('/body/');
@@ -60,9 +60,9 @@ class BodyControllerTest extends WebTestCase
         $this->markTestIncomplete();
         $fixture = new Body();
         $fixture->setWeight('My Title');
-        $fixture->setHeight('My Title');
-        $fixture->setBMI('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setObjectif_weight('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -79,9 +79,9 @@ class BodyControllerTest extends WebTestCase
         $this->markTestIncomplete();
         $fixture = new Body();
         $fixture->setWeight('My Title');
-        $fixture->setHeight('My Title');
-        $fixture->setBMI('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setObjectif_weight('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
@@ -89,9 +89,9 @@ class BodyControllerTest extends WebTestCase
 
         $this->client->submitForm('Update', [
             'body[weight]' => 'Something New',
-            'body[height]' => 'Something New',
-            'body[BMI]' => 'Something New',
             'body[date_time]' => 'Something New',
+            'body[objectif_weight]' => 'Something New',
+            'body[user]' => 'Something New',
         ]);
 
         self::assertResponseRedirects('/body/');
@@ -99,9 +99,9 @@ class BodyControllerTest extends WebTestCase
         $fixture = $this->repository->findAll();
 
         self::assertSame('Something New', $fixture[0]->getWeight());
-        self::assertSame('Something New', $fixture[0]->getHeight());
-        self::assertSame('Something New', $fixture[0]->getBMI());
         self::assertSame('Something New', $fixture[0]->getDate_time());
+        self::assertSame('Something New', $fixture[0]->getObjectif_weight());
+        self::assertSame('Something New', $fixture[0]->getUser());
     }
 
     public function testRemove(): void
@@ -112,9 +112,9 @@ class BodyControllerTest extends WebTestCase
 
         $fixture = new Body();
         $fixture->setWeight('My Title');
-        $fixture->setHeight('My Title');
-        $fixture->setBMI('My Title');
         $fixture->setDate_time('My Title');
+        $fixture->setObjectif_weight('My Title');
+        $fixture->setUser('My Title');
 
         $this->repository->save($fixture, true);
 
