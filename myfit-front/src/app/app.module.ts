@@ -14,12 +14,15 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {ApiService} from "./services/api/api.service";
-
+import {MealCardComponent} from "./component/Utils/mealCard/mealCard-component";
+import {MatExpansionModule} from "@angular/material/expansion"
+import {NgChartsModule} from "ng2-charts";
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     MenuComponent,
+    MealCardComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,8 @@ import {ApiService} from "./services/api/api.service";
     MatTooltipModule,
     MatButtonModule,
     HttpClientModule,
+    MatExpansionModule,
+    NgChartsModule,
   ],
   providers: [
     ApiService,
