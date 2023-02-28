@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {HomePageComponent} from "./module/HomePageComponent/homePage-component";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MenuComponent} from "./component/Menu/menu-component";
 import {MatCardModule} from "@angular/material/card";
@@ -19,6 +18,13 @@ import {MatExpansionModule} from "@angular/material/expansion"
 import {NgChartsModule} from "ng2-charts";
 import {ObjectifViewComponent} from "./component/Utils/objectifView/objectifView.component";
 import {GraphiqueEvolutionComponent} from "./component/Utils/graphiqueEvolution/graphiqueEvolution.component";
+import { LoginPageComponent } from "./module/LoginPageComponent/loginPage-component";
+import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPage-component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from "@angular/material/snack-bar";
+import {HomePageComponent} from "./module/HomePageComponent/homePage-component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +33,8 @@ import {GraphiqueEvolutionComponent} from "./component/Utils/graphiqueEvolution/
     MealCardComponent,
     ObjectifViewComponent,
     GraphiqueEvolutionComponent,
+    LoginPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     BrowserModule,
@@ -34,16 +42,26 @@ import {GraphiqueEvolutionComponent} from "./component/Utils/graphiqueEvolution/
     BrowserAnimationsModule,
     MatCardModule,
     FlexLayoutModule,
+    MatInputModule,
     MatIconModule,
+    FormsModule,
     MatFormFieldModule,
     MatTooltipModule,
     MatButtonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatExpansionModule,
     NgChartsModule,
   ],
   providers: [
     ApiService,
+    MatSnackBar,
+    FlexLayoutModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatButtonModule,
+    HttpClientModule,
   ],
   bootstrap: [AppComponent]
 })

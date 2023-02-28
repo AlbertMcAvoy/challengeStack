@@ -1,0 +1,16 @@
+<div class="example-div">
+  <mat-card class="example-card">
+    <form class="example-form"  [formGroup]="userForm">
+      <mat-form-field class="example-full-width " appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Entrez votre Email" name="email" type="email" formControlName="email" required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Entrez votre mot de passe" name="password" type="password" formControlName="password" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="submit()">Se connecter</button>
+      <button mat-flat-button color="accent" routerLink="/register">S'inscrire</button>
+    </form>
+  </mat-card>
+</div>

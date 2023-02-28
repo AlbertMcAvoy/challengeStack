@@ -13,5 +13,10 @@ export interface BarChartDate {
 })
 export class HomePageComponent {
 
+  domain = window.location.host;
+
+  ngOnInit() {
+    console.log(this.domain);
+  }
 
 }
