@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPage-component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
     MatButtonModule,
     MatInputModule,
   ],
-  providers: [],
+  providers: [
+    MatSnackBar
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
