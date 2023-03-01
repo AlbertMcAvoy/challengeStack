@@ -40,7 +40,5 @@ class RegisterController extends AbstractController
     }
 }
 
-?>
-
 
 
