@@ -11,6 +11,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['registerPage-component.scss']
 })
 export class RegisterPageComponent {
+
   nom : string = "";
   prenom : string = "";
   age : number = 0;
@@ -21,7 +22,7 @@ export class RegisterPageComponent {
   email : string = "";
   password : string = "";
   show: boolean = false;
-  public registerForm:FormGroup; // variable is created of type FormGroup is created
+  public registerForm: FormGroup; // variable of type FormGroup is created
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -29,26 +30,11 @@ export class RegisterPageComponent {
     private loginDAO: LoginDAO
   ) {
     this.registerForm = this.fb.group({
-      nom : new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      prenom : new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      age : new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      genre : new FormControl('', Validators.compose([
-        Validators.required
-      ])),
-      phone : new FormControl('', Validators.compose([
-        Validators.required
-      ])),
       taille : new FormControl('', Validators.compose([
-        Validators.required
+        Validators.pattern('[0-9]*')
       ])),
       poids : new FormControl('', Validators.compose([
-        Validators.required
+        Validators.pattern('[0-9]*')
       ])),
       email : new FormControl('', Validators.compose([
         Validators.required,
@@ -65,7 +51,7 @@ export class RegisterPageComponent {
     {
       let status = this.registerForm?.controls[key].status;
       if ( status == 'INVALID') {
-        this._snackBar.open('Cette information nous permet de mieux vous connaitre : ' + key , 'OK', {
+        this._snackBar.open('Cette information est nécessaire pour commencer l\'aventure Track\'n\'fit : ' + key , 'OK', {
             horizontalPosition: 'center',
             verticalPosition: 'top'
           }

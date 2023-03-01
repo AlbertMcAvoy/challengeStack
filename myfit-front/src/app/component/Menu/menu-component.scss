@@ -2,9 +2,11 @@
 
 .menu-container {
   background-color: $primary-color;
-  width: 150px;
-  margin: 0 auto;
-  border-radius: 30px;
+  width: 200px;
+  border-radius: 50px;
+
+  display: flex;
+  gap: 50px;
 
   .nav-item {
     width: 40px;
@@ -12,6 +14,7 @@
     border-radius: 100%;
     cursor: pointer;
     background-color: white;
+
     .icon-user {
       background-repeat: no-repeat;
       background-size: contain;
@@ -21,6 +24,7 @@
       background-image: url('http://localhost:4200/assets/icon/icon-user.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
     }
+
     .icon-home {
       background-repeat: no-repeat;
       background-size: contain;
@@ -30,6 +34,7 @@
       background-image: url('http://localhost:4200/assets/icon/icon-home.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
     }
+
     .icon-food {
       background-repeat: no-repeat;
       background-size: contain;
@@ -39,21 +44,15 @@
       background-image: url('http://localhost:4200/assets/icon/icon-food.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
     }
-    img {
-
-    }
   }
 
   .nav-item:hover {
     background-color: $secondary-color;
-    .icon-user {
-      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
-    }
-    .icon-home {
-      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
-    }
+
+    .icon-user,
+    .icon-home,
     .icon-food {
-      filter: invert(100%) sepia(0%) saturate(7495%) hue-rotate(349deg) brightness(101%) contrast(102%);
+      filter: invert(32%) sepia(26%) saturate(1316%) hue-rotate(144deg) brightness(94%) contrast(89%);
     }
   }
 }
