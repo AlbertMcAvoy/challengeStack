@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Meal;
 use DateTime;
 use App\Repository\MealRepository;
 
@@ -20,20 +21,25 @@ class MealService
     public function getAllMealByUser()
     {
         $user = $this->userService->getCurrentUser();
-        if ($user == null) return [];
+        if ($user == null) {
+            return array();
+        }
+
         $meals = $this->mealRepository->findBy(['user' => $user]);
-        $toReturn = [];
+        $toReturn = array();
 
         foreach ($meals as $meal) {
-            $foods =  $meal->getFood()->toArray();
-            $foodsDTO = [];
-            foreach ($foods as $food) {
-                array_push($foodsDTO, [
-                    'id' => $food->getId(),
-                    'libelle' => $food->getLibelle(),
-                    'calories' => $food->getCalories()
-                ]);
+            if (!empty($meal->getFood())) {
+                $foodsDTO = array_map(function ($food) {
+                    return [
+                        'id' => $food->getId(),
+                        'libelle' => $food->getLibelle(),
+                        'calories' => $food->getCalories()
+                    ];
+                }, $meal->getFood()->toArray());
             }
+
+
             array_push($toReturn, [
                 'id' => $meal->getId(),
                 'name' => $meal->getName(),

@@ -36,14 +36,14 @@ app_body_delete:
         id: '\d+'
 
 app_food_show:
-    path: /api/food/{libelle}
+    path: /api/food/{libelle?}
     controller: App\Controller\FoodController::show
     methods: GET
     requirements:
         libelle: '\D+'
 
 app_meal_show:
-    path: /api/meal/{id}
+    path: /api/meal/show/{id}
     controller: App\Controller\MealController::getMealById
     methods: ["GET"]
     requirements:
@@ -52,26 +52,26 @@ app_meal_show:
 app_meal_user:
     path: /api/meal/user
     controller: App\Controller\MealController::getAllMealByUser
-    methods: ["GET"]
+    methods: GET
 
 app_meal_date:
-    path: /api/meal/{date}
+    path: /api/meal/date/{date}
     controller: App\Controller\MealController::getMealByDate
-    methods: ["GET"]
+    methods: GET
     requirements: 
         date: '/^\d{4}-\d{2}-\d{2}$/'
 
 app_meal_edit:
     path: /api/meal/edit/{id?}
     controller: App\Controller\MealController::edit
-    methods: ["GET", "POST"]
+    methods: POST
     requirements:
         id: '\d+'
 
 app_meal_delete:
-    path: /api/meal/{id}
+    path: /api/meal/delete/{id}
     controller: App\Controller\MealController::delete
-    methods: ["POST"]
+    methods: POST
 
 app_profile_index:
     path: /api/profile

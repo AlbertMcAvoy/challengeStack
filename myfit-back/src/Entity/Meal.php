@@ -70,16 +70,6 @@ class Meal
         return $this->food;
     }
 
-    public function setFood(array $foods): self {
-        
-        foreach($foods as $food) {
-            $food = new Food($food);
-            self::addFood($food);
-        }
-
-        return $this;
-    }
-
     public function addFood(Food $food): self
     {
         if (!$this->food->contains($food)) {

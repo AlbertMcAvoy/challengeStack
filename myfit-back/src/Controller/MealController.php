@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Food;
 use App\Entity\Meal;
 use App\Form\MealType;
+use App\Repository\FoodRepository;
 use App\Repository\MealRepository;
 use App\Service\MealService;
 use App\Service\UserService;
@@ -15,17 +17,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MealController extends AbstractController
 {
-    public function edit(Request $request, UserService $userService, MealRepository $mealRepository): Response
+    public function edit(Request $request, UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository): Response
     {
         $meal = !empty($request->attributes->get('id')) ? new Meal($request->attributes->get('id')) : new Meal();
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
         $data = json_decode($request->getContent(), true);
         if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
+            $foods = [];
+            foreach($data['food'] as $foodId) {
+                $food = $foodRepository->find($foodId);
+                if ($food) {
+                    $meal->addFood($food);
+                }
+            }
+
             $meal->setName($data['name'])
                 ->setUser($user)
-                ->setDateTime(new DateTime())
-                ->setFood($data['food']);
+                ->setDateTime(new DateTime());
+                
             $mealRepository->save($meal, true);
             return $this->json(["status" => 200, "message" => "The Meal is created"]);
         }

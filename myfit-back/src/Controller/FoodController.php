@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Food;
-use App\Form\FoodType;
 use App\Repository\FoodRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,6 +13,8 @@ class FoodController extends AbstractController
     public function show(Request $request, FoodRepository $foodRepository): JsonResponse
     {
         $libelle = $request->attributes->get('libelle');
+
+        if(empty($libelle)) return $this->json(["status" => 404, "messages" => "No parameters libelle found in url"]);
         
         $foods = $foodRepository->findAllByLibelle($libelle);
         $jsonToResponse = [];
