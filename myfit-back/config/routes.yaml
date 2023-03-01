@@ -18,6 +18,12 @@ app_user_show:
     methods: GET
     format: application/json
 
+app_user_delete:
+    path: /api/user
+    controller: App\Controller\UserController::delete
+    methods: DELETE
+    format: application/json
+
 app_body_index:
     path: /api/body
     methods: GET

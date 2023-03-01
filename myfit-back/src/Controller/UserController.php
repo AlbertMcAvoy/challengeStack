@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\UserRepository;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,7 +31,18 @@ class UserController extends AbstractController
         ]);
     }
 
+    public function delete(UserService $userService, UserRepository $userRepository) {
+        $user = $userService->getCurrentUser();
+        if ($user == null) {
+            return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
+        }
+        
+        $user = $userRepository->findOneBy(["id" => $user->getId()]);
 
-
-    //Supprimmer Le User
+        if($user){
+            $userRepository->remove($user, true);
+            return $this->json(['status' => 200, 'message' => "User Delete"]);
+        }
+        return $this->json(['status' => 404, 'message' => "Error on user delete"]);
+    }
 }
