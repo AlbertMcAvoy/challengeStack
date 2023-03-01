@@ -1,49 +1,62 @@
-<form class="example-form" [formGroup]="registerForm">
-  <h1>Créez votre compte</h1>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre nom</mat-label>
-    <input matInput placeholder="Entrez votre nom" name="nom" formControlName="nom" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre prénom</mat-label>
-    <input matInput placeholder="Entrez votre prénom" name="prénom" formControlName="prenom" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre âge</mat-label>
-    <input matInput placeholder="Entrez votre age" name="age" type="number" formControlName="age" required>
-  </mat-form-field>
+<div class="form-container">
 
-  <mat-form-field appearance="fill">
-    <mat-label>Votre genre</mat-label>
-    <select matNativeControl formControlName="genre" required>
-      <option value="1">Homme</option>
-      <option value="2">Femme</option>
-      <option value="3">Autre</option>
-    </select>
-  </mat-form-field>
+  <div class="title-img">
+    <h1>Créez votre compte</h1>
 
-  <mat-form-field class="example-full-width " appearance="fill" >
-    <mat-label>Votre numéro de téléphone</mat-label>
-    <input matInput placeholder="Entrez votre numéro de téléphone" name="phone" formControlName="phone" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre taille</mat-label>
-    <input matInput placeholder="Entrez votre taille" name="taille" formControlName="taille" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre poids</mat-label>
-    <input matInput placeholder="Entrez votre poids" name="poids" formControlName="poids" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width " appearance="fill">
-    <mat-label>Votre email</mat-label>
-    <input matInput placeholder="Entez votre email" name="email" type="email" formControlName="email" required>
-  </mat-form-field>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Password</mat-label>
-    <input matInput placeholder="Entrez votre nouveau mot de passe" value="" name="password" type="password" formControlName="password" required>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="submit()">S'inscrire</button>
-</form>
+    <i class="icon-profile"></i>
+  </div>
+
+  <form class="form" [formGroup]="registerForm">
+
+    <mat-form-field class="field-full-width" appearance="outline">
+      <mat-label>Votre nom</mat-label>
+      <input matInput placeholder="Entrez votre nom" name="nom" formControlName="nom" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="outline">
+      <mat-label>Votre prénom</mat-label>
+      <input matInput placeholder="Entrez votre prénom" name="prénom" formControlName="prenom" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="outline">
+      <mat-label>Votre âge</mat-label>
+      <input matInput placeholder="Entrez votre age" name="age" type="number" formControlName="age" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Votre genre</mat-label>
+      <select matNativeControl formControlName="genre" required>
+        <option value="1">Homme</option>
+        <option value="2">Femme</option>
+        <option value="3">Autre</option>
+      </select>
+    </mat-form-field>
+
+    <mat-form-field class="field-full-width " appearance="outline" >
+      <mat-label>Votre numéro de téléphone</mat-label>
+      <input matInput placeholder="Entrez votre numéro de téléphone" name="phone" formControlName="phone" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width " appearance="outline">
+      <mat-label>Votre taille</mat-label>
+      <input matInput placeholder="Entrez votre taille" name="taille" formControlName="taille" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width " appearance="outline">
+      <mat-label>Votre poids</mat-label>
+      <input matInput placeholder="Entrez votre poids" name="poids" formControlName="poids" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width " appearance="outline">
+      <mat-label>Votre email</mat-label>
+      <input matInput placeholder="Entez votre email" name="email" type="email" formControlName="email" required>
+    </mat-form-field>
+    <mat-form-field class="field-full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Entrez votre nouveau mot de passe" value="" name="password" type="password" formControlName="password" required>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="submit()"> S'inscrire </button>
+      <button mat-flat-button routerLink="/login">Retour</button>
+    </div>
+  </form>
+</div>
 
 
 
