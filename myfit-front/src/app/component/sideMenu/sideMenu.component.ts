@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 
 @Component({
   selector: 'side-menu',
@@ -6,5 +6,6 @@ import {Component} from "@angular/core";
   styleUrls: ['sideMenu.component.scss']
 })
 export class SideMenuComponent {
-
+  @Input() mealToday: boolean = false;
+  panelOpenState = false;
 }
