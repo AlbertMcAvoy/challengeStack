@@ -1,0 +1,21 @@
+.menu {
+  position: fixed;
+  width:100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  left: 0;
+  bottom: 20px;
+  z-index: 10;
+}
+
+.logo {
+  margin-top: 2em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  img {
+    max-width: 150px;
+  }
+}

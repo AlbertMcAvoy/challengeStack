@@ -1,35 +1,83 @@
-.example-div {
+.form-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  justify-content: center
+  justify-content: center;
+  margin: 5% 0;
+
+  .form-card {
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+
+    .form {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+
+      .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .field-full-width {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  .img-context img {
+    width: 100%;
+  }
+
+  .img-context-left {
+    position: absolute;
+    width: 350px;
+    top: 30%;
+    left: 17%;
+
+    animation: float-diagonale 6s ease-in-out infinite;
+  }
+
+  .img-context-right {
+    position: absolute;
+    width: 250px;
+    top: 30%;
+    right: 25%;
+
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .img-context {
+      display: none;
+    }
+  }
 }
 
-.example-form {
-  padding: 32px;
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-30px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
 }
 
-.example-full-width {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  justify-content: center
-}
-
-.example-card {
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center
-}
-
-button {
-  margin-left: 5px;
-}
-
-.btn-success {
-  background-color: #88D498;
-}
-
-.btn-danger {
-  background-color: #E83151;
+@keyframes float-diagonale {
+  0% {
+    transform: translatey(-30px) translateX(30px);
+  }
+  50% {
+    transform: translatey(0px) translateX(0px);
+  }
+  100% {
+    transform: translatey(-30px) translateX(30px);
+  }
 }
