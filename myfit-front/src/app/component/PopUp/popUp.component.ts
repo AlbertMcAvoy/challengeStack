@@ -19,11 +19,13 @@ export class PopUpComponent {
   ) {}
 
   allMeals:Array<Meal> =
-    [
-      {'description' : 'salade'},
-      {'description': 'pizza'}
-    ]
-  ;
+  [
+    {'description' : 'Petit déjeuner - 650 cal.'},
+    {'description': 'Déjeuner - 650 cal.'},
+    {'description': 'Collation - 650 cal.'},
+    {'description': 'Diner - 650 cal.'},
+    {'description': 'Petit déjeuner - 650 cal.'}
+  ];
 
   selectedMeal:Array<Meal> = [];
 
@@ -34,28 +36,6 @@ export class PopUpComponent {
 
   get meals () {
     return this.allMeals;
-  }
-
-  submit() {
-    localStorage.setItem('repas',JSON.stringify(this.allMeals))
-  }
-
-  delete(meal : Meal) {
-    //let found = this.meals.find(({ description }) => description === meal.description);
-    let index = this.meals.findIndex(({ description }) => description === meal.description);
-    this.meals.splice(index,1);
-    //this.meals.filter(({ description }) => description != meal.description);
-    /*if (index !== -1) {
-
-      this.meals.splice(index, 1);
-      console.log(this.meals);
-    }*/
-    console.log(this.meals);
-    localStorage.setItem('repas',JSON.stringify(this.meals))
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 
   myControl = new FormControl('');
@@ -80,5 +60,14 @@ export class PopUpComponent {
     if (index !== -1) {
       this.selectedMeal.splice(index, 1);
     }
+  }
+
+  submit() {
+    localStorage.setItem('repas',JSON.stringify(this.selectedMeal))
+    this.onNoClick()
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

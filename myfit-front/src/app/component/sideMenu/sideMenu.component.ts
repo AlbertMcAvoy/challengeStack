@@ -11,6 +11,7 @@ export class SideMenuComponent {
   @Input() mealToday: boolean = false;
   panelOpenState = false;
   description: string = "";
+  selectedMeal: Array<any> = [];
 
   constructor(public dialog: MatDialog) {}
 
@@ -18,11 +19,12 @@ export class SideMenuComponent {
     const dialogRef = this.dialog.open(PopUpComponent , {
       height: '400px',
       width: '600px',
-      data: {description: this.description},
+      data: {description: this.description}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.description = result;
+      this.selectedMeal = JSON.parse(localStorage.getItem('repas')!) ;
     });
+
   }
 }

@@ -18,40 +18,9 @@
         <div
           fxLayout="row"
           fxLayoutAlign="center center"
+          *ngFor="let meal of selectedMeal"
         >
-          <p>Petit déjeuner - 650 cal.</p>
-          <mat-icon>edit</mat-icon>
-        </div>
-        <div class="ligne"></div>
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <p>Déjeuner - 650 cal.</p>
-          <mat-icon>edit</mat-icon>
-        </div>
-        <div class="ligne"></div>
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <p>Collation - 650 cal.</p>
-          <mat-icon>edit</mat-icon>
-        </div>
-        <div class="ligne"></div>
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <p>Diner - 650 cal.</p>
-          <mat-icon>edit</mat-icon>
-        </div>
-        <div class="ligne"></div>
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-        >
-          <p>Petit déjeuner - 650 cal.</p>
+          <p>{{meal.description}}</p>
           <mat-icon>edit</mat-icon>
         </div>
         <div class="ligne"></div>

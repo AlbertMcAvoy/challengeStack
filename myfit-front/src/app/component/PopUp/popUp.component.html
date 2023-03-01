@@ -16,12 +16,10 @@
     </mat-autocomplete>
   </mat-form-field>
   <div *ngFor="let meal of selected">
-    <div>
       <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
-    </div>
   </div>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="accent" (click)="submit()">Valider</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="selected" (click)="submit()">Valider</button>
 </div>
