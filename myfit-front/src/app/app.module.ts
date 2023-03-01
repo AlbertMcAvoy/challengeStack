@@ -28,7 +28,6 @@ import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
 import { PopUpComponent } from './component/PopUp/popUp.component';
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";

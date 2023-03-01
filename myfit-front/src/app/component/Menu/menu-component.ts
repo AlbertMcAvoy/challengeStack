@@ -1,5 +1,4 @@
-import {Component, Input} from "@angular/core";
-import {Component, EventEmitter, Output} from "@angular/core";
+import {Component, EventEmitter,Input, Output} from "@angular/core";
 @Component({
   selector: 'menu-component',
   templateUrl: 'menu-component.html',
