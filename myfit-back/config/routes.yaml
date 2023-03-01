@@ -59,7 +59,7 @@ app_meal_date:
     controller: App\Controller\MealController::getMealByDate
     methods: GET
     requirements: 
-        date: '/^\d{4}-\d{2}-\d{2}$/'
+        date: '\d{4}-\d{2}-\d{2}'
 
 app_meal_edit:
     path: /api/meal/edit/{id?}

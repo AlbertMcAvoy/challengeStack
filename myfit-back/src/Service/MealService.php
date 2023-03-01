@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Meal;
 use DateTime;
+use Date;
 use App\Repository\MealRepository;
 
 class MealService
@@ -51,14 +52,13 @@ class MealService
         return $toReturn;
     }
 
-    public function getMeal(DateTime $date = null)
+    public function getMeal(String $input = null)
     {
         $mealToReturn = [];
-        if (empty($date)) {
-            $date = new DateTime();
-            $date->format('Y-m-d');
+        $date = date('Y-m-d', strtotime($input));
+        if (empty($input)) {
+            $date = date('Y-m-d');
         }
-
         $user = $this->userService->getCurrentUser();
 
         $mealList = $this->mealRepository->findByDates($date, $user);

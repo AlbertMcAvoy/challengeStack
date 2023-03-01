@@ -48,16 +48,16 @@ class MealRepository extends ServiceEntityRepository
     }
 
 
-    public function findByDates(DateTime $date, User $user) 
+    public function findByDates(string $date, User $user) 
     {
-        $dateTransform = $date->format("Y-m-d");
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $queryBuilder
                 ->select('m')
                 ->from(Meal::class, 'm')
-                ->where('DATE(m.date_time) = :date and m.user_id = :user')
-                ->setParameter('date', '%' .$dateTransform . '%')
-                ->setParameter('user', '%' .$user->getId(). '%');
+                ->where('Date(m.date_time) = :date')
+                ->andWhere('m.user = :user')
+                ->setParameter('date', $date)
+                ->setParameter('user', $user);
         return $queryBuilder->getQuery()->getResult();
 
     }
