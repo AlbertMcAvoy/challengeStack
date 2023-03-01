@@ -4,6 +4,7 @@ import { LoginPageComponent } from "./module/LoginPageComponent/loginPage-compon
 import { HomePageComponent } from "./module/HomePageComponent/homePage-component";
 import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPage-component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
+import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'compte',
     component: MonCompteComponent,
+  },
+  {
+    path: 'infoUser',
+    component: InfoUserComponent
   },
   {
     path: '**',
