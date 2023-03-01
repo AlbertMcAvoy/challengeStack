@@ -1,47 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ComponentRef} from '@angular/core';
 import {Router} from "@angular/router";
-import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {LoginPageComponent} from "./module/LoginPageComponent/loginPage-component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
 
   openSideMenu: boolean = true;
-  title = 'myfit-front';
+
+  title: string = 'Track\'n\'fit';
+
+  menuAccountLink: string;
 
   openMenu() {
     this.openSideMenu = !this.openSideMenu;
   }
 
-  constructor(private router: Router, private responsive: BreakpointObserver) {
+  constructor(private router: Router) {
+
+
+    if (sessionStorage.getItem('jwt') != null) {
+      this.menuAccountLink = 'compte';
+    } else {
+      this.menuAccountLink = 'login';
+    }
   }
 
   getRoute(): string {
     return this.router.url
   }
-  openSideMenuEvent() {
-    this.openSideMenu = !this.openSideMenu;
+
+  updateMenuLink() {
+    if (sessionStorage.getItem('jwt') != null) {
+      this.menuAccountLink = 'compte';
+    }
   }
-  ngOnInit() {
-    this.responsive.observe(Breakpoints.Web)
-      .subscribe(result => {
 
-        if (result.matches) {
-          console.log(result);
-        }
+  passUpdateMenuLinkToLoginComponent(componentRef: ComponentRef<LoginPageComponent>) {
 
-      });
-    this.responsive.observe(Breakpoints.TabletLandscape)
-      .subscribe(result => {
+    if (!(componentRef instanceof LoginPageComponent)) {
+      return;
+    }
 
-        if (result.matches) {
-          console.log("Tablette");
-        }
-
-      });
+    componentRef.updateMenuLinkViaParent = this.updateMenuLink;
   }
 }
 

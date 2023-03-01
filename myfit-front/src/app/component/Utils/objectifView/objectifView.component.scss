@@ -15,7 +15,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    bottom: 200px;
+    bottom: 215px;
 
     .calories-cercle {
       position: relative;
@@ -31,7 +31,7 @@
       animation: fill-progress 1s ease-in-out forwards;
 
       .calorie {
-        font-size: 28px;
+        font-size: $font-size-information-important;
         font-weight: bold;
         margin-top: 70px;
         margin-bottom: 25px;
@@ -70,10 +70,10 @@
     margin-top: 33px;
   }
   .objectif-titre, .calories-titre {
-    font-size: 18px;
+    font-size: $font-size-content;
   }
   .poids, .calories {
-    font-size: 24px;
+    font-size: $font-size-information-important;;
     padding: 20px 0;
   }
 
