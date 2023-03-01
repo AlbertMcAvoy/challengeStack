@@ -11,19 +11,51 @@
     width: 100%;
     bottom: 200px;
     .calories-cercle {
+      position: relative;
       width: 200px;
       height: 200px;
       border-radius: 100px;
-      border: 15px solid $calorie-circle-corlor;
+      background: conic-gradient($light-color 3.6deg, #ffffff 0deg);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
 
+      animation: fill-progress   480ms ease-in-out 250ms forwards;
       .calorie {
         font-size: 28px;
         font-weight: bold;
+        margin-top: 70px;
+        margin-bottom: 25px;
+        z-index: 3;
       }
       .margin-p {
         font-size: 16px;
         margin: 0;
+        z-index: 3;
       }
+    }
+    .calories-cercle::before {
+      content: '';
+      position: absolute;
+      height: 180px;
+      width: 180px;
+      background-color: #ffffff;
+      border-radius: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+
+    @keyframes fill-progress {
+      0% {background: conic-gradient($light-color 10deg, #fafafa 0deg);}
+      10% {background: conic-gradient($light-color 90deg, #ffffff 0deg);}
+      30% {background: conic-gradient($light-color 180deg, #ffffff 0deg);}
+      50% {background: conic-gradient($light-color 200deg, #ffffff 0deg);}
+      70% {background: conic-gradient($light-color 280deg, #ffffff 0deg);}
+      90% {background: conic-gradient($light-color 340deg, #ffffff 0deg);}
+      100% {background: conic-gradient($light-color 360deg, #ffffff 0deg);}
     }
   }
   .mat-mdc-card-content {
