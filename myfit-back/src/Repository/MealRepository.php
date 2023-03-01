@@ -3,8 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Meal;
+use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @extends ServiceEntityRepository<Meal>
@@ -16,9 +20,13 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MealRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $entityManager)
     {
         parent::__construct($registry, Meal::class);
+        $this->entityManager = $entityManager;
     }
 
     public function save(Meal $entity, bool $flush = false): void
@@ -37,6 +45,21 @@ class MealRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+
+    public function findByDates(DateTime $date, User $user) 
+    {
+        $dateTransform = $date->format("Y-m-d");
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $queryBuilder
+                ->select('m')
+                ->from(Meal::class, 'm')
+                ->where('DATE(m.date_time) = :date and m.user_id = :user')
+                ->setParameter('date', '%' .$dateTransform . '%')
+                ->setParameter('user', '%' .$user->getId(). '%');
+        return $queryBuilder->getQuery()->getResult();
+
     }
 
 //    /**

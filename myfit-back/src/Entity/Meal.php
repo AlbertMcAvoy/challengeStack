@@ -70,6 +70,13 @@ class Meal
         return $this->food;
     }
 
+    public function setFood(array $foods): self {
+        
+        !empty($foods) ? $this->food = $foods : '';
+
+        return $this;
+    }
+
     public function addFood(Food $food): self
     {
         if (!$this->food->contains($food)) {
