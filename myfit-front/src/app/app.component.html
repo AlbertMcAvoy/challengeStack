@@ -25,13 +25,20 @@
       <side-menu></side-menu>
     </div>
   </div>
+
   <div class="menu">
-    <menu-component></menu-component>
+    <menu-component
+      [redirectionPath]="menuAccountLink"
+    ></menu-component>
   </div>
+
   <div class="logo">
     <a href="/">
       <img alt="Image du logo" src="assets/logo/logo.png">
     </a>
   </div>
-  <router-outlet></router-outlet>
+
+  <router-outlet
+    (activate)="passUpdateMenuLinkToLoginComponent($event)"
+  ></router-outlet>
 </div>
