@@ -11,13 +11,14 @@ use App\Exception\UserExistException;
 use App\Exception\UserFieldFromException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserService {
 
-    private $userPasswordHasher;
-    private $entityManager;
-    private $userRepository;
-    private $tokenStorage;
+    private UserPasswordHasherInterface $userPasswordHasher;
+    private EntityManagerInterface $entityManager;
+    private UserRepository $userRepository;
+    private TokenStorageInterface $tokenStorage;
 
 
     public function __construct(UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, TokenStorageInterface $tokenStorage) {
@@ -27,12 +28,12 @@ class UserService {
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function getCurrentUser(): User {
+    public function getCurrentUser(): UserInterface | null
+    {
         $token = $this->tokenStorage->getToken();
 
         if ($token instanceof TokenInterface) {
-            $user = $token->getUser();
-            return $user;
+            return $token->getUser();
         }
 
         return null;

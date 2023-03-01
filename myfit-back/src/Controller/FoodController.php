@@ -18,12 +18,13 @@ class FoodController extends AbstractController
         
         $foods = $foodRepository->findAllByLibelle($libelle);
         $jsonToResponse = [];
+
         foreach ($foods as $food) {
-            array_push($jsonToResponse, [
+            $jsonToResponse[] = [
                 "id" => $food->getId(),
                 "libelle" => $food->getLibelle(),
                 "calories" => $food->getCalories()
-            ]);
+            ];
         }
 
         return $this->json(["status" => 200, "foods" => $jsonToResponse]);

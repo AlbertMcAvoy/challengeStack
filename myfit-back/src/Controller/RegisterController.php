@@ -11,7 +11,7 @@ use App\Exception\UserFieldFromException;
 
 class RegisterController extends AbstractController
 {
-    private $user_service;
+    private UserService $user_service;
  
     public function __construct(UserService $user_service) {
         $this->user_service = $user_service;

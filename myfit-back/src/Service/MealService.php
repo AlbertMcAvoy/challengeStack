@@ -3,11 +3,10 @@
 namespace App\Service;
 
 use App\Entity\Meal;
-use App\Entity\User;
 use App\Repository\FoodRepository;
 use DateTime;
-use Date;
 use App\Repository\MealRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class MealService
 {
@@ -18,7 +17,7 @@ class MealService
 
     public function __construct(UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository)
     {
-        $this->mealRepository = $mealRepository;
+        $this->foodRepository = $foodRepository;
         $this->userService = $userService;
         $this->mealRepository = $mealRepository;
     }
@@ -26,15 +25,18 @@ class MealService
     public function getAllMealByUser()
     {
         $user = $this->userService->getCurrentUser();
+
         if ($user == null) {
-            return array();
+            return [];
         }
 
         $meals = $this->mealRepository->findBy(['user' => $user]);
-        $toReturn = array();
+        $toReturn = [];
+        $foodsDTO = [];
 
         foreach ($meals as $meal) {
             if (!empty($meal->getFood())) {
+
                 $foodsDTO = array_map(function ($food) {
                     return [
                         'id' => $food->getId(),
@@ -44,13 +46,12 @@ class MealService
                 }, $meal->getFood()->toArray());
             }
 
-
-            array_push($toReturn, [
+            $toReturn[] = [
                 'id' => $meal->getId(),
                 'name' => $meal->getName(),
                 'date' => $meal->getDateTime(),
                 'foods' => $foodsDTO
-            ]);
+            ];
         }
 
         return $toReturn;
@@ -60,50 +61,56 @@ class MealService
     {
         $mealToReturn = [];
         $date = date('Y-m-d', strtotime($input));
+        $user = $this->userService->getCurrentUser();
+
         if (empty($input)) {
             $date = date('Y-m-d');
         }
-        $user = $this->userService->getCurrentUser();
 
         $mealList = $this->mealRepository->findByDates($date, $user);
+
         foreach ($mealList as $meal) {
-            array_push($mealToReturn, ['id' => $meal->getId(), 'name' => $meal->getName(), 'date' => $meal->getDateTime()]);
+            $mealToReturn[] = ['id' => $meal->getId(), 'name' => $meal->getName(), 'date' => $meal->getDateTime()];
         }
+
         return $mealToReturn;
     }
 
     public function getMealById($id)
     {
         if (empty($id)) return [];
+
         $user = $this->userService->getCurrentUser();
         $meal = $this->mealRepository->findOneBy(['id' => $id, 'user' => $user]);
+
         if (!empty($meal)) {
             $foods =  $meal->getFood()->toArray();
             $foodsDTO = [];
             foreach ($foods as $food) {
-                array_push($foodsDTO, [
+                $foodsDTO[] = [
                     'id' => $food->getId(),
                     'libelle' => $food->getLibelle(),
                     'calories' => $food->getCalories()
-                ]);
+                ];
             }
 
 
-            $toReturn = [
+            return [
                 'id' => $meal->getId(),
                 'name' => $meal->getName(),
                 'date' => $meal->getDateTime(),
                 'foods' => $foodsDTO
             ];
-
-            return $toReturn;
         }
+
         return [];
     }
 
-    public function saveMeal($data, Meal $meal, User $user)
+    public function saveMeal($data, UserInterface $user)
     {
-        foreach ($data['food'] as $foodId) {
+        $meal = new Meal();
+
+        foreach ($data['foods'] as $foodId) {
             $food = $this->foodRepository->find($foodId);
             if ($food) {
                 $meal->addFood($food);
