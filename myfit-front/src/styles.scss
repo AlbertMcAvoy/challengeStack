@@ -21,4 +21,11 @@ $theme-track-n-fit: mat.define-light-theme((
 
 @include mat.all-component-themes($theme-track-n-fit);
 
-@include  mat.legacy-form-field-theme($theme-track-n-fit)
+a {
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
