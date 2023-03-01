@@ -72,7 +72,10 @@ class Meal
 
     public function setFood(array $foods): self {
         
-        !empty($foods) ? $this->food = $foods : '';
+        foreach($foods as $food) {
+            $food = new Food($food);
+            self::addFood($food);
+        }
 
         return $this;
     }

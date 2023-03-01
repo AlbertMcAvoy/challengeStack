@@ -21,7 +21,7 @@ class MealController extends AbstractController
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
         $data = json_decode($request->getContent(), true);
-        if (!empty($data["name"]) && !empty($data['food']) && is_array($data['food'])) {
+        if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
             $meal->setName($data['name'])
                 ->setUser($user)
                 ->setDateTime(new DateTime())
