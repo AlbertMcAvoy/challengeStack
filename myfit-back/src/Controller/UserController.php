@@ -33,4 +33,8 @@ class UserController extends AbstractController
             "weight" => !empty($body) ? $body->getWeight() ?? null : null
         ]);
     }
+
+
+
+    //Supprimmer Le User
 }

@@ -43,17 +43,17 @@ class UserService {
         $user = new User();
         
        try {
-        if (!empty($data['firstname']) && !empty($data['lastname']) && !empty($data['email']) && !empty($data['password']) && !empty($data['height'])) {
+        if (!empty($data['email']) && !empty($data['password'])) {
 
             $userFind = $this->userRepository->findBy(["email"=>$data["email"]]);
             
             if (empty($userFind)) {
-                $user->setFirstName($data['firstname'])
-                ->setLastName($data['lastname'])
+                $user->setFirstName($data['firstname'] ?? '')
+                ->setLastName($data['lastname'] ?? '')
                 ->setGender($data['gender'] ?? null)
                 ->setPhone($data['phone'] ?? null)
                 ->setEmail($data['email'])
-                ->setHeight($data['height'])
+                ->setHeight($data['height'] ?? 0)
                 ->setAge($data['age'] ?? null)
                 ->setSubscriptionDate(new DateTime());
                 $user->setPassword($this->userPasswordHasher->hashPassword($user, $data['password']));
