@@ -5,6 +5,10 @@ $dark-color: #493843;
 $light-color: #EABDA8;
 $content-color: #E1F6F4;
 $font-outfit: 'Outfit', sans-serif;
+$font-size-information-important: 1.7em;
+$font-size-content: 1.5em;
+$font-size-subtitle: 2em;
+$font-size-title: 2.5em;
 
 $calorie-circle-corlor: $light-color;
 
@@ -82,3 +86,7 @@ $warn-palette: (
     900: rgba(white, 0.87),
   )
 );
+
+p {
+  font-family: $font-outfit;
+}
