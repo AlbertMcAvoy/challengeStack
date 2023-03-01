@@ -6,5 +6,9 @@ import {Component} from "@angular/core";
   styleUrls: ['monCompte.component.scss']
 })
 export class MonCompteComponent {
+  openSideMenu: boolean = false;
 
+  openMenu() {
+    this.openSideMenu = !this.openSideMenu;
+  }
 }

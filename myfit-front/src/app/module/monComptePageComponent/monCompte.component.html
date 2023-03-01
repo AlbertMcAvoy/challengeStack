@@ -1,28 +1,53 @@
+
 <div
-  class="menu"
->
-  <menu-component></menu-component>
-</div>
-<div
-  fxLayout="column"
-  fxLayoutAlign="center center"
-  style="height: 100%;"
+  fxlayout="row"
+  class="monCompte-container"
 >
   <div
-    fxLayout="row"
-    fxLayoutAlign="center center"
-    style="height: 100%"
+    class="side-menu"
   >
-    <div>
-      <mealCard [mealToday]="true"></mealCard>
-      <mealCard  [mealToday]="false"></mealCard>
+    <div *ngIf="openSideMenu" class="side-menu-close">
+      <mat-icon
+        class="cancel-button"
+        (click)="openMenu()"
+      >reorder</mat-icon>
     </div>
-    <div>
-      <objectif-view></objectif-view>
-    </div>
-    <div>
-      <profile-utilisateur></profile-utilisateur>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="start end"
+      *ngIf="!openSideMenu"
+      class="side-menu-open">
+      <mat-icon
+        class="bugrer-button"
+        (click)="openMenu()"
+      >cancel
+      </mat-icon>
+      <side-menu></side-menu>
     </div>
   </div>
-  <graphique-evolution></graphique-evolution>
+  <div
+    [ngClass]="{'menu-open': openSideMenu}"
+    class="content">
+    <objectif-view style="margin-top: 200px;"></objectif-view>
+    <graphique-evolution></graphique-evolution>
+    <div
+      fxLayout="row"
+      style="margin: 10%"
+    >
+      <mealCard
+        [mealToday]="true"
+        style="margin-right: 10%"
+        class=""
+      >
+      </mealCard>
+      <mealCard  [mealToday]="false"></mealCard>
+    </div>
+
+    <div
+      class="menu"
+    >
+      <menu-component></menu-component>
+    </div>
+  </div>
+
 </div>

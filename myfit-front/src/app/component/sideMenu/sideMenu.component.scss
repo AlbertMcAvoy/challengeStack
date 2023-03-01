@@ -1,0 +1,17 @@
+@import "src/assets/sass/variable";
+
+.side-menu-container {
+  font-family: $font-outfit;
+  color: white;
+  .titre {
+    font-size: 24px;
+  }
+
+  ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+    background-color: transparent;
+    color: white;
+  }
+  ::ng-deep .mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: white;
+  }
+}

@@ -5,4 +5,10 @@ import {Component} from "@angular/core";
   templateUrl: 'profileUtilisateur.component.html',
   styleUrls: ['profileUtilisateur.component.scss']
 })
-export class ProfileUtilisateurComponent {}
+export class ProfileUtilisateurComponent {
+
+  editProfile: boolean = false;
+  edit() {
+    this.editProfile = !this.editProfile;
+  }
+}
