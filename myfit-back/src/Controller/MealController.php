@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use function PHPUnit\Framework\isEmpty;
+
 class MealController extends AbstractController
 {
     public function edit(Request $request, UserService $userService, MealService $mealService): Response
@@ -61,7 +63,9 @@ class MealController extends AbstractController
     {
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
-        return $this->json($mealService->getMealById($request->attributes->get('id')));
+        $meal = $this->json($mealService->getMealById($request->attributes->get('id')));
+        if (empty($meal)) return $this->json(['status' => 404, 'message' => "No meals found" ,'food' => $meal]);
+        return $meal;
     }
 
     public function getAllMealByUser(UserService $userService, MealService $mealService): JsonResponse

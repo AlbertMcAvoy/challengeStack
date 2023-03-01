@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-use function PHPUnit\Framework\isEmpty;
-
 class BodyController extends AbstractController
 {
     public function index(UserService $userService, BodyRepository $bodyRepository): JsonResponse
@@ -23,6 +21,7 @@ class BodyController extends AbstractController
         $jsonToReturn = [];
         foreach ($bodies as $body) {
             array_push($jsonToReturn, [
+                "id" => $body->getId(),
                 "weight" => $body->getWeight(),
                 "objectif_weight" => $body->getObjectifWeight(),
                 "date" => $body->getDateTime()
@@ -40,6 +39,7 @@ class BodyController extends AbstractController
         $data = json_decode($request->getContent(), true);
         if (!empty($data["objectif_weight"] && !empty($data["weight"]))) {
             $body->setWeight($data["weight"])
+                ->setUser($user)
                 ->setObjectifWeight($data["objectif_weight"])
                 ->setDateTime(new DateTime());
 
