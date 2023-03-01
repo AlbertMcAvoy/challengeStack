@@ -3,6 +3,7 @@
 .mealCard {
   color: white;
   width: 300px;
+
   font-family: $font-outfit;
   .mat-card-title {
     p {
@@ -22,12 +23,23 @@
     p {
       border-bottom: 0.5px solid $light-color;
     }
+
+    .ligne-titre {
+      width: 100px;
+      height: 1px;
+      margin: 20px 0;
+      background-color: $light-color;
+
+    }
   }
 
   ::ng-deep .mat-mdc-card-header {
     display: flex;
     justify-content: center;
     padding: 6px 16px 0;
+  }
+  .center-item {
+
   }
 }
 
@@ -42,3 +54,9 @@
     width: 250px;
   }
 }
+label {
+  width: 100px;
+  margin-right: 10px;
+  text-align: end;
+}
+

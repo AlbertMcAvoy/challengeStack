@@ -1,0 +1,59 @@
+
+<div
+  fxlayout="row"
+  class="monCompte-container"
+>
+  <div
+    [ngClass]="{'menu-open': openSideMenu}"
+    class="content">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
+      <div
+        style="height: 150px"
+      >
+        <img style="height: 100%; width: 100%" src="assets/images/Meal_Monochromatic%201.png">
+      </div>
+      <objectif-view class="aperçu-objectif"></objectif-view>
+      <div
+      >
+        <div
+          style="height: 150px"
+        >
+          <img style="height: 100%; width: 100%" src="assets/images/Profiling_Outline.svg">
+        </div>
+        <mat-card class="info-card">
+          <mat-card-header
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <mat-card-title>Vos Informations</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div
+              fxLayout="column"
+              fxLayoutAlign="center center"
+            >
+              <div
+              >
+                <p><span>Taille:</span> 175 cm</p>
+              </div>
+              <div
+              >
+                <p><span>Votre poid actuel:</span> 61 kg</p>
+              </div>
+              <div
+              >
+                <p><span>Votre objectif de poid:</span> 75 kg</p>
+              </div>
+              <button mat-button color="primary">Voir plus</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <graphique-evolution></graphique-evolution>
+  </div>
+
+</div>

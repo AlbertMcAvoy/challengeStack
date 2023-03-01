@@ -1,0 +1,156 @@
+<div>
+  <mat-card
+    class="mealCard today-meal"
+  >
+    <mat-card-header>
+      <mat-card-title
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <div
+          class="mat-card-title"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          style="margin-right: 10px"
+        >
+          <p>Votre profile:</p>
+        </div>
+        <mat-icon (click)="edit()">edit</mat-icon>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content
+      class="card-content"
+    >
+      <div
+        fxLayout="row" fxLayoutAlign="center center"
+      >
+        <div  class="ligne-titre"></div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+        style=""
+      >
+        <label>Nom :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Prénom :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Age :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Genre :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Mail :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      [ngClass]="{'center-item': !editProfile}"
+    >
+      <label>Téléphone :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+    </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Date :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Taille :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Poid actuel :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <label>Date d'inscription :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+
+      <div
+        fxLayout="row" fxLayoutAlign="center center"
+      >
+        <div  class="ligne-titre"></div>
+      </div>
+
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Taille :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Poid actuelle :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        [ngClass]="{'center-item': !editProfile}"
+      >
+        <label>Objectif de poid :</label>
+        <input *ngIf="editProfile">
+        <span *ngIf="!editProfile"> Nom </span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
