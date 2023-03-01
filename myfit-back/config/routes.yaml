@@ -42,25 +42,31 @@ app_food_show:
     requirements:
         libelle: '\D+'
 
-app_meal_index:
-    path: /api/meal
-    controller: App\Controller\MealController::index
-    methods: ["GET"]
-
-app_meal_new:
-    path: /api/meal/new
-    controller: App\Controller\MealController::new
-    methods: ["GET", "POST"]
-
 app_meal_show:
     path: /api/meal/{id}
-    controller: App\Controller\MealController::show
+    controller: App\Controller\MealController::getMealById
+    methods: ["GET"]
+    requirements:
+        id: '\d+'
+
+app_meal_user:
+    path: /api/meal/user
+    controller: App\Controller\MealController::getAllMealByUser
     methods: ["GET"]
 
+app_meal_date:
+    path: /api/meal/{date}
+    controller: App\Controller\MealController::getMealByDate
+    methods: ["GET"]
+    requirements: 
+        date: '/^\d{4}-\d{2}-\d{2}$/'
+
 app_meal_edit:
-    path: /api/meal/{id}/edit
+    path: /api/meal/edit/{id?}
     controller: App\Controller\MealController::edit
     methods: ["GET", "POST"]
+    requirements:
+        id: '\d+'
 
 app_meal_delete:
     path: /api/meal/{id}

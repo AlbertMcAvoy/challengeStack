@@ -15,18 +15,17 @@ use function PHPUnit\Framework\isEmpty;
 
 class BodyController extends AbstractController
 {
-    public function index(UserService $userService,BodyRepository $bodyRepository): JsonResponse
+    public function index(UserService $userService, BodyRepository $bodyRepository): JsonResponse
     {
-
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
         $bodies = $bodyRepository->findBy(['user' => $user]);
         $jsonToReturn = [];
-        foreach($bodies as $body) {
+        foreach ($bodies as $body) {
             array_push($jsonToReturn, [
-            "weight" => $body->getWeight(), 
-            "objectif_weight" => $body->getObjectifWeight(), 
-            "date" => $body->getDateTime()
+                "weight" => $body->getWeight(),
+                "objectif_weight" => $body->getObjectifWeight(),
+                "date" => $body->getDateTime()
             ]);
         }
 
@@ -41,13 +40,13 @@ class BodyController extends AbstractController
         $data = json_decode($request->getContent(), true);
         if (!empty($data["objectif_weight"] && !empty($data["weight"]))) {
             $body->setWeight($data["weight"])
-            ->setObjectifWeight($data["objectif_weight"])
-            ->setDateTime(new DateTime());
-            
-            $bodyRepository->save($body);
+                ->setObjectifWeight($data["objectif_weight"])
+                ->setDateTime(new DateTime());
+
+            $bodyRepository->save($body, true);
             return $this->json(["status" => 200, "message" => "The Body is created"]);
         }
-        
+
         return $this->json(["status" => 400, "message" => "Error when the data is enter"]);
     }
 

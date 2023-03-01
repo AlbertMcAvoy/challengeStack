@@ -2,17 +2,8 @@
 
 namespace App\Service;
 
-use App\Entity\Body;
-use App\Entity\User;
 use DateTime;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\UserRepository;
-use App\Exception\UserExistException;
-use App\Exception\UserFieldFromException;
 use App\Repository\MealRepository;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class MealService
 {
@@ -26,41 +17,37 @@ class MealService
         $this->userService = $userService;
     }
 
-    public function getAllMealByUser() {
+    public function getAllMealByUser()
+    {
         $user = $this->userService->getCurrentUser();
         if ($user == null) return [];
         $meals = $this->mealRepository->findBy(['user' => $user]);
         $toReturn = [];
 
-        foreach($meals as $meal) {
+        foreach ($meals as $meal) {
             $foods =  $meal->getFood()->toArray();
             $foodsDTO = [];
-            foreach($foods as $food) {
+            foreach ($foods as $food) {
                 array_push($foodsDTO, [
-                    'id'=>$food->getId(),
-                    'libelle'=>$food->getLibelle(),
+                    'id' => $food->getId(),
+                    'libelle' => $food->getLibelle(),
                     'calories' => $food->getCalories()
                 ]);
             }
-    
-            array_push($toReturn , [
+            array_push($toReturn, [
                 'id' => $meal->getId(),
                 'name' => $meal->getName(),
                 'date' => $meal->getDateTime(),
                 'foods' => $foodsDTO
             ]);
-    
         }
 
         return $toReturn;
-       
     }
 
     public function getMeal(DateTime $date = null)
     {
-
         $mealToReturn = [];
-
         if (empty($date)) {
             $date = new DateTime();
             $date->format('Y-m-d');
@@ -82,10 +69,10 @@ class MealService
         $meal = $this->mealRepository->findOneBy(['id' => $id, 'user' => $user]);
         $foods =  $meal->getFood()->toArray();
         $foodsDTO = [];
-        foreach($foods as $food) {
+        foreach ($foods as $food) {
             array_push($foodsDTO, [
-                'id'=>$food->getId(),
-                'libelle'=>$food->getLibelle(),
+                'id' => $food->getId(),
+                'libelle' => $food->getLibelle(),
                 'calories' => $food->getCalories()
             ]);
         }

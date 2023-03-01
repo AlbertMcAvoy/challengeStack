@@ -5,67 +5,66 @@ namespace App\Controller;
 use App\Entity\Meal;
 use App\Form\MealType;
 use App\Repository\MealRepository;
+use App\Service\MealService;
+use App\Service\UserService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MealController extends AbstractController
 {
-    public function index(MealRepository $mealRepository): Response
+    public function edit(Request $request, UserService $userService, MealRepository $mealRepository): Response
     {
-        return $this->render('meal/index.html.twig', [
-            'meals' => $mealRepository->findAll(),
-        ]);
-    }
-
-    public function new(Request $request, MealRepository $mealRepository): Response
-    {
-        $meal = new Meal();
-        $form = $this->createForm(MealType::class, $meal);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        $meal = !empty($request->attributes->get('id')) ? new Meal($request->attributes->get('id')) : new Meal();
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        $data = json_decode($request->getContent(), true);
+        if (!empty($data["name"]) && !empty($data['food']) && is_array($data['food'])) {
+            $meal->setName($data['name'])
+                ->setUser($user)
+                ->setDateTime(new DateTime())
+                ->setFood($data['food']);
             $mealRepository->save($meal, true);
-
-            return $this->redirectToRoute('app_meal_index', [], Response::HTTP_SEE_OTHER);
+            return $this->json(["status" => 200, "message" => "The Meal is created"]);
         }
 
-        return $this->renderForm('meal/new.html.twig', [
-            'meal' => $meal,
-            'form' => $form,
-        ]);
+        return $this->json(["status" => 400, "message" => "Error when the data is enter"]);
     }
 
-    public function show(Meal $meal): Response
+    public function delete(Request $request, UserService $userService, Meal $meal, MealRepository $mealRepository): Response
     {
-        return $this->render('meal/show.html.twig', [
-            'meal' => $meal,
-        ]);
-    }
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        $id = $request->attributes->get('id');
 
-    public function edit(Request $request, Meal $meal, MealRepository $mealRepository): Response
-    {
-        $form = $this->createForm(MealType::class, $meal);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $mealRepository->save($meal, true);
-
-            return $this->redirectToRoute('app_meal_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('meal/edit.html.twig', [
-            'meal' => $meal,
-            'form' => $form,
-        ]);
-    }
-
-    public function delete(Request $request, Meal $meal, MealRepository $mealRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$meal->getId(), $request->request->get('_token'))) {
+        $meal = $mealRepository->findOneBy(['id' => $id, 'user' => $user]);
+        if ($meal) {
             $mealRepository->remove($meal, true);
+            return $this->json(["status" => 200, "message" => "Meal is deleted"]);
         }
+        return $this->json(["status" => 400, "message" => "Meal not found"]);
+    }
 
-        return $this->redirectToRoute('app_meal_index', [], Response::HTTP_SEE_OTHER);
+    public function getMealById(Request $request, UserService $userService, MealService $mealService): JsonResponse
+    {
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        return $this->json($mealService->getMealById($request->attributes->get('id')));
+    }
+
+    public function getAllMealByUser(UserService $userService, MealService $mealService): JsonResponse
+    {
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        return $this->json($mealService->getAllMealByUser());
+    }
+
+    public function getMealByDate(Request $request, UserService $userService, MealService $mealService): JsonResponse
+    {
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        return $this->json($mealService->getMeal($request->attributes->get('date')));
     }
 }
