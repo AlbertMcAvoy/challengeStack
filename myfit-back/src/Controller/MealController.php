@@ -17,28 +17,29 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MealController extends AbstractController
 {
-    public function edit(Request $request, UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository): Response
+    public function edit(Request $request, UserService $userService, MealService $mealService): Response
     {
         $meal = !empty($request->attributes->get('id')) ? new Meal($request->attributes->get('id')) : new Meal();
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
-        $data = json_decode($request->getContent(), true);
         if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
-            foreach($data['food'] as $foodId) {
-                $food = $foodRepository->find($foodId);
-                if ($food) {
-                    $meal->addFood($food);
-                }
-            }
+            $data = json_decode($request->getContent(), true);
+            $mealService->saveMeal($data, $meal, $user);
+            return $this->json(["status" => 200, "message" => "The Meal is edited"]);
+        }
+        return $this->json(["status" => 400, "message" => "Error when the data is enter"]);
+    }
 
-            $meal->setName($data['name'])
-                ->setUser($user)
-                ->setDateTime(new DateTime());
-
-            $mealRepository->save($meal, true);
+    public function new(Request $request, UserService $userService, MealService $mealService): Response
+    {
+        $meal = !empty($request->attributes->get('id')) ? new Meal($request->attributes->get('id')) : new Meal();
+        $user = $userService->getCurrentUser();
+        if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
+        if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
+            $data = json_decode($request->getContent(), true);
+            $mealService->saveMeal($data, $meal, $user);
             return $this->json(["status" => 200, "message" => "The Meal is created"]);
         }
-
         return $this->json(["status" => 400, "message" => "Error when the data is enter"]);
     }
 

@@ -62,11 +62,16 @@ app_meal_date:
         date: '\d{4}-\d{2}-\d{2}'
 
 app_meal_edit:
-    path: /api/meal/edit/{id?}
+    path: /api/meal/edit/{id}
     controller: App\Controller\MealController::edit
     methods: POST
     requirements:
         id: '\d+'
+
+app_meal_create:
+    path: /api/meal/new
+    controller: App\Controller\MealController::new
+    methods: POST        
 
 app_meal_delete:
     path: /api/meal/delete/{id}

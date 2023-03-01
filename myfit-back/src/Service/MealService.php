@@ -3,6 +3,8 @@
 namespace App\Service;
 
 use App\Entity\Meal;
+use App\Entity\User;
+use App\Repository\FoodRepository;
 use DateTime;
 use Date;
 use App\Repository\MealRepository;
@@ -12,11 +14,13 @@ class MealService
 
     private $mealRepository;
     private $userService;
+    private $foodRepository;
 
-    public function __construct(UserService $userService, MealRepository $mealRepository)
+    public function __construct(UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository)
     {
         $this->mealRepository = $mealRepository;
         $this->userService = $userService;
+        $this->mealRepository = $mealRepository;
     }
 
     public function getAllMealByUser()
@@ -73,23 +77,43 @@ class MealService
         if (empty($id)) return [];
         $user = $this->userService->getCurrentUser();
         $meal = $this->mealRepository->findOneBy(['id' => $id, 'user' => $user]);
-        $foods =  $meal->getFood()->toArray();
-        $foodsDTO = [];
-        foreach ($foods as $food) {
-            array_push($foodsDTO, [
-                'id' => $food->getId(),
-                'libelle' => $food->getLibelle(),
-                'calories' => $food->getCalories()
-            ]);
+        if (!empty($meal)) {
+            $foods =  $meal->getFood()->toArray();
+            $foodsDTO = [];
+            foreach ($foods as $food) {
+                array_push($foodsDTO, [
+                    'id' => $food->getId(),
+                    'libelle' => $food->getLibelle(),
+                    'calories' => $food->getCalories()
+                ]);
+            }
+
+
+            $toReturn = [
+                'id' => $meal->getId(),
+                'name' => $meal->getName(),
+                'date' => $meal->getDateTime(),
+                'foods' => $foodsDTO
+            ];
+
+            return $toReturn;
+        }
+        return [];
+    }
+
+    public function saveMeal($data, Meal $meal, User $user)
+    {
+        foreach ($data['food'] as $foodId) {
+            $food = $this->foodRepository->find($foodId);
+            if ($food) {
+                $meal->addFood($food);
+            }
         }
 
-        $toReturn = [
-            'id' => $meal->getId(),
-            'name' => $meal->getName(),
-            'date' => $meal->getDateTime(),
-            'foods' => $foodsDTO
-        ];
+        $meal->setName($data['name'])
+            ->setUser($user)
+            ->setDateTime(new DateTime());
 
-        return $toReturn;
+        $this->mealRepository->save($meal, true);
     }
 }
