@@ -24,7 +24,6 @@ class MealController extends AbstractController
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
         $data = json_decode($request->getContent(), true);
         if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
-            $foods = [];
             foreach($data['food'] as $foodId) {
                 $food = $foodRepository->find($foodId);
                 if ($food) {
@@ -35,7 +34,7 @@ class MealController extends AbstractController
             $meal->setName($data['name'])
                 ->setUser($user)
                 ->setDateTime(new DateTime());
-                
+
             $mealRepository->save($meal, true);
             return $this->json(["status" => 200, "message" => "The Meal is created"]);
         }

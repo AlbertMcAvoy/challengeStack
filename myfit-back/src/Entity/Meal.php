@@ -22,7 +22,7 @@ class Meal
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_time = null;
 
-    #[ORM\ManyToMany(targetEntity: Food::class, mappedBy: 'Meal')]
+    #[ORM\ManyToMany(targetEntity: Food::class, mappedBy: 'meal')]
     private Collection $food;
 
     #[ORM\ManyToOne(inversedBy: 'meals')]
