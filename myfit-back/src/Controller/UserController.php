@@ -11,15 +11,11 @@ class UserController extends AbstractController
 
     public function get(UserService $userService): JsonResponse
     {
-
         $user = $userService->getCurrentUser();
-
         if ($user == null) {
             return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
         }
-
         $body = $user->getBodies()->last();
-
         return $this->json([
             "id" => $user->getId(),
             "firstname" => $user->getFirstname(),

@@ -10,12 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 class FoodController extends AbstractController
 {
 
-    public function show(Request $request, FoodRepository $foodRepository): JsonResponse
+    public function show(FoodRepository $foodRepository, $libelle): JsonResponse
     {
-        $libelle = $request->attributes->get('libelle');
+        if (empty($libelle)) return $this->json(["status" => 404, "messages" => "No parameters libelle found in url"]);
 
-        if(empty($libelle)) return $this->json(["status" => 404, "messages" => "No parameters libelle found in url"]);
-        
         $foods = $foodRepository->findAllByLibelle($libelle);
         $jsonToResponse = [];
 
@@ -26,7 +24,6 @@ class FoodController extends AbstractController
                 "calories" => $food->getCalories()
             ];
         }
-
         return $this->json(["status" => 200, "foods" => $jsonToResponse]);
     }
 }

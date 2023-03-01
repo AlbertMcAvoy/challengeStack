@@ -18,27 +18,22 @@ class RegisterController extends AbstractController
     }
 
     public function register(Request $request): JsonResponse
-    { 
+    {
         $data = json_decode($request->getContent(), true);
         try {
             $this->user_service->register($data);
             $jsonResponse["status"] = 200;
             $jsonResponse["message"] = "the User has been registered successfully";
-
-        }catch(UserExistException $ex) {
+        } catch (UserExistException $ex) {
             $jsonResponse["status"] = 403;
-            $jsonResponse["message"] = $ex->getMessage();    
-        }catch(UserFieldFromException $ex) {
+            $jsonResponse["message"] = $ex->getMessage();
+        } catch (UserFieldFromException $ex) {
             $jsonResponse["status"] = 400;
             $jsonResponse["message"] = $ex->getMessage();
         } catch (\Exception $e) {
             $jsonResponse["status"] = 500;
             $jsonResponse["message"] = "Error When we register the user";
         }
-
         return $this->json($jsonResponse);
     }
 }
-
-
-

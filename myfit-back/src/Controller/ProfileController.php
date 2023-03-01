@@ -14,7 +14,7 @@ class ProfileController extends AbstractController
 {
     public function index(ProfileRepository $profileRepository): JsonResponse
     {
-        return $this->json(["status"=>404,"message" => "not implemented"]);
+        return $this->json(["status" => 404, "message" => "not implemented"]);
     }
 
     public function new(Request $request, ProfileRepository $profileRepository): JsonResponse
@@ -26,17 +26,15 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $profileRepository->save($profile, true);
 
-            return $this->json(["status"=>404,"message" => "not implemented"]);
-
+            return $this->json(["status" => 404, "message" => "not implemented"]);
         }
 
-        return $this->json(["status"=>404,"message" => "not implemented"]);
+        return $this->json(["status" => 404, "message" => "not implemented"]);
     }
 
     public function show(Profile $profile): Response
     {
-        return $this->json(["status"=>404,"message" => "not implemented"]);
-
+        return $this->json(["status" => 404, "message" => "not implemented"]);
     }
 
     public function edit(Request $request, Profile $profile, ProfileRepository $profileRepository): JsonResponse
@@ -47,21 +45,18 @@ class ProfileController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $profileRepository->save($profile, true);
 
-            return $this->json(["status"=>404,"message" => "not implemented"]);
-
+            return $this->json(["status" => 404, "message" => "not implemented"]);
         }
 
-        return $this->json(["status"=>404,"message" => "not implemented"]);
-
+        return $this->json(["status" => 404, "message" => "not implemented"]);
     }
 
     public function delete(Request $request, Profile $profile, ProfileRepository $profileRepository): JsonResponse
     {
-        if ($this->isCsrfTokenValid('delete'.$profile->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $profile->getId(), $request->request->get('_token'))) {
             $profileRepository->remove($profile, true);
         }
 
-        return $this->json(["status"=>404,"message" => "not implemented"]);
-
+        return $this->json(["status" => 404, "message" => "not implemented"]);
     }
 }

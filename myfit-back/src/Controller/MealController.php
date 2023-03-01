@@ -58,12 +58,12 @@ class MealController extends AbstractController
         return $this->json(["status" => 400, "message" => "Meal not found"]);
     }
 
-    public function getMealById(Request $request, UserService $userService, MealService $mealService): JsonResponse
+    public function getMealById(UserService $userService, MealService $mealService, $id): JsonResponse
     {
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
-        $meal = $this->json($mealService->getMealById($request->attributes->get('id')));
-        if (empty($meal)) return $this->json(['status' => 404, 'message' => "No meals found" ,'food' => $meal]);
+        $meal = $this->json($mealService->getMealById($id));
+        if (empty($meal)) return $this->json(['status' => 404, 'message' => "No meals found", 'food' => $meal]);
         return $meal;
     }
 
@@ -74,10 +74,10 @@ class MealController extends AbstractController
         return $this->json($mealService->getAllMealByUser());
     }
 
-    public function getMealByDate(Request $request, UserService $userService, MealService $mealService): JsonResponse
+    public function getMealByDate(UserService $userService, MealService $mealService, $date): JsonResponse
     {
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
-        return $this->json($mealService->getMeal($request->attributes->get('date')));
+        return $this->json($mealService->getMeal($date));
     }
 }
