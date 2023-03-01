@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter, Output} from "@angular/core";
 @Component({
   selector: 'menu-component',
   templateUrl: 'menu-component.html',
@@ -6,4 +6,9 @@ import {Component} from "@angular/core";
 })
 export class MenuComponent {
 
+  @Output() openSideMenu: EventEmitter<boolean> = new  EventEmitter<boolean>();
+
+  openSideMenuClicked() {
+    this.openSideMenu.emit(true);
+  }
 }

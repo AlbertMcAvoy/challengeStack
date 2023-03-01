@@ -24,9 +24,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {LoginDAO} from "./model/loginDAO";
-import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
+import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     GraphiqueEvolutionComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfileUtilisateurComponent,
+    InfoUserComponent,
     MonCompteComponent,
     SideMenuComponent
   ],
@@ -58,6 +59,7 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     ReactiveFormsModule,
     MatExpansionModule,
     NgChartsModule,
+    MatDialogModule,
   ],
   providers: [
     ApiService,
@@ -69,6 +71,7 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     MatButtonModule,
     ApiService,
     LoginDAO,
+    MatDialog,
   ],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,6 @@ import {Component, Input} from "@angular/core";
   styleUrls: ['sideMenu.component.scss']
 })
 export class SideMenuComponent {
-  @Input() mealToday: boolean = false;
+  @Input() openSideMenu: boolean = false;
   panelOpenState = false;
 }
