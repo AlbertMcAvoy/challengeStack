@@ -12,6 +12,12 @@ api_register:
     methods: POST
     format: application/json
 
+app_user_show:
+    path: /api/user
+    controller: App\Controller\UserController::get
+    methods: POST
+    format: application/json
+
 app_body_index:
     path: /api/body
     methods: GET
@@ -22,51 +28,19 @@ app_body_new:
     methods: [GET, POST]
     controller: App\Controller\BodyController::new
 
-app_body_show:
-    path: /api/body/{id}
-    methods: GET
-    controller: App\Controller\BodyController::show
-    requirements:
-        id: '\d+'
-
-app_body_edit:
-    path: /api/body/{id}/edit
-    methods: [GET, POST]
-    controller: App\Controller\BodyController::edit
-    requirements:
-        id: '\d+'
-
 app_body_delete:
     path: /api/body/{id}
-    methods: POST
+    methods: DELETE
     controller: App\Controller\BodyController::delete
     requirements:
         id: '\d+'
 
-app_food_index:
-    path: /api/food
-    controller: App\Controller\FoodController::index
-    methods: GET
-
-app_food_new:
-    path: /api/food/new
-    controller: App\Controller\FoodController::new
-    methods: [GET, POST]
-
 app_food_show:
-    path: /api/food/{id}
+    path: /api/food/{libelle}
     controller: App\Controller\FoodController::show
     methods: GET
-
-app_food_edit:
-    path: /api/food/{id}/edit
-    controller: App\Controller\FoodController::edit
-    methods: [GET, POST]
-
-app_food_delete:
-    path: /api/food/{id}
-    controller: App\Controller\FoodController::delete
-    methods: POST
+    requirements:
+        libelle: '\D+'
 
 app_meal_index:
     path: /api/meal
