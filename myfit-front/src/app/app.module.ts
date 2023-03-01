@@ -30,6 +30,7 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
 import { PopUpComponent } from './component/PopUp/popUp.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     ProfileUtilisateurComponent,
     MonCompteComponent,
     SideMenuComponent,
-    PopUpComponent
+    PopUpComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
