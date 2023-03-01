@@ -1,16 +1,29 @@
-<div class="example-div">
-  <mat-card class="example-card">
-    <form class="example-form"  [formGroup]="userForm">
-      <mat-form-field class="example-full-width " appearance="fill">
+<div class="form-container">
+  <mat-card class="form-card">
+    <form class="form" [formGroup]="userForm">
+
+      <mat-form-field class="" appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Entrez votre Email" name="email" type="email" formControlName="email" required>
+        <input matInput placeholder="Entrez votre Email" name="email" type="email" formControlName="email" required class="field">
       </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Password</mat-label>
+
+      <mat-form-field class="" appearance="outline">
+        <mat-label>Mot de passe</mat-label>
         <input matInput placeholder="Entrez votre mot de passe" name="password" type="password" formControlName="password" required>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="submit()">Se connecter</button>
-      <button mat-flat-button color="accent" routerLink="/register">S'inscrire</button>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" (click)="submit()">Se connecter</button>
+        <button mat-flat-button routerLink="/register">S'inscrire</button>
+      </div>
     </form>
   </mat-card>
+
+  <div class="img-context img-context-left">
+    <img src="assets/images/Ramen_Flatline.png" alt="ramen-meal">
+  </div>
+
+  <div class="img-context img-context-right">
+    <img src="assets/images/Profiling_Monochromatic.svg" alt="tech-connexion">
+  </div>
 </div>

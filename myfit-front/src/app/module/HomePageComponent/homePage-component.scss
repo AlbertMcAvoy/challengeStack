@@ -1,14 +1,4 @@
 @import "src/assets/sass/variable";
-.menu {
-  position: fixed;
-  width:100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-end;
-  left: 0;
-  bottom: 20px;
-  z-index: 10;
-}
 
 .homePage {
   padding: 30px 30px 110px;
