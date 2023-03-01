@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, EventEmitter} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
@@ -12,10 +12,16 @@ import {LoginDAO} from "../../model/loginDAO";
 })
 
 export class LoginPageComponent {
+
   email: string = "";
+
   password: string = "";
+
   show: boolean = false;
+
   public userForm:FormGroup; // variable is created of type FormGroup is created
+
+  updateMenuLinkViaParent: Function | undefined;
 
   constructor(
     private _snackBar: MatSnackBar,
@@ -50,7 +56,10 @@ export class LoginPageComponent {
       'password': this.password
     })).then((data) => {
       sessionStorage.setItem('jwt', data.token);
-      window.location.href = '/';
+      window.location.href = '/compte';
+      if (this.updateMenuLinkViaParent) {
+        this.updateMenuLinkViaParent();
+      }
     }).catch((e: HttpErrorResponse) => {
       let snackBarRef = this._snackBar.open('Une erreur s\'est produite, réessayez plus tard !', 'OK',{
         horizontalPosition: 'center',

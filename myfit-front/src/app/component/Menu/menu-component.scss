@@ -2,7 +2,7 @@
 
 .menu-container {
   background-color: $primary-color;
-  width: 200px;
+  width: 400px;
   border-radius: 50px;
 
   display: flex;
@@ -21,7 +21,7 @@
       height: 76%;
       width: 100%;
       background-position: center;
-      background-image: url('http://localhost:4200/assets/icon/icon-user.svg');
+      background-image: url('/assets/icon/icon-user.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
     }
 
@@ -31,7 +31,7 @@
       height: 76%;
       width: 100%;
       background-position: center;
-      background-image: url('http://localhost:4200/assets/icon/icon-home.svg');
+      background-image: url('/assets/icon/icon-home.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
     }
 
@@ -41,8 +41,19 @@
       height: 76%;
       width: 100%;
       background-position: center;
-      background-image: url('http://localhost:4200/assets/icon/icon-food.svg');
+      background-image: url('/assets/icon/icon-food.svg');
       filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+
+    .icon-disconnect {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 76%;
+      width: 100%;
+      background-position: center;
+      background-image: url('/assets/icon/icon-disconnect.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+      transform: rotateY(180deg);
     }
   }
 
@@ -51,7 +62,8 @@
 
     .icon-user,
     .icon-home,
-    .icon-food {
+    .icon-food,
+    .icon-disconnect {
       filter: invert(32%) sepia(26%) saturate(1316%) hue-rotate(144deg) brightness(94%) contrast(89%);
     }
   }

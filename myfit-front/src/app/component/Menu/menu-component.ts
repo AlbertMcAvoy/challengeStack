@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 @Component({
   selector: 'menu-component',
   templateUrl: 'menu-component.html',
@@ -6,4 +6,10 @@ import {Component} from "@angular/core";
 })
 export class MenuComponent {
 
+  @Input() redirectionPath: string | undefined;
+
+  disconnect() {
+    sessionStorage.clear();
+    window.location.href = '/';
+  }
 }

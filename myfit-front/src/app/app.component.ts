@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, ComponentRef} from '@angular/core';
 import {Router} from "@angular/router";
+import {LoginPageComponent} from "./module/LoginPageComponent/loginPage-component";
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,42 @@ import {Router} from "@angular/router";
 export class AppComponent {
 
   openSideMenu: boolean = true;
-  title = 'myfit-front';
+
+  title: string = 'Track\'n\'fit';
+
+  menuAccountLink: string;
 
   openMenu() {
     this.openSideMenu = !this.openSideMenu;
   }
 
   constructor(private router: Router) {
+
+
+    if (sessionStorage.getItem('jwt') != null) {
+      this.menuAccountLink = 'compte';
+    } else {
+      this.menuAccountLink = 'login';
+    }
   }
 
   getRoute(): string {
     return this.router.url
+  }
+
+  updateMenuLink() {
+    if (sessionStorage.getItem('jwt') != null) {
+      this.menuAccountLink = 'compte';
+    }
+  }
+
+  passUpdateMenuLinkToLoginComponent(componentRef: ComponentRef<LoginPageComponent>) {
+
+    if (!(componentRef instanceof LoginPageComponent)) {
+      return;
+    }
+
+    componentRef.updateMenuLinkViaParent = this.updateMenuLink;
   }
 }
 
