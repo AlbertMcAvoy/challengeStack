@@ -1,0 +1,69 @@
+@import "src/assets/sass/variable";
+
+
+.monCompte-container{
+  font-family: $font-outfit;
+  display: flex;
+  position: relative;
+  margin-bottom: 100px;
+
+  .side-menu {
+    width:  400px;
+    position: relative;
+    .side-menu-open {
+      height: 100%;
+      background-color: $primary-color;
+      display: flex;
+      justify-content: flex-end;
+      position: fixed;
+    }
+    .side-menu-close {
+      height: 100%;
+      background-color: $primary-color;
+      position: fixed;
+
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .content {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    .menu {
+      position: fixed;
+      bottom: 16px;
+    }
+    .logo {
+      margin-top: 2em;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      img {
+        max-width: 150px;
+      }
+    }
+  }
+  .menu-open {
+    width: auto;
+  }
+  .aperçu-objectif {
+    margin: 200px 30px 0 80px;
+  }
+  .info-card {
+    span {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}

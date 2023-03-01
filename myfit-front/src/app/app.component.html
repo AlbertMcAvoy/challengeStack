@@ -1,11 +1,37 @@
-<div class="logo">
-  <a href="/">
-    <img alt="Image du logo" src="assets/logo/logo.png">
-  </a>
-</div>
 
-<div class="menu">
-  <menu-component></menu-component>
+<div
+>
+  <div
+    class="side-menu"
+  >
+    <div
+      *ngIf="openSideMenu && getRoute() == '/compte'"
+      class="side-menu-close">
+      <mat-icon
+        class="cancel-button"
+        (click)="openMenu()"
+      >reorder</mat-icon>
+    </div>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="start end"
+      *ngIf="!openSideMenu && getRoute() == '/compte' "
+      class="side-menu-open">
+      <mat-icon
+        class="bugrer-button"
+        (click)="openMenu()"
+      >cancel
+      </mat-icon>
+      <side-menu></side-menu>
+    </div>
+  </div>
+  <div class="menu">
+    <menu-component></menu-component>
+  </div>
+  <div class="logo">
+    <a href="/">
+      <img alt="Image du logo" src="assets/logo/logo.png">
+    </a>
+  </div>
+  <router-outlet></router-outlet>
 </div>
-
-<router-outlet></router-outlet>

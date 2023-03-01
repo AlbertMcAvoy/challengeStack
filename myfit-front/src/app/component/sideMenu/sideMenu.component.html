@@ -1,0 +1,176 @@
+<div
+  class="side-menu-container"
+>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center"
+  >
+
+    <div class="meals-container">
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="titre"
+      >
+        <p>Vos repas aujourd'hui</p>
+        <mat-icon>add</mat-icon>
+      </div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <p>Petit déjeuner - 650 cal.</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="ligne"></div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <p>Déjeuner - 650 cal.</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="ligne"></div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <p>Collation - 650 cal.</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="ligne"></div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <p>Diner - 650 cal.</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="ligne"></div>
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+        >
+          <p>Petit déjeuner - 650 cal.</p>
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="ligne"></div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <img
+          fxLayout="row"
+          fxLayoutAlign="none center"
+          style="width: 50%; height: 50%" src="/assets/images/Watermelon_Outline 1.png">
+      </div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="titre"
+      >
+        <p>Vos repas précedents</p>
+        <mat-icon>add</mat-icon>
+      </div>
+      <mat-accordion
+        class="repas-hier"
+      >
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Hier - 2777 cal
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Petit déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Collation - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Diner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Petit déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Avant hier - 2756 cal
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Petit déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Collation - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Diner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <p>Petit déjeuner - 650 cal.</p>
+            <mat-icon>edit</mat-icon>
+          </div>
+          <div class="ligne"></div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>
