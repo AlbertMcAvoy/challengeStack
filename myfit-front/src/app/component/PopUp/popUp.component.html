@@ -1,0 +1,27 @@
+<div mat-dialog-content>
+  <h1>Ajoutez un repas</h1>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Rechercher un aliment...</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Rechercher un aliment..."
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of meals" [value]="option.description" (click)="addMeal(option)">
+        {{option.description}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <div *ngFor="let meal of selected">
+    <div>
+      <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
+    </div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="accent" (click)="submit()">Valider</button>
+</div>

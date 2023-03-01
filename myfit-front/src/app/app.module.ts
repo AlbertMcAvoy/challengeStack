@@ -27,6 +27,9 @@ import {LoginDAO} from "./model/loginDAO";
 import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
+import { PopUpComponent } from './component/PopUp/popUp.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     RegisterPageComponent,
     ProfileUtilisateurComponent,
     MonCompteComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     ReactiveFormsModule,
     MatExpansionModule,
     NgChartsModule,
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [
     ApiService,
@@ -68,7 +74,7 @@ import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
     MatTooltipModule,
     MatButtonModule,
     ApiService,
-    LoginDAO,
+    LoginDAO
   ],
   bootstrap: [AppComponent]
 })
