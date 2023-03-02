@@ -1,16 +1,17 @@
 <div mat-dialog-content>
   <h1>{{data.title}}</h1>
-
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Rechercher un aliment...</mat-label>
     <input type="text"
            placeholder="Pick one"
            aria-label="Rechercher un aliment..."
+           id="autoCompleteInput"
            matInput
+           [(ngModel)] = "valueInputSearch"
            [formControl]="myControl"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of meals" [value]="option.description" (click)="addMeal(option)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.description" (click)="addMeal(option)" >
         {{option.description}}
       </mat-option>
     </mat-autocomplete>

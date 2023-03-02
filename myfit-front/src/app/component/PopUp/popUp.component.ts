@@ -19,17 +19,17 @@ export class PopUpComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: Meal,
   ) {}
 
+
   allMeals:Array<Meal> =
-  [
-    {'description' : 'Petit déjeuner - 650 cal.' , 'title' : ''},
-    {'description': 'Déjeuner - 650 cal.', 'title' : ''},
-    {'description': 'Collation - 650 cal.', 'title' : ''},
-    {'description': 'Diner - 650 cal.', 'title' : ''},
-    {'description': 'Petit déjeuner - 650 cal.', 'title' : ''}
-  ];
+    [
+      {'description' : 'Petit déjeuner - 650 cal.' , 'title' : ''},
+      {'description': 'Déjeuner - 650 cal.', 'title' : ''},
+      {'description': 'Collation - 650 cal.', 'title' : ''},
+      {'description': 'Diner - 650 cal.', 'title' : ''},
+      {'description': 'Petit déjeuner - 650 cal.', 'title' : ''}
+    ];
 
   selectedMeal:Array<Meal> = [];
-  filteredOptions: any[] = [];// TODO : regarde ici
 
   addMeals(description: string) {
     let meal: Meal = { description: description, title: '' }
@@ -41,18 +41,19 @@ export class PopUpComponent implements OnInit{
   }
 
   myControl = new FormControl('');
+  valueInputSearch: String = "";
+  filteredOptions: Observable<Meal[]> = new Observable<Meal[]>();
 
-  ngOnInit() {
-    /*this.filteredOptions = this.myControl.valueChanges.pipe(
+  ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
-    );*/
+      map(value => this.filter(value || '')),
+    );
   }
 
-  private _filter(value: string): string | undefined {
-    const filterValue = value.toLowerCase();
-    let found = this.meals.find(option => option.description.toLowerCase().includes(filterValue));
-    return found?.description;
+   private filter(value: string): Meal[] {
+     const filterValue = value.toLowerCase();
+     return this.meals.filter(option => option.description.toLowerCase().includes(filterValue));
   }
 
   addMeal(meal: Meal) {
