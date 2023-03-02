@@ -1,9 +1,10 @@
-import {Component, EventEmitter} from "@angular/core";
+import {Component} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LoginDAO} from "../../model/loginDAO";
+import {DAO} from "../../model/DAO";
+import {User} from "../../class/User";
 
 @Component({
   selector: 'login',
@@ -13,9 +14,7 @@ import {LoginDAO} from "../../model/loginDAO";
 
 export class LoginPageComponent {
 
-  email: string = "";
-
-  password: string = "";
+  private user: User = new User();
 
   show: boolean = false;
 
@@ -26,7 +25,7 @@ export class LoginPageComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private loginDAO: LoginDAO
+    private dao: DAO
   ) {
     this.userForm = this.fb.group({
       email : new FormControl('', Validators.compose([
@@ -48,13 +47,10 @@ export class LoginPageComponent {
       this.clear();
     }
 
-    this.email = this.userForm.get('email')?.value; // input value retrieved
-    this.password = this.userForm.get('password')?.value; // input value retrieved
+    this.user.username = this.userForm.get('email')?.value; // input value retrieved
+    this.user.password = this.userForm.get('password')?.value; // input value retrieved
 
-    firstValueFrom(this.loginDAO.connexion({
-      'username': this.email,
-      'password': this.password
-    })).then((data) => {
+    firstValueFrom(this.dao.connexion(this.user)).then((data) => {
       sessionStorage.setItem('jwt', data.token);
       window.location.href = '/compte';
       if (this.updateMenuLinkViaParent) {

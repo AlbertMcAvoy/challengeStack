@@ -78,7 +78,13 @@ export class ApiService {
 
   private getHeaders(jsonContentType: boolean): HttpHeaders {
     return (jsonContentType) ?
-      new HttpHeaders({'Content-Type': 'application/json'}) :
+      new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`}) :
       new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+  }
+
+  private getJWT(): string {
+    let returnToken: string | null = sessionStorage.getItem('jwt');
+
+    return returnToken == null ? '' : returnToken;
   }
 }
