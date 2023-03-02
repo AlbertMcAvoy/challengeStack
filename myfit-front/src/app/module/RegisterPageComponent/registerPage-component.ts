@@ -81,7 +81,7 @@ export class RegisterPageComponent {
       'age': this.age,
       'password': this.password
     })).then((data) => {
-      if(data.status != undefined) {
+      if(data.status != 200) {
         throw new HttpErrorResponse({error: undefined, headers: undefined, status: data.status, statusText: data.message});
       }
 
