@@ -11,15 +11,17 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class MealService
 {
 
-    private $mealRepository;
-    private $userService;
-    private $foodRepository;
+    private MealRepository $mealRepository;
+    private UserService $userService;
+    private FoodRepository $foodRepository;
+    private EncryptService $encryptService;
 
-    public function __construct(UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository)
+    public function __construct(UserService $userService, MealRepository $mealRepository, FoodRepository $foodRepository, EncryptService $encryptService)
     {
         $this->foodRepository = $foodRepository;
         $this->userService = $userService;
         $this->mealRepository = $mealRepository;
+        $this->encryptService = $encryptService;
     }
 
     public function getAllMealByUser()
@@ -116,7 +118,6 @@ class MealService
                 $meal->addFood($food);
             }
         }
-
         $meal->setName($data['name'])
             ->setUser($user)
             ->setDateTime(new DateTime());

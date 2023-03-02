@@ -37,7 +37,7 @@ class UserService
         $token = $this->tokenStorage->getToken();
 
         if ($token instanceof TokenInterface) {
-            return $this->encryptService->decryptData($token->getUser());
+            return $token->getUser();
         }
 
         return null;

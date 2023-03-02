@@ -55,10 +55,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $height = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Body::class)]
+    #[ORM\OneToMany(mappedBy: 'user', cascade: ["remove"] , targetEntity: Body::class)]
     private Collection $bodies;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Meal::class)]
+    #[ORM\OneToMany(mappedBy: 'user', cascade: ["remove"] , targetEntity: Meal::class)]
     private Collection $meals;
 
     #[ORM\Column(length: 255, nullable: true)]
