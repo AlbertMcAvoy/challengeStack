@@ -20,9 +20,8 @@ export class ApiService {
   ): Observable<any> {
 
     let params: HttpParams = this.getHttpParams(input, false);
-    let baseHeaders: HttpHeaders = this.getHeaders(false);
-    let allHeaders: HttpHeaders = this.setAdditionalHeaders(baseHeaders, headers || {});
-    let options = {headers: allHeaders, params: params};
+    let baseHeaders: HttpHeaders = this.getHeaders();
+    let options = {headers: baseHeaders, params: params};
 
     if (txtResponse) {
     }
@@ -41,7 +40,7 @@ export class ApiService {
   ): Observable<any> {
 
     let params: HttpParams = this.getHttpParams(input, jsonContentType, myFitSession);
-    let headers: HttpHeaders = this.getHeaders(jsonContentType);
+    let headers: HttpHeaders = this.getHeaders();
     let options = { headers };
 
     if (txtResponse) {
@@ -55,14 +54,14 @@ export class ApiService {
   private getHttpParams(
     input: any,
     jsonContent: boolean = true,
-    myFitSession: boolean = true,
+    myFitSession: boolean = false,
   ): HttpParams {
     let params: HttpParams = new HttpParams();
     if (input && !jsonContent) {
       Object.keys(input).forEach((key) => params = params.append(key, input[key]));
     }
     if (myFitSession) {
-      params = params.append('token', 'token');
+      params = params.append('token', this.getJWT());
     }
     return params;
   }
@@ -76,10 +75,8 @@ export class ApiService {
     );
   }
 
-  private getHeaders(jsonContentType: boolean): HttpHeaders {
-    return (jsonContentType) ?
-      new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`}) :
-      new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+  private getHeaders(): HttpHeaders {
+    return   new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`})
   }
 
   private getJWT(): string {
