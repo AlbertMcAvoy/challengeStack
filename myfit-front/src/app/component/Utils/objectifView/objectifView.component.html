@@ -19,8 +19,10 @@
     fxLayoutAlign="center center"
   >
     <p class="objectif-titre">Votre objectif de poids</p>
-    <p class="poids text-secondary"> {{ user?.objectif_weight ? user?.objectif_weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="!homePage" class="poids text-secondary"> {{ user?.objectif_weight ? user?.objectif_weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="homePage" class="poids text-secondary"> 72Kg </p>
     <p class="objectif-titre">Votre poids actuel</p>
-    <p class="poids text-secondary"> {{ user?.weight ? user?.weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="!homePage" class="poids text-secondary"> {{ user?.weight ? user?.weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="homePage" class="poids text-secondary"> 65Kg </p>
   </mat-card-content>
 </mat-card>

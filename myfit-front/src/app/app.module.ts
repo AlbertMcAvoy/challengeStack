@@ -32,6 +32,9 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.component";
+import { RGPDPopupComponent } from './component/rgpdpopup/rgpdpopup.component';
+import { FooterComponent } from './component/utils/footer/footer.component';
+import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.compo
     SideMenuComponent,
     PopUpComponent,
     ErrorPageComponent,
-    EditUserInfoComponent
+    EditUserInfoComponent,
+    RGPDPopupComponent,
+    FooterComponent,
+    CGUPopupComponent
   ],
   imports: [
     BrowserModule,
