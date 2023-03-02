@@ -41,15 +41,23 @@
             >
               <div
               >
-                <p><span>Taille:</span> 175 cm</p>
+                <p><span>Taille:</span> {{this.userInfo.height}} cm</p>
               </div>
               <div
               >
-                <p><span>Votre poid actuel:</span> 61 kg</p>
+                <p>
+                  <span>
+                  {{this.userInfo.weight ? 'Votre poid actuel: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre poids dans votre profile'}}
+                  </span>
+                </p>
               </div>
               <div
               >
-                <p><span>Votre objectif de poid:</span> 75 kg</p>
+                <p>
+                  <span>
+                     {{this.userInfo.weight ? 'Votre objectif de poid: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre objectif de poid dans votre profile'}}
+                  </span>
+                </p>
               </div>
               <button mat-button color="primary" routerLink="/infoUser">Voir plus</button>
             </div>

@@ -31,6 +31,7 @@ import { PopUpComponent } from './component/PopUp/popUp.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MonCompteComponent,
     SideMenuComponent,
     PopUpComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    EditUserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MatExpansionModule,
     NgChartsModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+
   ],
   providers: [
     ApiService,

@@ -18,26 +18,27 @@
         <div
           fxLayout="column wrap"
           fxLayoutAlign="center center"
+          *ngIf="profileEmpty()"
         >
           <div
           >
-            <p><span>Prénom:</span> Jean</p>
+            <p><span>Prénom:</span> {{this.userInfo.firstname ?? ''}}</p>
           </div>
           <div
           >
-            <p><span>Nom:</span> Knock</p>
+            <p><span>Nom:</span> {{this.userInfo.lastname ?? ''}}</p>
           </div>
           <div
           >
-            <p><span>Genre:</span> Homme</p>
+            <p><span>Genre:</span> {{this.userInfo.gender ?? ''}}</p>
           </div>
           <div
           >
-            <p><span>Téléphone:</span> 075343434</p>
+            <p><span>Téléphone:</span> {{this.userInfo.phone ?? ''}}</p>
           </div>
           <div
           >
-            <p><span>Email:</span> j.smith@wanabu.uk</p>
+            <p><span>Email:</span> {{this.userInfo.email ?? ''}}</p>
           </div>
           <div
             fxLayout="row"
@@ -46,6 +47,14 @@
             <p><span>Mot de passe:</span> </p>
             <button mat-raised-button color="primary">Modifier</button>
           </div>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          *ngIf="!profileEmpty()"
+        >
+          <p >Renseignez vos informations</p>
+          <button (click)="openEditUserPopUp()" mat-raised-button color="primary">Editer mon profile</button>
         </div>
       </mat-card-content>
     </mat-card>
@@ -64,15 +73,23 @@
         >
           <div
           >
-            <p><span>Taille:</span> 175 cm</p>
+            <p><span>Taille:</span> {{this.userInfo.height}} cm</p>
           </div>
           <div
           >
-            <p><span>Votre poid actuel:</span> 61 kg</p>
+            <p>
+                  <span>
+                  {{this.userInfo.weight ? 'Votre poid actuel: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre poids dans votre profile'}}
+                  </span>
+            </p>
           </div>
           <div
           >
-            <p><span>Votre objectif de poid:</span> 75 kg</p>
+            <p>
+                  <span>
+                     {{this.userInfo.weight ? 'Votre objectif de poid: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre objectif de poid dans votre profile'}}
+                  </span>
+            </p>
           </div>
         </div>
       </mat-card-content>

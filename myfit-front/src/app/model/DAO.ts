@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {Meal} from "../class/Meal";
 import {User} from "../class/User";
+import {UserModel} from "./user.model";
 
 @Injectable()
 export class DAO {
@@ -32,8 +33,12 @@ export class DAO {
         'foods': allIdFoods
       });
   }
-
+  
   retreiveUserMeals(): Observable<any> {
     return this.apiService.get('api/meal/user');
+  }
+
+  getUser(): Observable<UserModel> {
+    return this.apiService.get('api/user')
   }
 }

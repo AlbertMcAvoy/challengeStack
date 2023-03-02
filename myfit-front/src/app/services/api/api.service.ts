@@ -38,7 +38,6 @@ export class ApiService {
     input?: any,
     txtResponse: boolean = false,
   ): Observable<any> {
-
     let headers: HttpHeaders = this.getHeaders();
     let options = { headers };
 
@@ -55,14 +54,14 @@ export class ApiService {
   private getHttpParams(
     input: any,
     jsonContent: boolean = true,
-    myFitSession: boolean = true,
+    myFitSession: boolean = false,
   ): HttpParams {
     let params: HttpParams = new HttpParams();
     if (input && !jsonContent) {
       Object.keys(input).forEach((key) => params = params.append(key, input[key]));
     }
     if (myFitSession) {
-      params = params.append('token', 'token');
+      params = params.append('token', this.getJWT());
     }
     return params;
   }
