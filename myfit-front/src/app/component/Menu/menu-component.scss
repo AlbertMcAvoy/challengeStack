@@ -67,4 +67,8 @@
       filter: invert(32%) sepia(26%) saturate(1316%) hue-rotate(144deg) brightness(94%) contrast(89%);
     }
   }
+
+  .activated {
+    border: 2px solid $dark-color;
+  }
 }

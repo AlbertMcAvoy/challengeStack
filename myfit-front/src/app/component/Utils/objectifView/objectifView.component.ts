@@ -1,4 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {User} from "../../../class/User";
 
 @Component({
   selector: 'objectif-view',
@@ -7,4 +8,5 @@ import {Component} from "@angular/core";
 })
 export class ObjectifViewComponent {
 
+  @Input() user: User | undefined;
 }
