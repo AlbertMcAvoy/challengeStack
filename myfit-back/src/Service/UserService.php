@@ -53,17 +53,18 @@ class UserService
 
     public function update_user(array $data, UserInterface $user)
     {
-        try{
+        try {
             if (!empty($data)) {
-                $userFinded = $this->userRepository->findOneBy(["id" => $user->getId()]);
-                if (empty($userfinded)) throw new UserExistException();
-                
+                $userFinded = $this->userRepository->find($user->getId());
+                if (empty($userFinded)) throw new UserExistException();
+
                 $userFromBdd = $this->encryptService->decryptData($userFinded);
-    
                 $userFromBdd->setFirstName($data['firstname'] ?? '');
                 $userFromBdd->setLastName($data['lastname'] ?? '');
-                $userFromBdd->setPhone($data['phone'] ?? '');
-    
+                if (!empty($data['phone'])) {
+                    $userFromBdd->setPhone($data['phone'] ?? '');
+                }
+
                 if (isset($data['gender']) && is_int($data['gender'])) {
                     $userFromBdd->setGender(strval($data['gender']));
                 }
@@ -73,12 +74,12 @@ class UserService
                 if (!empty($data['age']) && is_int($data['age'])) {
                     $userFromBdd->setAge(strval($data['age']));
                 }
-    
+
                 if (!empty($data['objectif_weight']) && is_int($data['objectif_weight'])) {
                     $userFromBdd->setObjectifWeight(strval($data['objectif_weight']));
                 }
-    
-                if (isset($data['weight']) && is_int($data['weight'])) { 
+
+                if (isset($data['weight']) && is_int($data['weight'])) {
                     $body = new Body();
                     $body->setWeight($data['weight']);
                     if (!empty($userFromBdd->getObjectifWeight())) {
@@ -88,24 +89,20 @@ class UserService
                     $body->setUser($userFromBdd);
                     $this->bodyRepository->save($body, true);
                 }
-    
-    
+
                 $userEncrypted = $this->encryptService->encryptData($userFromBdd);
-    
                 $this->userRepository->save($userEncrypted, true);
-    
                 return true;
-            }else {
+            } else {
                 throw new UserFieldFromException();
             }
-        } catch (UserExistException $e){
+        } catch (UserExistException $e) {
             throw new UserExistException();
         } catch (UserFieldFromException $e) {
             throw new UserFieldFromException();
         } catch (Exception $e) {
             throw new Exception();
         }
-        
     }
 
 

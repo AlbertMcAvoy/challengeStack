@@ -11,7 +11,7 @@ use App\Service\EncryptService;
 use App\Service\UserService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UserController extends AbstractController
@@ -75,9 +75,5 @@ class UserController extends AbstractController
             return $this->json(["status" => 500, "message" => "Error Server"]);
 
         }
-
-        
-
-
     }
 }
