@@ -71,6 +71,7 @@ export class PopUpComponent {
   }
 
   submit() {
+    if (this.mealName == '') return;
     this.currentMeal.name = this.mealName;
     firstValueFrom(this.dao.createNewMeal(this.currentMeal))
       .then(() => {

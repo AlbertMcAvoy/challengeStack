@@ -12,7 +12,7 @@ export class SideMenuComponent {
   @Input() openSideMenu: boolean = false;
   panelOpenState = false;
   description: string = "";
-selectedMeal: Array<Meal> = [];
+  selectedMeal: Array<Meal> = [];
 
   constructor(public dialog: MatDialog) {}
 
@@ -24,6 +24,10 @@ selectedMeal: Array<Meal> = [];
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result == undefined ||
+        result.name == ''
+      ) return;
+
       this.selectedMeal.push(result);
     });
   }

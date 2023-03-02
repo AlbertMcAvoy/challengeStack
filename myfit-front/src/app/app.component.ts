@@ -9,7 +9,7 @@ import {LoginPageComponent} from "./module/LoginPageComponent/loginPage-componen
 })
 export class AppComponent {
 
-  openSideMenu: boolean = true;
+  openSideMenu: boolean = false;
 
   title: string = 'Track\'n\'fit';
 
