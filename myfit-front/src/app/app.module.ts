@@ -23,7 +23,7 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
-import {LoginDAO} from "./model/loginDAO";
+import {DAO} from "./model/DAO";
 import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
@@ -74,7 +74,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatTooltipModule,
     MatButtonModule,
     ApiService,
-    LoginDAO
+    DAO
   ],
   bootstrap: [AppComponent]
 })

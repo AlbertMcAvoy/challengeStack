@@ -1,6 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
+import {Meal} from "../../class/Meal";
 
 @Component({
   selector: 'side-menu',
@@ -11,7 +12,7 @@ export class SideMenuComponent {
   @Input() mealToday: boolean = false;
   panelOpenState = false;
   description: string = "";
-  selectedMeal: Array<any> = [];
+selectedMeal: Array<Meal> = [];
 
   constructor(public dialog: MatDialog) {}
 
@@ -23,8 +24,7 @@ export class SideMenuComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedMeal = JSON.parse(localStorage.getItem('repas')!) ;
+      this.selectedMeal.push(result);
     });
-
   }
 }

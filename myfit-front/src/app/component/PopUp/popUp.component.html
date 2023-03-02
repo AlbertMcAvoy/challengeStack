@@ -10,16 +10,22 @@
            [formControl]="myControl"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of meals" [value]="option.description" (click)="addMeal(option)">
-        {{option.description}}
+      <mat-option *ngFor="let food of allFoods" [value]="food.description" (click)="addFood(food)">
+        {{food.description}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <div *ngFor="let meal of selected">
-      <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
+
+  <div *ngFor="let food of currentMealFoods">
+      <p>{{ food.description }}<mat-icon aria-hidden="false" fontIcon="delete" color="warn" (click)="deleteFood(food)"></mat-icon></p>
   </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label> Nom de votre repas </mat-label>
+    <input matInput placeholder="Donnez un nom à votre repas !" name="mealname" type="text" [(ngModel)]="mealName" required>
+  </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="accent" [mat-dialog-close]="selected" (click)="submit()">Valider</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="currentMeal" (click)="submit()">Valider</button>
 </div>
