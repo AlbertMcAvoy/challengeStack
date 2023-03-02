@@ -1,6 +1,9 @@
 import {Component, Input} from "@angular/core";
 import {UserModel} from "../../../model/user.model";
 import {DAO} from "../../../model/DAO";
+import {firstValueFrom} from "rxjs";
+import {Meal} from "../../../class/Meal";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'objectif-view',
@@ -16,7 +19,17 @@ export class ObjectifViewComponent {
   constructor(
     private dao: DAO
   ) {
-
-
+    firstValueFrom(this.dao.retreiveUserMealsToday())
+      .then((data) => {
+        data.forEach((meal: Meal) => {
+          meal.calorieTot = 0;
+          meal.foods.forEach(food => {
+            this.todayCalories += food.calories;
+          })
+        });
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
   }
 }
