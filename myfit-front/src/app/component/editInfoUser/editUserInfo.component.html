@@ -1,12 +1,51 @@
 <div
-  fxLayout="colum"
-  fxLayoutAlign="center center"
+  fxLayout="column"
+  fxLayoutAlign="center end"
   class="editUser"
 >
-  <div>
+  <div
+    style="padding: 10px; cursor: pointer"
+    (click)="closePopup()"
+  >
     <mat-icon>cancel</mat-icon>
   </div>
   <div>
+    <div class="form-container">
+      <mat-card
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <mat-card-content>
+          <h3>
+            Renseignez vos informations
+          </h3>
+          <form class="form" [formGroup]="registerForm" style="margin: auto">
+            <mat-form-field class="field-full-width " appearance="outline" color="accent">
+              <mat-label>Prénom</mat-label>
+              <input matInput placeholder="Entrez votre prénom" name="prenom" type="text" formControlName="prenom">
+            </mat-form-field>
+            <mat-form-field class="field-full-width " appearance="outline">
+              <mat-label>Nom</mat-label>
+              <input matInput placeholder="Entrez votre nom" name="nom" type="text" formControlName="nom">
+            </mat-form-field>
+            <mat-form-field class="field-full-width " appearance="outline">
+              <mat-label>Âge</mat-label>
+                <input matInput placeholder="Entez votre âge" name="age" type="number" formControlName="age" required>
+            </mat-form-field>
+            <mat-form-field class="field-full-width" appearance="outline">
+              <mat-label>Votre objectif de poid</mat-label>
+              <input matInput placeholder="Entrez votre objectif de poid" value="" name="objectifPoid" type="number" formControlName="objectifPoid" required>
+            </mat-form-field>
 
+            <p>* : champs obligatoires</p>
+
+            <div class="actions">
+              <button mat-raised-button color="primary" (click)="submit()"> Enregistrer </button>
+              <button mat-flat-button routerLink="/compte">Retour</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

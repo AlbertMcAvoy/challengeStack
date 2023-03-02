@@ -18,27 +18,27 @@
         <div
           fxLayout="column wrap"
           fxLayoutAlign="center center"
-          *ngIf="profileEmpty()"
+          *ngIf="!profileEmpty()"
         >
           <div
           >
-            <p><span>Prénom:</span> {{this.userInfo.firstname ?? ''}}</p>
+            <p><span>Prénom:</span> {{this.userInfo.firstname}}</p>
           </div>
           <div
           >
-            <p><span>Nom:</span> {{this.userInfo.lastname ?? ''}}</p>
+            <p><span>Nom:</span> {{this.userInfo.lastname}}</p>
           </div>
           <div
           >
-            <p><span>Genre:</span> {{this.userInfo.gender ?? ''}}</p>
+            <p><span>Genre:</span> {{this.userInfo.gender}}</p>
           </div>
           <div
           >
-            <p><span>Téléphone:</span> {{this.userInfo.phone ?? ''}}</p>
+            <p><span>Téléphone:</span> {{this.userInfo.phone}}</p>
           </div>
           <div
           >
-            <p><span>Email:</span> {{this.userInfo.email ?? ''}}</p>
+            <p><span>Email:</span> {{this.userInfo.email}}</p>
           </div>
           <div
             fxLayout="row"
@@ -51,7 +51,7 @@
         <div
           fxLayout="column"
           fxLayoutAlign="center center"
-          *ngIf="!profileEmpty()"
+          *ngIf="profileEmpty()"
         >
           <p >Renseignez vos informations</p>
           <button (click)="openEditUserPopUp()" mat-raised-button color="primary">Editer mon profile</button>
