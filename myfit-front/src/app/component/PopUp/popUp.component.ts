@@ -12,7 +12,8 @@ export interface DialogData {
   selectedMealId: String,
   selectedMealName: String;
   selectedMealFood: Array<any>,
-  selectedMealMenu: Meal
+  selectedMealMenu: Meal,
+  button: String
 }
 
 @Component({
@@ -102,7 +103,8 @@ export class PopUpComponent implements OnInit{
   retreaveAllFoods(value: string){
     firstValueFrom(this.dao.getFoods(value))
       .then((data) => {
-        this.allFoods = data['foods'].slice(0,10);
+        if (typeof (data['foods']) !== 'undefined')
+          this.allFoods = data['foods'].slice(0, 10);
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);

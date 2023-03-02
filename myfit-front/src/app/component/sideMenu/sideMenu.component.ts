@@ -19,7 +19,6 @@ export class SideMenuComponent implements OnInit{
   yesterdayMeal: Array<Meal> = [];
   beforeYesterdayMeal: Array<Meal> = [];
   selectedMealMenu: any = [];
-  selectedMealId: string= '';
 
   constructor(
     public dialog: MatDialog,
@@ -49,13 +48,28 @@ export class SideMenuComponent implements OnInit{
     });
   }
 
-  openAddEditFoodDialog(meal: Meal): void {
+  openEditFoodDialog(meal: Meal): void {
     localStorage.setItem('dataForEdit',JSON.stringify(meal));
     this.selectedMealMenu = meal;
     const dialogRef = this.dialog.open(PopUpComponent , {
       height: '400px',
       width: '600px',
       data: {titleDialog: 'Editer un repas'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == undefined ||
+        result.name == ''
+      ) return;
+      this.retrieveMeal();
+    });
+  }
+
+  openEditYesterdayFoodDialog(): void {
+    const dialogRef = this.dialog.open(PopUpComponent , {
+      height: '400px',
+      width: '600px',
+      data: {titleDialog: 'Editer un repas', button: 'Supprimer'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -94,7 +108,7 @@ export class SideMenuComponent implements OnInit{
         console.log(e);
       });
   }
-
+  
   retrieveTodayMeal() {
     firstValueFrom(this.dao.retreiveUserMealsToday()).then(
       (data) => {
