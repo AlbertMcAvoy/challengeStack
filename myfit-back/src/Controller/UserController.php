@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\BodyRepository;
+use App\Repository\MealRepository;
 use App\Repository\UserRepository;
+use App\Service\EncryptService;
 use App\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,9 +13,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class UserController extends AbstractController
 {
 
-    public function get(UserService $userService): JsonResponse
+    public function get(UserService $userService, EncryptService $encryptService): JsonResponse
     {
-        $user = $userService->getCurrentUser();
+        $user = $encryptService->decryptData($userService->getCurrentUser());
         if ($user == null) {
             return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
         }
@@ -31,7 +34,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    public function delete(UserService $userService, UserRepository $userRepository) {
+    public function delete(UserService $userService, UserRepository $userRepository, BodyRepository $bodyRepository, MealRepository $mealRepository) {
         $user = $userService->getCurrentUser();
         if ($user == null) {
             return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
