@@ -3,18 +3,18 @@
 namespace App\Controller;
 
 use App\Repository\FoodRepository;
+use App\Service\foodCache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 
 class FoodController extends AbstractController
 {
 
-    public function show(FoodRepository $foodRepository, $libelle): JsonResponse
+    public function show(FoodRepository $foodRepository, $libelle, foodCache $foodCache): JsonResponse
     {
         if (empty($libelle)) return $this->json(["status" => 404, "messages" => "No parameters libelle found in url"]);
 
-        $foods = $foodRepository->findAllByLibelle($libelle);
+        $foods = $foodCache->get($foodRepository, $libelle);
         $jsonToResponse = [];
 
         foreach ($foods as $food) {
