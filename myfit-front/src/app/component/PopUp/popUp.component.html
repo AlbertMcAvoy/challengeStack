@@ -17,7 +17,7 @@
     </mat-autocomplete>
   </mat-form-field>
   <div *ngFor="let meal of selected">
-      <p> <mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
+      <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
   </div>
 </div>
 
