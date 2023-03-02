@@ -33,7 +33,7 @@ class MealController extends AbstractController
 
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
 
-        if (!empty($data['name']) && !empty($data['food']) && is_array($data['food'])) {
+        if (!empty($data['name']) && !empty($data['foods']) && is_array($data['foods'])) {
             $mealService->saveMeal($data, $user);
             return $this->json(["status" => 200, "message" => "The Meal is created"]);
         }
