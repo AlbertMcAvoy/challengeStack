@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+import {RGPDPopupComponent} from "../../component/rgpdpopup/rgpdpopup.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'register',
@@ -27,7 +29,8 @@ export class RegisterPageComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private loginDAO: DAO
+    private loginDAO: DAO,
+    public dialog: MatDialog,
   ) {
     this.registerForm = this.fb.group({
       taille : new FormControl('', Validators.compose([
@@ -80,7 +83,11 @@ export class RegisterPageComponent {
       'height': this.taille,
       'age': this.age,
       'password': this.password
-    })).then(() => {
+    })).then((data) => {
+      if(data.status != 200) {
+        throw new HttpErrorResponse({error: undefined, headers: undefined, status: data.status, statusText: data.message});
+      }
+
       let snackBarRef = this._snackBar.open('Merci pour votre inscription, vous allez voir on s\'amuse bien !', 'OK',{
         horizontalPosition: 'center',
         verticalPosition: 'top'
@@ -106,5 +113,12 @@ export class RegisterPageComponent {
   clear(){
     this.registerForm.reset();
     this.show = true;
+  }
+
+  triggerRGPDPopup() {
+    this.dialog.open(RGPDPopupComponent , {
+      height: 'auto',
+      width: '600px',
+    });
   }
 }
