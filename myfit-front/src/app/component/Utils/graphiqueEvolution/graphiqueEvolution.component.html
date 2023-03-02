@@ -5,10 +5,12 @@
   style="margin-top: 50px"
   class="graphique-container"
 >
-  <mat-card style="width: 500px; padding: 20px">
+  <mat-card class="graphique-container-card">
     <div
     >
-      <canvas baseChart
+      <canvas
+        style="height: 100%; width: 100%"
+        baseChart
               [data]="barChartData"
               [options]="barChartOptions"
               [type]="'line'">

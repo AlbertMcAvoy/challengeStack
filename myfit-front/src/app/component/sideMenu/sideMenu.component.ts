@@ -1,6 +1,10 @@
 import {Component, Input} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
+import {Meal} from "../../class/Meal";
+import {DAO} from "../../model/DAO";
+import {firstValueFrom} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'side-menu',
@@ -11,11 +15,13 @@ export class SideMenuComponent {
   @Input() openSideMenu: boolean = false;
   panelOpenState = false;
   description: string = "";
-  titleForAddMeal : string = "Ajouter un repas";
-  titleForEditMeal: string= "Editer un repas";
-  selectedMeal: Array<any> = [];
-
-  constructor(public dialog: MatDialog) {}
+  selectedMeal: Array<Meal> = [];
+  constructor(
+    public dialog: MatDialog,
+    private dao: DAO
+  ) {
+    this.retrieveMeal();
+  }
 
   openDialogForAddMeal(): void {
     const dialogRef = this.dialog.open(PopUpComponent , {
@@ -25,11 +31,34 @@ export class SideMenuComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedMeal = JSON.parse(localStorage.getItem('repas')!) ;
+
+      if (result == undefined ||
+        result.name == ''
+      ) return;
+
+      this.retrieveMeal();
     });
   }
 
-  openDialogForEditMeal(): void {
+  retrieveMeal() {
+
+    firstValueFrom(this.dao.retreiveUserMeals())
+      .then((data) => {
+        data.forEach((meal: Meal) => {
+          meal.calorieTot = 0;
+          meal.foods.forEach(food => {
+            meal.calorieTot += food.calories;
+          })
+        });
+
+        this.selectedMeal = data;
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
+  }
+
+  /*openDialogForEditMeal(): void {
     const dialogRef = this.dialog.open(PopUpComponent, {
       height: '400px',
       width: '600px',
@@ -39,6 +68,6 @@ export class SideMenuComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.selectedMeal = JSON.parse(localStorage.getItem('repas')!) ;
     });
-  }
+  }*/
 
 }

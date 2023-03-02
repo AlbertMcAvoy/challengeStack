@@ -1,12 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {firstValueFrom, map, Observable, startWith} from "rxjs";
+import {DAO} from "../../model/DAO";
+import {Meal} from "../../class/Meal";
+import {Food} from "../../class/Food";
+import {HttpErrorResponse} from "@angular/common/http";
 import {FormControl} from "@angular/forms";
-import {map, Observable, startWith} from "rxjs";
-
-export interface Meal {
-  description: string;
-  title : string;
-}
 
 @Component({
   selector: 'pop-up-component',
@@ -16,29 +15,35 @@ export interface Meal {
 export class PopUpComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<PopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Meal,
+    private dao : DAO
   ) {}
 
+  mealName: string = '';
 
-  allMeals:Array<Meal> =
-    [
-      {'description' : 'Petit déjeuner - 650 cal.' , 'title' : ''},
-      {'description': 'Déjeuner - 650 cal.', 'title' : ''},
-      {'description': 'Collation - 650 cal.', 'title' : ''},
-      {'description': 'Diner - 650 cal.', 'title' : ''},
-      {'description': 'Petit déjeuner - 650 cal.', 'title' : ''}
-    ];
+  allFoods: Array<Food> = [
+    {
+      'id' : 1000,
+      'libelle' : 'Pastis 1',
+      'calories': 520
+    },
+    {
+      'id' : 1010,
+      'libelle' : 'Pastis 2',
+      'calories': 520
+    },
+    {
+      'id' : 1019,
+      'libelle' : 'Pastis 3',
+      'calories': 520
+    },
+    {
+      'id' : 1031,
+      'libelle' : 'Pastis 4',
+      'calories': 520
+    }
+  ];
 
-  selectedMeal:Array<Meal> = [];
-
-  addMeals(description: string) {
-    let meal: Meal = { description: description, title: '' }
-    this.allMeals.push(meal);
-  }
-
-  get meals () {
-    return this.allMeals;
-  }
+  currentMeal: Meal = new Meal();
 
   myControl = new FormControl('');
   valueInputSearch: String = "";
@@ -51,33 +56,46 @@ export class PopUpComponent implements OnInit{
     );
   }
 
+  get foods () {
+    return this.allFoods;
+  }
+
    private filter(value: string): Meal[] {
      const filterValue = value.toLowerCase();
-     return this.meals.filter(option => option.description.toLowerCase().includes(filterValue));
+     return this.foods.filter(option => option.libelle.toLowerCase().includes(filterValue));
+   }
+
+
+  addFood(food: Food) {
+    this.currentMeal.foods.push(food);
   }
 
-  addMeal(meal: Meal) {
-    this.selectedMeal.push(meal);
+  get currentMealFoods() {
+    return this.currentMeal.foods;
   }
 
-  get selected() {
-    return this.selectedMeal;
-  }
-
-  deleteMeal(meal: Meal)
+  deleteFood(food: Food)
   {
-    let index = this.selectedMeal.findIndex(({ description }) => description === meal.description);
+    let index = this.currentMeal.foods.findIndex(({ id }) => id === food.id);
+
     if (index !== -1) {
-      this.selectedMeal.splice(index, 1);
+      this.currentMeal.foods.splice(index, 1);
     }
   }
 
   submit() {
-    localStorage.setItem('repas',JSON.stringify(this.selectedMeal))
-    this.onNoClick()
+    if (this.mealName == '') return;
+    this.currentMeal.name = this.mealName;
+    firstValueFrom(this.dao.createNewMeal(this.currentMeal))
+      .then(() => {
+        this.onNoClick();
+    }).catch((e: HttpErrorResponse) => {
+      console.log(e);
+      this.onNoClick();
+    })
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.currentMeal);
   }
 }

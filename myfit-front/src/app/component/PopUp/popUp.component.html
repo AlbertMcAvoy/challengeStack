@@ -1,26 +1,40 @@
-<div mat-dialog-content>
-  <h1>{{data.title}}</h1>
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Rechercher un aliment...</mat-label>
+<div mat-dialog-content
+     fxLayout="column"
+     fxFlexAlign="center center"
+>
+  <h1 style="margin-bottom: 10px">Ajoutez un repas</h1>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Ajouter un aliment</mat-label>
     <input type="text"
-           placeholder="Pick one"
-           aria-label="Rechercher un aliment..."
-           id="autoCompleteInput"
+           placeholder="Rechercher un aliment..."
+           aria-label="add-aliment"
            matInput
            [(ngModel)] = "valueInputSearch"
            [formControl]="myControl"
-           [matAutocomplete]="auto">
+           [matAutocomplete]="auto"
+    >
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.description" (click)="addMeal(option)" >
-        {{option.description}}
+      <mat-option *ngFor="let food of filteredOptions | async" [value]="food.description" (click)="addFood(food)">
+        {{food.libelle}} - {{food.calories}} Cal.
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <div *ngFor="let meal of selected">
-      <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
+
+  <div *ngFor="let food of currentMealFoods">
+      <p fxLayout="row"
+         fxLayoutAlign="space-between"
+      > {{ food.libelle }}
+        <mat-icon aria-hidden="false" fontIcon="delete" color="warn" (click)="deleteFood(food)"></mat-icon>
+      </p>
   </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label> Nom de votre repas </mat-label>
+    <input matInput placeholder="Donnez un nom à votre repas !" name="mealname" type="text" [(ngModel)]="mealName">
+  </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="accent" [mat-dialog-close]="selected" (click)="submit()">Valider</button>
+  <button mat-raised-button color="accent" [mat-dialog-close]="currentMeal" (click)="submit()">Valider</button>
 </div>

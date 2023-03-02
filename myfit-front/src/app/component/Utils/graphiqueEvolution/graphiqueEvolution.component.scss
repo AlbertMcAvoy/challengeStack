@@ -3,4 +3,16 @@
 .graphique-container {
 
   box-shadow: 0 19px 15px rgba(0, 0, 0, 0.1);
+
+  .graphique-container-card {
+    width: 500px; padding: 20px
+  }
+}
+@media screen and (max-width: 820px) {
+  .graphique-container {
+
+    .graphique-container-card {
+      width: 100%;
+    }
+  }
 }

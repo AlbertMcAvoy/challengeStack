@@ -1,62 +1,98 @@
 @import "src/assets/sass/variable";
 
-.mealCard {
-  color: white;
-  width: 300px;
 
-  font-family: $font-outfit;
-  .mat-card-title {
-    p {
-      margin: 0;
-      text-justify: inter-word;
+.infoUser-container {
+  width: 100%;
+  margin-top: 30px;
+    .info-card {
+      background-color: $content-color;
+      span {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: $primary-color;
+        color: white;
+      }
+      .ligne {
+        height: 1px;
+        margin: 10px 30px;
+        background-color: black;
+      }
+    }
+    .monprofil {
+      margin: 0 70px;
+      background-color: $primary-color;
+      color: white;
+    }
+
+
+  .vosDonne {
+    margin-top: 30px;
+    padding: 20px;
+    border: 10px dashed #88D498;
+    width: 230px;
+    margin-right: -50px;
+    .ligne {
+      height: 1px;
+      margin: 10px 30px;
+      background-color: black;
     }
   }
-  .card-content {
-    margin-top: 20px;
-    .ligne-titre {
-      width: 100px;
-      height: 1px;
-      margin: 20px;
-      background-color: $light-color;
-    }
+  .delete-compte {
+    margin: 10px -50px 0 0;
+  }
+}
 
-    p {
-      border-bottom: 0.5px solid $light-color;
-    }
+@media screen and (max-width: 920px) {
+  .infoUser-container {
+    margin: 0 0 81px 0;
+      justify-content: space-between!important;
 
-    .ligne-titre {
-      width: 100px;
-      height: 1px;
+    .vosDonne {
+      margin: 30px 0 0 0;
+    }
+    .delete-compte {
       margin: 20px 0;
-      background-color: $light-color;
+    }
+
+  }
+}
+
+@media screen and (max-width: 870px) {
+  .infoUser-container {
+    justify-content: space-between!important;
+    .info-card {
 
     }
-  }
 
-  ::ng-deep .mat-mdc-card-header {
-    display: flex;
-    justify-content: center;
-    padding: 6px 16px 0;
-  }
-  .center-item {
+
+    .vosDonne {
+      margin: 30px 0 0 0;
+    }
+    .delete-compte {
+      margin: 20px ;
+    }
 
   }
 }
 
-.today-meal {
-  background-color: $dark-color;
-}
-.historique-meal {
-  background-color: $secondary-color;
-  .mat-expansion-panel {
-    background: #fff;
-    color: rgba(0,0,0,.87);
-    width: 250px;
+@media screen and (max-width: 670px) {
+  .infoUser-container {
+    justify-content: space-between!important;
+
+    .vosDonne {
+      margin: 30px 0 0 0;
+    }
+    .delete-compte {
+      margin: 20px ;
+    }
+    .monprofil, .info-card{
+      margin: 40px 0;
+    }
+
   }
 }
-label {
-  width: 100px;
-  margin-right: 10px;
-  text-align: end;
-}
+
 
