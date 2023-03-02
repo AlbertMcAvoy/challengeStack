@@ -1,0 +1,56 @@
+<div class="title-img">
+  <h1>Créez votre compte</h1>
+</div>
+
+<div class="form-container">
+
+    <img src="/assets/images/Profiling_Outline.svg" alt="contrat-picture" class="img-context img-context-left">
+
+    <mat-card
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
+    >
+      <mat-card-content>
+        <h3>
+          Voici les informations essentielles dont nous avons besoins pour vous aider à commencer votre aventure
+        </h3>
+
+        <form class="form" [formGroup]="registerForm" style="margin: auto">
+          <mat-form-field class="field-full-width " appearance="outline" color="accent">
+            <mat-label>Votre taille (en cm)</mat-label>
+            <input matInput placeholder="Entrez votre taille" name="taille" type="number" formControlName="taille">
+          </mat-form-field>
+          <mat-form-field class="field-full-width " appearance="outline">
+            <mat-label>Votre poids (en Kg)</mat-label>
+            <input matInput placeholder="Entrez votre poids" name="poids" type="number" formControlName="poids">
+          </mat-form-field>
+          <mat-form-field class="field-full-width " appearance="outline">
+            <mat-label>Votre email</mat-label>
+            <input matInput placeholder="Entez votre email" name="email" type="email" formControlName="email" required>
+          </mat-form-field>
+          <mat-form-field class="field-full-width" appearance="outline">
+            <mat-label>Mot de passe</mat-label>
+            <input matInput placeholder="Entrez votre nouveau mot de passe" value="" name="password" type="password" formControlName="password" required>
+          </mat-form-field>
+
+          <p>* : champs obligatoires</p>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" (click)="submit()"> S'inscrire </button>
+            <button mat-flat-button routerLink="/login">Retour</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <img src="/assets/images/Hiking_Monochromatic.svg" alt="contrat-picture" class="img-context img-context-right">
+</div>
+
+<div class="title-img">
+  <h3>
+    Déjà un compte ? <a href="/login"> Connectez vous ! </a>
+  </h3>
+</div>
+
+
+

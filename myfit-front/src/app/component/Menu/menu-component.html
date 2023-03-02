@@ -1,0 +1,51 @@
+<div>
+  <mat-card
+    class="menu-container"
+    style="width: {{ redirectionPath != 'compte' ? '200px' : '400px' }}"
+  >
+    <mat-card-content
+      fxLayout="row"
+      fxLayoutAlign="space-around center"
+      style="padding: 10px 8px"
+    >
+      <div
+        matTooltip="Accueil"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+        routerLink="/"
+      >
+        <i class="icon-home"></i>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+        matTooltip="Mon compte"
+        routerLink="{{ redirectionPath }}"
+      >
+        <i class="icon-user"></i>
+      </div>
+      <div *ngIf="redirectionPath != 'login'"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        class="nav-item"
+        matTooltip="Mon évolution"
+        routerLink="/compte"
+        (click)="openSideMenuClicked()"
+      >
+        <i class="icon-food"></i>
+      </div>
+
+      <div *ngIf="redirectionPath != 'login'"
+           fxLayout="row"
+           fxLayoutAlign="center center"
+           class="nav-item"
+           matTooltip="Me déconnecter"
+           (click)="disconnect()"
+      >
+        <i class="icon-disconnect"></i>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
