@@ -69,7 +69,6 @@ export class SideMenuComponent implements OnInit{
   retrieveMeal() {
     firstValueFrom(this.dao.retreiveUserMeals())
       .then((data) => {
-        debugger;
         data.forEach((meal: Meal) => {
           meal.calorieTot = 0;
           meal.foods.forEach(food => {
