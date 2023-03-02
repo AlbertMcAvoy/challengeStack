@@ -66,4 +66,17 @@ export class InfoUserComponent implements OnInit{
       }
     )
   }
+
+  deleteUser() {
+    firstValueFrom(this.dao.deleteUser()).then(
+      (value) => {
+        console.log(value);
+        sessionStorage.clear();
+        window.location.href = '/';
+      }
+    ),
+      () => {
+          console.log('non')
+      }
+  }
 }
