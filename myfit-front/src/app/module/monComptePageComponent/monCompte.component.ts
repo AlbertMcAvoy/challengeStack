@@ -18,7 +18,7 @@ export class MonCompteComponent implements OnInit{
     height: 0,
     id: 0,
     lastname: '',
-    objectif_weight: '',
+    objectif_weight: 0,
     subscription_date: '',
     weight: 0,
     phone: '',

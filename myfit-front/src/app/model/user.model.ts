@@ -5,7 +5,7 @@ export interface UserModel {
   height: number
   id: number,
   lastname: string
-  objectif_weight: string
+  objectif_weight: number
   subscription_date: string
   weight: number;
   phone: string;

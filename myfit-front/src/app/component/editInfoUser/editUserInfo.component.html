@@ -19,29 +19,68 @@
           <h3>
             Renseignez vos informations
           </h3>
-          <form class="form" [formGroup]="registerForm" style="margin: auto">
-            <mat-form-field class="field-full-width " appearance="outline" color="accent">
-              <mat-label>Prénom</mat-label>
-              <input matInput placeholder="Entrez votre prénom" name="prenom" type="text" formControlName="prenom">
-            </mat-form-field>
-            <mat-form-field class="field-full-width " appearance="outline">
-              <mat-label>Nom</mat-label>
-              <input matInput placeholder="Entrez votre nom" name="nom" type="text" formControlName="nom">
-            </mat-form-field>
-            <mat-form-field class="field-full-width " appearance="outline">
-              <mat-label>Âge</mat-label>
+          <form class="form" [formGroup]="userInforGroup" style="margin: auto">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline" color="accent">
+                <mat-label>Prénom</mat-label>
+                <input matInput placeholder="Entrez votre prénom" name="prenom" type="text" formControlName="prenom" required>
+              </mat-form-field>
+              <mat-form-field class="field-full-width " appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Entrez votre nom" name="nom" type="text" formControlName="nom" required>
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Âge</mat-label>
                 <input matInput placeholder="Entez votre âge" name="age" type="number" formControlName="age" required>
-            </mat-form-field>
-            <mat-form-field class="field-full-width" appearance="outline">
-              <mat-label>Votre objectif de poid</mat-label>
-              <input matInput placeholder="Entrez votre objectif de poid" value="" name="objectifPoid" type="number" formControlName="objectifPoid" required>
-            </mat-form-field>
+              </mat-form-field>
+              <mat-form-field class="field-full-width" appearance="outline">
+                <mat-label>Votre objectif de poids</mat-label>
+                <input matInput placeholder="Entrez votre objectif de poids" value="" name="objectifPoid" type="number" formControlName="objectifPoid" required>
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Votre poids</mat-label>
+                <input matInput placeholder="Entrez votre de poid" value="" name="poids" type="number" formControlName="poids" required>
+              </mat-form-field>
+              <mat-form-field class="field-full-width " appearance="outline">
+                <mat-label>Taille</mat-label>
+                <input matInput placeholder="Entez votre taille" name="taille" type="number" formControlName="taille" required>
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Téléphone</mat-label>
+                <input matInput placeholder="Entez votre téléphone" name="phone" type="number" formControlName="phone" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Genre</mat-label>
+                <select matNativeControl required>
+                  <option [value]="sexEnum.Homme">Homme</option>
+                  <option [value]="sexEnum.Femme">Femme</option>
+                  <option [value]="sexEnum.Autre">Autre</option>
+                </select>
+              </mat-form-field>
+            </div>
 
             <p>* : champs obligatoires</p>
 
             <div class="actions">
-              <button mat-raised-button color="primary" (click)="submit()"> Enregistrer </button>
-              <button mat-flat-button routerLink="/compte">Retour</button>
+              <button mat-raised-button color="primary" (click)="getUserPayload()"> Enregistrer </button>
             </div>
           </form>
         </mat-card-content>
