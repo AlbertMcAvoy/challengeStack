@@ -10,11 +10,12 @@
            placeholder="Rechercher un aliment..."
            aria-label="add-aliment"
            matInput
+           [(ngModel)] = "valueInputSearch"
            [formControl]="myControl"
            [matAutocomplete]="auto"
     >
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let food of allFoods" [value]="food.libelle" (click)="addFood(food)">
+      <mat-option *ngFor="let food of filteredOptions | async" [value]="food.libelle" (click)="addFood(food)">
         {{food.libelle}} - {{food.calories}} Cal.
       </mat-option>
     </mat-autocomplete>

@@ -1,18 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {FormControl} from "@angular/forms";
 import {firstValueFrom, map, Observable, startWith} from "rxjs";
 import {DAO} from "../../model/DAO";
 import {Meal} from "../../class/Meal";
 import {Food} from "../../class/Food";
 import {HttpErrorResponse} from "@angular/common/http";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'pop-up-component',
   templateUrl: 'popUp.component.html',
   styleUrls: ['popUp.component.scss']
 })
-export class PopUpComponent {
+export class PopUpComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<PopUpComponent>,
     private dao : DAO
@@ -46,16 +46,25 @@ export class PopUpComponent {
   currentMeal: Meal = new Meal();
 
   myControl = new FormControl('');
+  valueInputSearch: String = "";
+  filteredOptions: Observable<Food[]> = new Observable<Food[]>();
+
+  ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filter(value || '')),
+    );
+  }
 
   get foods () {
     return this.allFoods;
   }
 
-  private _filter(value: string): string | undefined {
-    const filterValue = value.toLowerCase();
-    let found = this.foods.find(option => option.libelle.toLowerCase().includes(filterValue));
-    return found?.libelle;
-  }
+   private filter(value: string): Food[] {
+     const filterValue = value.toLowerCase();
+     return this.foods.filter(option => option.libelle.toLowerCase().includes(filterValue));
+   }
+
 
   addFood(food: Food) {
     this.currentMeal.foods.push(food);
