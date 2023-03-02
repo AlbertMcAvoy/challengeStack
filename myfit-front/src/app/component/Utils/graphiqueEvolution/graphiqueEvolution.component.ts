@@ -61,7 +61,7 @@ export class GraphiqueEvolutionComponent {
       .then(data => {
 
         data.forEach((body: any) => {
-          labels.push(body.date);
+          labels.push(new Date(body.date).toLocaleDateString());
           weight.push(body.weight);
         });
 

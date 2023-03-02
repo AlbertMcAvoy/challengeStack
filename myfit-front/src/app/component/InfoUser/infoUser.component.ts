@@ -5,6 +5,7 @@ import {DAO} from "../../model/DAO";
 import {MatDialog} from "@angular/material/dialog";
 import {EditUserInfoComponent} from "../editInfoUser/editUserInfo.component";
 import {GenreEnum} from "../../model/genreEnum";
+import {DeleteUserPopUp} from "../deleteUserPopup/deleteUserPopUp";
 
 @Component({
   selector: 'infoUser',
@@ -27,7 +28,7 @@ export class InfoUserComponent implements OnInit{
   userInfo: UserModel = {
     age: '',
     firstname: '',
-    gender: 0,
+    gender: '0',
     height: 0,
     id: 0,
     lastname: '',
@@ -68,15 +69,19 @@ export class InfoUserComponent implements OnInit{
   }
 
   deleteUser() {
-    firstValueFrom(this.dao.deleteUser()).then(
-      (value) => {
-        console.log(value);
-        sessionStorage.clear();
-        window.location.href = '/';
-      }
-    ),
-      () => {
-          console.log('non')
-      }
+
+    const dialogRef = this.dialog.open(DeleteUserPopUp , {
+      data: this.userInfo,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.getUser();
+    });
+
+  }
+
+  getGender(): string {
+    return this.genre[ parseInt(this.userInfo.gender)];
   }
 }

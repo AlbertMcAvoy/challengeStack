@@ -14,7 +14,7 @@ export class MonCompteComponent implements OnInit{
   userInfo: UserModel = {
     age: '',
     firstname: '',
-    gender: 0,
+    gender: '',
     height: 0,
     id: 0,
     lastname: '',

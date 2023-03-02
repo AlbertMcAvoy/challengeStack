@@ -43,6 +43,10 @@
   .delete-compte {
     margin: 10px -50px 0 0;
   }
+  .delete-compte:hover {
+    background-color: #f83434;
+    color: white;
+  }
 }
 
 @media screen and (max-width: 920px) {
@@ -74,7 +78,6 @@
     .delete-compte {
       margin: 20px ;
     }
-
   }
 }
 

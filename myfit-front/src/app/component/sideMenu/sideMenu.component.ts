@@ -1,5 +1,5 @@
-import {Component, Inject, Input} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {Component, Input, OnInit} from "@angular/core";
+import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
 import {DAO} from "../../model/DAO";
@@ -12,10 +12,12 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: 'sideMenu.component.html',
   styleUrls: ['sideMenu.component.scss']
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit{
   @Input() openSideMenu: boolean = false;
   panelOpenState = false;
   selectedMeal: Array<Meal> = [];
+  yesterdayMeal: Array<Meal> = [];
+  beforeYesterdayMeal: Array<Meal> = [];
   selectedMealMenu: any = [];
   selectedMealId: string= '';
 
@@ -24,6 +26,12 @@ export class SideMenuComponent {
     private dao: DAO
   ) {
     this.retrieveMeal();
+  }
+
+  ngOnInit() {
+    this.retrieveTodayMeal();
+    this.retrieveYesterdayMeal();
+    this.retrieveBeforeYesterdayMeal();
   }
 
   openAddFoodDialog(): void {
@@ -61,19 +69,21 @@ export class SideMenuComponent {
   retrieveMeal() {
     firstValueFrom(this.dao.retreiveUserMeals())
       .then((data) => {
+        debugger;
         data.forEach((meal: Meal) => {
           meal.calorieTot = 0;
           meal.foods.forEach(food => {
             meal.calorieTot += food.calories;
           })
         });
-        this.selectedMeal = data;
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
         this.retrieveMeal();
       });
   }
+
+
 
   deleteMeal(id: String) {
     firstValueFrom(this.dao.deleteFood(id))
@@ -86,5 +96,40 @@ export class SideMenuComponent {
       });
   }
 
+  retrieveTodayMeal() {
+    firstValueFrom(this.dao.retreiveUserMealsToday()).then(
+      (data) => {
+        console.log(data)
+        this.selectedMeal = data;
+      },
+      (error) => {
+
+      }
+    )
+  }
+
+  retrieveYesterdayMeal() {
+    firstValueFrom(this.dao.retrieveUserMealsYesterday()).then(
+      (data) => {
+        console.log(data)
+        this.yesterdayMeal = data;
+      },
+      (error) => {
+
+      }
+    )
+  }
+
+  retrieveBeforeYesterdayMeal() {
+    firstValueFrom(this.dao.retrieveUserMealsBeforeYesterday()).then(
+      (data) => {
+        console.log(data);
+        this.beforeYesterdayMeal = data
+      },
+      (error) => {
+
+      }
+    )
+  }
 
 }

@@ -44,6 +44,26 @@ export class DAO {
     return this.apiService.get(`api/meal/date/${today}`);
   }
 
+  retrieveUserMealsYesterday(): Observable<any> {
+    let dateCourante = new Date();
+
+    let hier = new Date(dateCourante);
+    hier.setDate(dateCourante.getDate() - 1);
+
+    let yesterday = formatDate(hier , 'YYYY-MM-dd', 'en');
+    return this.apiService.get(`api/meal/date/${yesterday}`)
+  }
+
+  retrieveUserMealsBeforeYesterday(): Observable<any> {
+    let dateCourante = new Date();
+
+    let hier = new Date(dateCourante);
+    hier.setDate(dateCourante.getDate() - 2);
+
+    let yesterday = formatDate(hier , 'YYYY-MM-dd', 'en');
+    return this.apiService.get(`api/meal/date/${yesterday}`)
+  }
+
   getUser(): Observable<UserModel> {
     return this.apiService.get('api/user')
   }
@@ -76,6 +96,10 @@ export class DAO {
 
   deleteUser(): Observable<any> {
     return this.apiService.delete('api/user')
+  }
+
+  getMealInfo(id: string): Observable<any> {
+    return this.apiService.get(`api/meal/show/${id}`)
   }
 
 }

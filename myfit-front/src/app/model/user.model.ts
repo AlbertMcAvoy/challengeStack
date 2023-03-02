@@ -1,7 +1,7 @@
 export interface UserModel {
   age: string
   firstname: string
-  gender: number
+  gender: string
   height: number
   id: number,
   lastname: string

@@ -35,6 +35,7 @@ import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.compo
 import { RGPDPopupComponent } from './component/rgpdpopup/rgpdpopup.component';
 import { FooterComponent } from './component/utils/footer/footer.component';
 import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
+import {DeleteUserPopUp} from "./component/deleteUserPopup/deleteUserPopUp";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
     EditUserInfoComponent,
     RGPDPopupComponent,
     FooterComponent,
-    CGUPopupComponent
+    CGUPopupComponent,
+    DeleteUserPopUp,
   ],
   imports: [
     BrowserModule,

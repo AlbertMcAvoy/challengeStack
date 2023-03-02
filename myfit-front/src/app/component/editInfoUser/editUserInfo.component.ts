@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserModel} from "../../model/user.model";
 import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'edit-user',
@@ -35,6 +36,7 @@ export class EditUserInfoComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: UserModel,
     private fb: FormBuilder,
     private dao: DAO,
+    private _snackBar: MatSnackBar,
   ) {
     this.userInforGroup = this.fb.group({
       nom: this.nom,
@@ -71,10 +73,27 @@ export class EditUserInfoComponent implements OnInit{
   updateUser() {
 
     firstValueFrom(this.dao.updateUser(this.getUserPayload())).then(
-      (value) => {
-        console.log(value);
-      }
-    ).then(
+        (value) => {
+          this._snackBar.open('Vos information ont été mise à jour', 'OK',{
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+
+          setTimeout(() => {
+            this._snackBar.dismiss();
+          },3000);
+        },
+        () => {
+          this._snackBar.open('Une erreur s\'est produite, réessayez plus tard !', 'OK',{
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+
+          setTimeout(() => {
+            this._snackBar.dismiss();
+          },3000);
+        },
+      ).then(
       () => {
         this.dialogRef.close();
       }
@@ -85,7 +104,7 @@ export class EditUserInfoComponent implements OnInit{
     return {
       age: this.age.value ?? '',
       firstname: this.prenom.value ?? '',
-      gender: parseInt(this.genre.value ?? ''),
+      gender: this.genre.value ?? '',
       height: parseInt(this.taille.value ?? ''),
       id: this.data.id,
       lastname: this.nom.value ?? '',
@@ -101,7 +120,7 @@ export class EditUserInfoComponent implements OnInit{
       nom: this.data.lastname ?? '',
       prenom: this.data.firstname ?? '',
       age: this.data.age ?? '',
-      genre: this.data.gender.toString() ??  '1',
+      genre: 0,
       phone: this.data.phone ?? '',
       taille: this.data.height ?? '',
       objectifPoid: this.data.objectif_weight ?? '',
