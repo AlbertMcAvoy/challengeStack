@@ -51,7 +51,8 @@ export class LoginPageComponent {
     this.user.password = this.userForm.get('password')?.value; // input value retrieved
 
     firstValueFrom(this.dao.connexion(this.user)).then((data) => {
-      sessionStorage.setItem('jwt', data.token);
+      sessionStorage.setItem('token', data.token);
+      sessionStorage.setItem('refresh_token', data.refresh_token);
       window.location.href = '/compte';
       if (this.updateMenuLinkViaParent) {
         this.updateMenuLinkViaParent();

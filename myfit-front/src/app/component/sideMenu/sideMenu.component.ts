@@ -2,6 +2,9 @@ import {Component, Input} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
+import {DAO} from "../../model/DAO";
+import {firstValueFrom} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'side-menu',
@@ -12,9 +15,14 @@ export class SideMenuComponent {
   @Input() openSideMenu: boolean = false;
   panelOpenState = false;
   description: string = "";
-selectedMeal: Array<Meal> = [];
+  selectedMeal: Array<Meal> = [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private dao: DAO
+  ) {
+    this.retrieveMeal();
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopUpComponent , {
@@ -24,7 +32,29 @@ selectedMeal: Array<Meal> = [];
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.selectedMeal.push(result);
+      if (result == undefined ||
+        result.name == ''
+      ) return;
+
+      this.retrieveMeal();
     });
+  }
+
+  retrieveMeal() {
+
+    firstValueFrom(this.dao.retreiveUserMeals())
+      .then((data) => {
+        data.forEach((meal: Meal) => {
+          meal.calorieTot = 0;
+          meal.foods.forEach(food => {
+            meal.calorieTot += food.calories;
+          })
+        });
+
+        this.selectedMeal = data;
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
   }
 }

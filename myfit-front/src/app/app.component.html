@@ -9,7 +9,12 @@
       fxLayoutAlign="start center"
       *ngIf="!openSideMenu && getRoute() == '/compte' "
       class="side-menu-open">
-
+      <mat-icon
+        class="bugrer-button"
+        style="margin-left: auto"
+        (click)="openMenu()"
+      >cancel
+      </mat-icon>
       <side-menu></side-menu>
     </div>
   </div>

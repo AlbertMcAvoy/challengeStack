@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -15,31 +15,29 @@ export class ApiService {
     url: string,
     input?: any,
     txtResponse: boolean = false,
-    jsonContentType: boolean = false,
     headers: { [headerKey: string]: string } = {},
   ): Observable<any> {
 
     let params: HttpParams = this.getHttpParams(input, false);
     let baseHeaders: HttpHeaders = this.getHeaders();
-    let options = {headers: baseHeaders, params: params};
+    let allHeaders: HttpHeaders = this.setAdditionalHeaders(baseHeaders, headers || {});
+    let options = {headers: allHeaders, params: params};
 
     if (txtResponse) {
     }
 
     return this.http
       .get(`${this.API_URL}/${url}`, options)
-      .pipe();
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
   }
 
   post(
     url: string,
     input?: any,
     txtResponse: boolean = false,
-    jsonContentType: boolean = true,
-    myFitSession: boolean = true,
   ): Observable<any> {
-
-    let params: HttpParams = this.getHttpParams(input, jsonContentType, myFitSession);
     let headers: HttpHeaders = this.getHeaders();
     let options = { headers };
 
@@ -47,8 +45,10 @@ export class ApiService {
     }
 
     return this.http
-      .post(`${this.API_URL}/${url}`, jsonContentType ? input : params, options)
-      .pipe();
+      .post(`${this.API_URL}/${url}`, input, options)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
   }
 
   private getHttpParams(
@@ -76,12 +76,28 @@ export class ApiService {
   }
 
   private getHeaders(): HttpHeaders {
-    return   new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`})
+    return new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`})
   }
 
   private getJWT(): string {
-    let returnToken: string | null = sessionStorage.getItem('jwt');
+    let returnToken: string | null = sessionStorage.getItem('token');
 
     return returnToken == null ? '' : returnToken;
+  }
+
+  private handleError(error: any) {
+    console.log(error)
+    if (error.status == '401') {
+      this.post(
+        'auth/refresh',
+        {
+          'refresh_token': sessionStorage.getItem('refresh_token')
+        }
+      ).subscribe((data) => {
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('refresh_token', data.refresh_token);
+      })
+    }
+    return of(error);
   }
 }

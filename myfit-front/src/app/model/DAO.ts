@@ -20,7 +20,7 @@ export class DAO {
     return this.apiService.post('auth/register', data);
   }
 
-  createNewMeal(meal: Meal) {
+  createNewMeal(meal: Meal): Observable<any> {
 
     let allIdFoods: number[] = [];
 
@@ -29,9 +29,13 @@ export class DAO {
     return this.apiService.post(
       'api/meal/new',
       {
-        'name': 'test',
+        'name': meal.name,
         'foods': allIdFoods
       });
+  }
+  
+  retreiveUserMeals(): Observable<any> {
+    return this.apiService.get('api/meal/user');
   }
 
   getUser(): Observable<UserModel> {

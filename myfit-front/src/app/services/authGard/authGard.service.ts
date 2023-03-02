@@ -12,7 +12,7 @@ export class AuthGardService implements  CanActivate{
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): boolean {
 
-    if (sessionStorage.getItem('jwt')  && sessionStorage.getItem('jwt') !== null)  {
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('token') !== null)  {
       return true;
     }
     this._router.navigate(['**'])

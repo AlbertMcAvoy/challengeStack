@@ -10,7 +10,12 @@ import {AuthGardService} from "./services/authGard/authGard.service";
 
 const routes: Routes = [
   {
-    path : '',
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path : 'home',
     component : HomePageComponent,
     title: 'Accueil'
   },

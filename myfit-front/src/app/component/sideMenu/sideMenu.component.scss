@@ -4,14 +4,20 @@
 .side-menu-container {
   font-family: $font-outfit;
   color: white;
-  max-width: 300px;
+  margin-top: 20px;
 
   .titre {
-    font-size: 24px;
+    text-align: center;
+    font-size: $font-size-title;
+
+    ::ng-deep .material-icons {
+      font-size: 32px;
+    }
   }
 
   .meals-container {
     padding: 0 10px;
+
     p {
       margin: 0;
       flex: 1;
@@ -27,9 +33,13 @@
   }
 
   ::ng-deep .material-icons {
-    font-size: 20px;
+    font-size: $font-size-content;
     padding: 10px;
     color: white;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
@@ -95,6 +105,19 @@
   @media screen and (max-width: 820px) {
     .titre {
       font-size: 18px;
+    }
+
+    ::ng-deep .material-icons {
+      font-size: 20px;
+      padding: 0;
+    }
+
+    .meals-container {
+      padding: 0;
+
+      p {
+        text-align: center;
+      }
     }
   }
 }

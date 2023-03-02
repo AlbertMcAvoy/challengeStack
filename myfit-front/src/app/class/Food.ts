@@ -2,5 +2,7 @@ export class Food {
 
   id: number = -1;
 
-  description: string = '';
+  libelle: string = '';
+
+  calories: number = 0;
 }
