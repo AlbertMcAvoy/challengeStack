@@ -8,7 +8,7 @@
       fxLayout="column"
       class="calories-cercle"
     >
-      <p class="calorie"> 2777 </p>
+      <p class="calorie"> {{ todayCalories }} </p>
       <p class="margin-p"> Vos calories consommées </p>
       <p class="margin-p text-secondary"> aujourd'hui </p>
     </div>
@@ -18,9 +18,9 @@
     fxLayout="column"
     fxLayoutAlign="center center"
   >
-    <p class="calories-titre"> Calories manquantes </p>
-    <p class="calories text-secondary"> 200 </p>
     <p class="objectif-titre">Votre objectif de poids</p>
     <p class="poids text-secondary"> {{ user?.objectif_weight ? user?.objectif_weight : 'Inconnu pour le moment !' }} </p>
+    <p class="objectif-titre">Votre poids actuel</p>
+    <p class="poids text-secondary"> {{ user?.weight ? user?.weight : 'Inconnu pour le moment !' }} </p>
   </mat-card-content>
 </mat-card>

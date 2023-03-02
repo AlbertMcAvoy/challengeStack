@@ -4,6 +4,7 @@ import {Injectable} from "@angular/core";
 import {Meal} from "../class/Meal";
 import {User} from "../class/User";
 import {UserModel} from "./user.model";
+import {formatDate} from '@angular/common';
 
 @Injectable()
 export class DAO {
@@ -33,9 +34,14 @@ export class DAO {
         'foods': allIdFoods
       });
   }
-  
+
   retreiveUserMeals(): Observable<any> {
     return this.apiService.get('api/meal/user');
+  }
+
+  retreiveUserMealsToday(): Observable<any> {
+    let today = formatDate(new Date(), 'YYYY-MM-dd', 'en');
+    return this.apiService.get(`api/meal/date/${today}`);
   }
 
   getUser(): Observable<UserModel> {
