@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginDAO} from "../../model/loginDAO";
+import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -27,7 +27,7 @@ export class RegisterPageComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private loginDAO: LoginDAO
+    private loginDAO: DAO
   ) {
     this.registerForm = this.fb.group({
       taille : new FormControl('', Validators.compose([

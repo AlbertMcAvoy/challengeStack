@@ -9,7 +9,7 @@ import {LoginPageComponent} from "./module/LoginPageComponent/loginPage-componen
 })
 export class AppComponent {
 
-  openSideMenu: boolean = true;
+  openSideMenu: boolean = (window.innerWidth < 820);
 
   title: string = 'Track\'n\'fit';
 
@@ -22,7 +22,7 @@ export class AppComponent {
   constructor(private router: Router) {
 
 
-    if (sessionStorage.getItem('jwt') != null) {
+    if (sessionStorage.getItem('token') != null) {
       this.menuAccountLink = 'compte';
     } else {
       this.menuAccountLink = 'login';
@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   updateMenuLink() {
-    if (sessionStorage.getItem('jwt') != null) {
+    if (sessionStorage.getItem('token') != null) {
       this.menuAccountLink = 'compte';
     }
   }

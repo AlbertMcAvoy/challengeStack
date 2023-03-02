@@ -7,50 +7,56 @@
 }
 
 .aperçu-objectif {
-  width: 300px;
+  width: 400px;
+  height: 400px;
   position: relative;
   box-shadow: 0 19px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   .calories-cercle-container {
     position: absolute;
     height: 100%;
     width: 100%;
-    bottom: 215px;
+    bottom: 275px;
 
     .calories-cercle {
       position: relative;
-      width: 200px;
-      height: 200px;
-      border-radius: 100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 100%;
       background: conic-gradient($light-color var(--conic-mask), #0000 0deg);
       display: flex;
-      flex-direction: row;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
 
       animation: fill-progress 1s ease-in-out forwards;
 
       .calorie {
-        font-size: $font-size-information-important;
+        font-size: $font-size-calorie;
+        margin-bottom: 45px;
         font-weight: bold;
-        margin-top: 70px;
-        margin-bottom: 25px;
         z-index: 3;
       }
 
       .margin-p {
-        font-size: 16px;
+        width: 75%;
+        font-size: $font-size-content;
         margin: 0;
         z-index: 3;
       }
     }
+
     .calories-cercle::before {
       content: '';
       position: absolute;
-      height: 180px;
-      width: 180px;
+      height: 250px;
+      width: 250px;
       background-color: #ffffff;
-      border-radius: 100px;
+      border-radius: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -70,11 +76,16 @@
     margin-top: 33px;
   }
   .objectif-titre, .calories-titre {
-    font-size: $font-size-content;
+    font-size: $font-size-title;
   }
+
   .poids, .calories {
-    font-size: $font-size-information-important;;
+    font-size: $font-size-information-important;
     padding: 20px 0;
+  }
+
+  .text-secondary {
+    color: $secondary-color;
   }
 
 }

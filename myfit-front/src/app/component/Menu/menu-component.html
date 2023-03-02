@@ -1,7 +1,6 @@
 <div>
   <mat-card
-    class="menu-container"
-    style="width: {{ redirectionPath != 'compte' ? '200px' : '400px' }}"
+    class="menu-container {{ redirectionPath != 'compte' ? 'menu-small' : '' }}"
   >
     <mat-card-content
       fxLayout="row"
@@ -13,7 +12,8 @@
         fxLayout="row"
         fxLayoutAlign="center center"
         class="nav-item"
-        routerLink="/"
+        routerLink="/home"
+        routerLinkActive="activated"
       >
         <i class="icon-home"></i>
       </div>
@@ -23,6 +23,7 @@
         class="nav-item"
         matTooltip="Mon compte"
         routerLink="{{ redirectionPath }}"
+        routerLinkActive="activated"
       >
         <i class="icon-user"></i>
       </div>
@@ -30,7 +31,7 @@
         fxLayout="row"
         fxLayoutAlign="center center"
         class="nav-item"
-        matTooltip="Mon évolution"
+        matTooltip="Mes repas"
         routerLink="/compte"
         (click)="openSideMenuClicked()"
       >

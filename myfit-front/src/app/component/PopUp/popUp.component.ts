@@ -1,73 +1,101 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, OnInit} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
+import {firstValueFrom, map, Observable, startWith} from "rxjs";
+import {DAO} from "../../model/DAO";
+import {Meal} from "../../class/Meal";
+import {Food} from "../../class/Food";
+import {HttpErrorResponse} from "@angular/common/http";
 import {FormControl} from "@angular/forms";
-import {map, Observable, startWith} from "rxjs";
-
-export interface Meal {
-  description: string;
-}
 
 @Component({
   selector: 'pop-up-component',
   templateUrl: 'popUp.component.html',
   styleUrls: ['popUp.component.scss']
 })
-export class PopUpComponent {
+export class PopUpComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<PopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public newMeal: Meal,
+    private dao : DAO
   ) {}
 
-  allMeals:Array<Meal> =
-  [
-    {'description' : 'Petit déjeuner - 650 cal.'},
-    {'description': 'Déjeuner - 650 cal.'},
-    {'description': 'Collation - 650 cal.'},
-    {'description': 'Diner - 650 cal.'},
-    {'description': 'Petit déjeuner - 650 cal.'}
+  mealName: string = '';
+
+  allFoods: Array<Food> = [
+    {
+      'id' : 1000,
+      'libelle' : 'Pastis 1',
+      'calories': 520
+    },
+    {
+      'id' : 1010,
+      'libelle' : 'Pastis 2',
+      'calories': 520
+    },
+    {
+      'id' : 1019,
+      'libelle' : 'Pastis 3',
+      'calories': 520
+    },
+    {
+      'id' : 1031,
+      'libelle' : 'Pastis 4',
+      'calories': 520
+    }
   ];
 
-  selectedMeal:Array<Meal> = [];
-
-  addMeals(description: string) {
-    let meal: Meal = { description: description}
-    this.allMeals.push(meal);
-  }
-
-  get meals () {
-    return this.allMeals;
-  }
+  currentMeal: Meal = new Meal();
 
   myControl = new FormControl('');
+  valueInputSearch: String = "";
+  filteredOptions: Observable<Food[]> = new Observable<Food[]>();
 
-  private _filter(value: string): string | undefined {
-    const filterValue = value.toLowerCase();
-    let found = this.meals.find(option => option.description.toLowerCase().includes(filterValue));
-    return found?.description;
+  ngOnInit(): void {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filter(value || '')),
+    );
   }
 
-  addMeal(meal: Meal) {
-    this.selectedMeal.push(meal);
+  get foods () {
+    return this.allFoods;
   }
 
-  get selected() {
-    return this.selectedMeal;
+   private filter(value: string): Food[] {
+     const filterValue = value.toLowerCase();
+     return this.foods.filter(option => option.libelle.toLowerCase().includes(filterValue));
+   }
+
+
+  addFood(food: Food) {
+    this.currentMeal.foods.push(food);
   }
 
-  deleteMeal(meal: Meal)
+  get currentMealFoods() {
+    return this.currentMeal.foods;
+  }
+
+  deleteFood(food: Food)
   {
-    let index = this.selectedMeal.findIndex(({ description }) => description === meal.description);
+    let index = this.currentMeal.foods.findIndex(({ id }) => id === food.id);
+
     if (index !== -1) {
-      this.selectedMeal.splice(index, 1);
+      this.currentMeal.foods.splice(index, 1);
     }
   }
 
   submit() {
-    localStorage.setItem('repas',JSON.stringify(this.selectedMeal))
-    this.onNoClick()
+    if (this.mealName == '') return;
+    this.currentMeal.name = this.mealName;
+    firstValueFrom(this.dao.createNewMeal(this.currentMeal))
+      .then(() => {
+        this.onNoClick();
+    }).catch((e: HttpErrorResponse) => {
+      console.log(e);
+      this.onNoClick();
+    })
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.currentMeal);
   }
 }

@@ -23,7 +23,7 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
-import {LoginDAO} from "./model/loginDAO";
+import {DAO} from "./model/DAO";
 import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
@@ -31,6 +31,7 @@ import { PopUpComponent } from './component/PopUp/popUp.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MonCompteComponent,
     SideMenuComponent,
     PopUpComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    EditUserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MatExpansionModule,
     NgChartsModule,
     MatDialogModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+
   ],
   providers: [
     ApiService,
@@ -76,7 +79,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MatTooltipModule,
     MatButtonModule,
     ApiService,
-    LoginDAO,
+    DAO,
     MatDialog,
   ],
   bootstrap: [AppComponent]

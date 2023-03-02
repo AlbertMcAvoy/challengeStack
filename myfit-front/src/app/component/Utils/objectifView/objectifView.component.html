@@ -8,10 +8,9 @@
       fxLayout="column"
       class="calories-cercle"
     >
-      <p class="calorie">2777</p>
-      <p class="margin-p">Voici les calories</p>
-      <p class="margin-p">consommées </p>
-      <p>aujourd’hui</p>
+      <p class="calorie"> 2777 </p>
+      <p class="margin-p"> Vos calories consommées </p>
+      <p class="margin-p text-secondary"> aujourd'hui </p>
     </div>
   </mat-card-header>
 
@@ -19,9 +18,9 @@
     fxLayout="column"
     fxLayoutAlign="center center"
   >
+    <p class="calories-titre"> Calories manquantes </p>
+    <p class="calories text-secondary"> 200 </p>
     <p class="objectif-titre">Votre objectif de poids</p>
-    <p class="poids">70kg</p>
-    <p class="calories-titre">Calories d'hier</p>
-    <p class="calories">2555</p>
+    <p class="poids text-secondary"> {{ user?.objectif_weight ? user?.objectif_weight : 'Inconnu pour le moment !' }} </p>
   </mat-card-content>
 </mat-card>

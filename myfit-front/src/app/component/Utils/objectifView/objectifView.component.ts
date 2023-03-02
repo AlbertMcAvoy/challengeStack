@@ -1,4 +1,6 @@
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
+import {UserModel} from "../../../model/user.model";
+import {DAO} from "../../../model/DAO";
 
 @Component({
   selector: 'objectif-view',
@@ -7,4 +9,14 @@ import {Component} from "@angular/core";
 })
 export class ObjectifViewComponent {
 
+  @Input() user: UserModel | undefined;
+
+  todayCalories: number = 0;
+
+  constructor(
+    private dao: DAO
+  ) {
+
+
+  }
 }

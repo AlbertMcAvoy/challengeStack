@@ -6,10 +6,16 @@ import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPa
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
+import {AuthGardService} from "./services/authGard/authGard.service";
 
 const routes: Routes = [
   {
-    path : '',
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path : 'home',
     component : HomePageComponent,
     title: 'Accueil'
   },
@@ -27,10 +33,12 @@ const routes: Routes = [
   {
     path: 'compte',
     component: MonCompteComponent,
+    canActivate: [AuthGardService]
   },
   {
     path: 'infoUser',
-    component: InfoUserComponent
+    component: InfoUserComponent,
+    canActivate: [AuthGardService]
   },
   {
     path: '**',

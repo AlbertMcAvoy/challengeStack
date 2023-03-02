@@ -8,6 +8,10 @@
   display: flex;
   gap: 50px;
 
+  &.menu-small {
+    width: 200px;
+  }
+
   .nav-item {
     width: 40px;
     height: 40px;
@@ -66,5 +70,15 @@
     .icon-disconnect {
       filter: invert(32%) sepia(26%) saturate(1316%) hue-rotate(144deg) brightness(94%) contrast(89%);
     }
+  }
+
+  .activated {
+    border: 2px solid $dark-color;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .menu-container {
+    width: 275px;
   }
 }
