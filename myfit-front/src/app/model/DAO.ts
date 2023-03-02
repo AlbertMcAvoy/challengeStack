@@ -51,4 +51,18 @@ export class DAO {
   retreiveUserBodies(): Observable<any> {
     return this.apiService.get('api/body');
   }
+
+  getFoods(value: string): Observable<any> {
+    return this.apiService.get(`api/food/${value}`)
+  }
+
+  editFood(id : String, name: String, foodId: Array<any>): Observable<any> {
+    return this.apiService.post(
+      `api/meal/edit/${id}`,
+      {
+        'name': name,
+        'foods': foodId
+      });
+  }
+
 }

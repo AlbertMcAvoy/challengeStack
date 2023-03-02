@@ -1,10 +1,11 @@
-import {Component, Input} from "@angular/core";
-import {MatDialog} from "@angular/material/dialog";
+import {Component, Inject, Input} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
 import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+
 
 @Component({
   selector: 'side-menu',
@@ -14,8 +15,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class SideMenuComponent {
   @Input() openSideMenu: boolean = false;
   panelOpenState = false;
-  description: string = "";
   selectedMeal: Array<Meal> = [];
+  selectedMealMenu: any = [];
 
   constructor(
     public dialog: MatDialog,
@@ -24,18 +25,34 @@ export class SideMenuComponent {
     this.retrieveMeal();
   }
 
-  openDialog(): void {
+  openAddFoodDialog(): void {
     const dialogRef = this.dialog.open(PopUpComponent , {
       height: '400px',
       width: '600px',
-      data: {description: this.description}
+      data: {titleDialog: 'Ajouter un repas'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == undefined ||
         result.name == ''
       ) return;
+      this.retrieveMeal();
+    });
+  }
 
+  openAddEditFoodDialog(meal: Meal): void {
+    localStorage.setItem('dataForEdit',JSON.stringify(meal));
+    this.selectedMealMenu = meal;
+    const dialogRef = this.dialog.open(PopUpComponent , {
+      height: '400px',
+      width: '600px',
+      data: {titleDialog: 'Editer un repas'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == undefined ||
+        result.name == ''
+      ) return;
       this.retrieveMeal();
     });
   }
@@ -49,7 +66,6 @@ export class SideMenuComponent {
             meal.calorieTot += food.calories;
           })
         });
-
         this.selectedMeal = data;
       })
       .catch((e: HttpErrorResponse) => {
@@ -57,4 +73,18 @@ export class SideMenuComponent {
         this.retrieveMeal();
       });
   }
+
+  /*editMeal(meal: Meal) {
+    this.selectedMealId = meal.id;
+    this.selectedMealName= meal.name;
+    this.selectedMealFood = [meal.foods[0].id];
+    firstValueFrom(this.dao.editFood(this.selectedMealId, this.selectedMealName, this.selectedMealFood))
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
+  }*/
+
 }
