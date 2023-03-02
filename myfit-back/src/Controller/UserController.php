@@ -20,6 +20,7 @@ class UserController extends AbstractController
             return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
         }
         $body = $user->getBodies()->last();
+        dd($user->getBodies());
         return $this->json([
             "id" => $user->getId(),
             "firstname" => $user->getFirstname(),

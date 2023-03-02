@@ -72,7 +72,12 @@ class MealService
         $mealList = $this->mealRepository->findByDates($date, $user);
 
         foreach ($mealList as $meal) {
-            $mealToReturn[] = ['id' => $meal->getId(), 'name' => $meal->getName(), 'date' => $meal->getDateTime()];
+            $mealToReturn[] = [
+                'id' => $meal->getId(),
+                'name' => $meal->getName(),
+                'date' => $meal->getDateTime(),
+                'foods' => $meal->getFood()
+            ];
         }
 
         return $mealToReturn;

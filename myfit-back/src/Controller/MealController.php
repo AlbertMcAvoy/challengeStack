@@ -79,6 +79,6 @@ class MealController extends AbstractController
     {
         $user = $userService->getCurrentUser();
         if ($user == null) return $this->json(["status" => 404, "message" => "User not found with this token !"]);
-        return $this->json($mealService->getMeal($date));
+        return $this->json($mealService->getMeal($date), 200, [], ['groups' => ['meal_date']]);
     }
 }

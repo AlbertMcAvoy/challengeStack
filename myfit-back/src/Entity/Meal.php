@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MealRepository::class)]
 class Meal
@@ -14,15 +15,19 @@ class Meal
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('meal_date')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('meal_date')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups('meal_date')]
     private ?\DateTimeInterface $date_time = null;
 
     #[ORM\ManyToMany(targetEntity: Food::class, mappedBy: 'meal')]
+    #[Groups('meal_date')]
     private Collection $food;
 
     #[ORM\ManyToOne(inversedBy: 'meals')]
