@@ -37,4 +37,5 @@
 
 <div mat-dialog-actions>
   <button mat-raised-button color="accent" [mat-dialog-close]="currentMeal" (click)="submit()">Valider</button>
+  <button *ngIf="data.button" mat-raised-button color="warn">{{data.button}}</button>
 </div>

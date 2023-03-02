@@ -21,7 +21,7 @@
           *ngFor="let meal of selectedMeal"
         >
           <p> {{meal.name}} - {{meal.calorieTot}} Cal. </p>
-          <mat-icon (click)="openAddEditFoodDialog(meal)">edit</mat-icon>
+          <mat-icon (click)="openEditFoodDialog(meal)">edit</mat-icon>
           <mat-icon (click)="deleteMeal(meal.id)">delete</mat-icon>
         </div>
         <div class="ligne"></div>
@@ -41,7 +41,7 @@
         class="titre"
       >
         <p>Vos repas précedents</p>
-        <mat-icon>add</mat-icon>
+        <br>
       </div>
       <mat-accordion
         class="repas-hier"
@@ -57,7 +57,7 @@
             fxLayoutAlign="center center"
           >
             <p>Petit déjeuner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
+            <mat-icon (click)="openEditYesterdayFoodDialog()">edit</mat-icon>
           </div>
           <div class="ligne"></div>
           <div
