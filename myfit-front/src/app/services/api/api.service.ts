@@ -15,12 +15,11 @@ export class ApiService {
     url: string,
     input?: any,
     txtResponse: boolean = false,
-    jsonContentType: boolean = false,
     headers: { [headerKey: string]: string } = {},
   ): Observable<any> {
 
     let params: HttpParams = this.getHttpParams(input, false);
-    let baseHeaders: HttpHeaders = this.getHeaders(false);
+    let baseHeaders: HttpHeaders = this.getHeaders();
     let allHeaders: HttpHeaders = this.setAdditionalHeaders(baseHeaders, headers || {});
     let options = {headers: allHeaders, params: params};
 
@@ -38,19 +37,16 @@ export class ApiService {
     url: string,
     input?: any,
     txtResponse: boolean = false,
-    jsonContentType: boolean = true,
-    myFitSession: boolean = true,
   ): Observable<any> {
 
-    let params: HttpParams = this.getHttpParams(input, jsonContentType, myFitSession);
-    let headers: HttpHeaders = this.getHeaders(jsonContentType);
+    let headers: HttpHeaders = this.getHeaders();
     let options = { headers };
 
     if (txtResponse) {
     }
 
     return this.http
-      .post(`${this.API_URL}/${url}`, jsonContentType ? input : params, options)
+      .post(`${this.API_URL}/${url}`, input, options)
       .pipe(
         catchError(error => this.handleError(error))
       );
@@ -80,10 +76,8 @@ export class ApiService {
     );
   }
 
-  private getHeaders(jsonContentType: boolean): HttpHeaders {
-    return (jsonContentType) ?
-      new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`}) :
-      new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders({'Content-Type': 'application/json', 'Authorization': `Bearer ${this.getJWT()}`})
   }
 
   private getJWT(): string {

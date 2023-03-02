@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 export interface BarChartDate {
   data: {
-    datasets: { data: ({ x: string; y: number } | { x: string; y: number })[] }[]
+    datasets: { data: ({ x: string; y: number })[] }[]
   };
   type: string ;
 }
@@ -12,11 +12,4 @@ export interface BarChartDate {
   styleUrls: ['homePage-component.scss']
 })
 export class HomePageComponent {
-
-  domain = window.location.host;
-
-  ngOnInit() {
-    console.log(this.domain);
-  }
-
 }

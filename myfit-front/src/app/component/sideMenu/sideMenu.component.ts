@@ -2,6 +2,9 @@ import {Component, Input} from "@angular/core";
 import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
+import {DAO} from "../../model/DAO";
+import {firstValueFrom} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'side-menu',
@@ -14,7 +17,19 @@ export class SideMenuComponent {
   description: string = "";
   selectedMeal: Array<Meal> = [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private dao: DAO
+  ) {
+
+    firstValueFrom(this.dao.retreiveUserMeals())
+      .then((data) => {
+        this.selectedMeal = data;
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopUpComponent , {
