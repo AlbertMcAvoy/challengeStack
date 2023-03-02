@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+import {RGPDPopupComponent} from "../../component/rgpdpopup/rgpdpopup.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'register',
@@ -27,7 +29,8 @@ export class RegisterPageComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private fb: FormBuilder,
-    private loginDAO: DAO
+    private loginDAO: DAO,
+    public dialog: MatDialog,
   ) {
     this.registerForm = this.fb.group({
       taille : new FormControl('', Validators.compose([
@@ -110,5 +113,12 @@ export class RegisterPageComponent {
   clear(){
     this.registerForm.reset();
     this.show = true;
+  }
+
+  triggerRGPDPopup() {
+    this.dialog.open(RGPDPopupComponent , {
+      height: 'auto',
+      width: '600px',
+    });
   }
 }
