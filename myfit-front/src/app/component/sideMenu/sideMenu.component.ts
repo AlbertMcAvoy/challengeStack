@@ -41,7 +41,6 @@ export class SideMenuComponent {
   }
 
   retrieveMeal() {
-
     firstValueFrom(this.dao.retreiveUserMeals())
       .then((data) => {
         data.forEach((meal: Meal) => {
@@ -55,6 +54,7 @@ export class SideMenuComponent {
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
+        this.retrieveMeal();
       });
   }
 }

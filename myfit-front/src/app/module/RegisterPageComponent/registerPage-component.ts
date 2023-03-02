@@ -80,7 +80,11 @@ export class RegisterPageComponent {
       'height': this.taille,
       'age': this.age,
       'password': this.password
-    })).then(() => {
+    })).then((data) => {
+      if(data.status != undefined) {
+        throw new HttpErrorResponse({error: undefined, headers: undefined, status: data.status, statusText: data.message});
+      }
+
       let snackBarRef = this._snackBar.open('Merci pour votre inscription, vous allez voir on s\'amuse bien !', 'OK',{
         horizontalPosition: 'center',
         verticalPosition: 'top'

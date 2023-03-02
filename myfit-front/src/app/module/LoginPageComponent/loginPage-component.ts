@@ -50,25 +50,26 @@ export class LoginPageComponent {
     this.user.username = this.userForm.get('email')?.value; // input value retrieved
     this.user.password = this.userForm.get('password')?.value; // input value retrieved
 
-    firstValueFrom(this.dao.connexion(this.user)).then((data) => {
-      sessionStorage.setItem('token', data.token);
-      sessionStorage.setItem('refresh_token', data.refresh_token);
-      window.location.href = '/compte';
-      if (this.updateMenuLinkViaParent) {
-        this.updateMenuLinkViaParent();
-      }
-    }).catch((e: HttpErrorResponse) => {
-      let snackBarRef = this._snackBar.open('Une erreur s\'est produite, réessayez plus tard !', 'OK',{
-        horizontalPosition: 'center',
-        verticalPosition: 'top'
-      });
+    firstValueFrom(this.dao.connexion(this.user))
+      .then((data) => {
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('refresh_token', data.refresh_token);
+        window.location.href = '/compte';
+        if (this.updateMenuLinkViaParent) {
+          this.updateMenuLinkViaParent();
+        }
+      }).catch((e: HttpErrorResponse) => {
+        let snackBarRef = this._snackBar.open('Une erreur s\'est produite, réessayez plus tard !', 'OK',{
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
 
-      console.log(e);
+        console.log(e);
 
-      snackBarRef.onAction().subscribe(() => {
-        this.clear();
+        snackBarRef.onAction().subscribe(() => {
+          this.clear();
+        });
       });
-    });
   }
 
   clear(){

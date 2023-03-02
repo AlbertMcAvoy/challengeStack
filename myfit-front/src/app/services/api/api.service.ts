@@ -28,9 +28,7 @@ export class ApiService {
 
     return this.http
       .get(`${this.API_URL}/${url}`, options)
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+      .pipe();
   }
 
   post(
@@ -46,9 +44,7 @@ export class ApiService {
 
     return this.http
       .post(`${this.API_URL}/${url}`, input, options)
-      .pipe(
-        catchError(error => this.handleError(error))
-      );
+      .pipe();
   }
 
   private getHttpParams(
@@ -83,21 +79,5 @@ export class ApiService {
     let returnToken: string | null = sessionStorage.getItem('token');
 
     return returnToken == null ? '' : returnToken;
-  }
-
-  private handleError(error: any) {
-    console.log(error)
-    if (error.status == '401') {
-      this.post(
-        'auth/refresh',
-        {
-          'refresh_token': sessionStorage.getItem('refresh_token')
-        }
-      ).subscribe((data) => {
-        sessionStorage.setItem('token', data.token);
-        sessionStorage.setItem('refresh_token', data.refresh_token);
-      })
-    }
-    return of(error);
   }
 }
