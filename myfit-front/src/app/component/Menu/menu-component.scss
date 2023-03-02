@@ -8,6 +8,10 @@
   display: flex;
   gap: 50px;
 
+  &.menu-small {
+    width: 200px;
+  }
+
   .nav-item {
     width: 40px;
     height: 40px;
@@ -70,5 +74,11 @@
 
   .activated {
     border: 2px solid $dark-color;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .menu-container {
+    width: 275px;
   }
 }
