@@ -44,8 +44,9 @@ export class GraphiqueEvolutionComponent {
 
   }
 
-  private defaultLabels: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai','Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-  private defaultWeight: number[] = [0, 20, 20, 60, 60, 120, 180, 90, 80, 60, 60, 120];
+  private defaultLabels: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai','Juin'];
+  private defaultWeight: number[] = [61, 63, 65, 68, 72,];
+  weightLess: number = 0;
 
   constructor(
     private dao: DAO
@@ -53,8 +54,8 @@ export class GraphiqueEvolutionComponent {
 
   ngOnInit() {
 
-    let labels: string[];
-    let weight: number[];
+    let labels: string[] = [];
+    let weight: number[] = [];
 
     firstValueFrom(this.dao.retreiveUserBodies())
       .then(data => {
@@ -63,6 +64,8 @@ export class GraphiqueEvolutionComponent {
           labels.push(body.date);
           weight.push(body.weight);
         });
+
+        this.weightLess = (data.length != 0) ? data.slice(-1).objectif_weight - data.slice(-1).weight : -1;
 
         this.barChartData = {
           labels: (labels.length > 0) ? labels : this.defaultLabels,
@@ -76,8 +79,23 @@ export class GraphiqueEvolutionComponent {
             },
           ]
         };
+
       }).catch((e: HttpErrorResponse) => {
       console.log(e)
+      this.weightLess = 3;
+
+      this.barChartData = {
+        labels: this.defaultLabels,
+        datasets: [
+          {
+            label: 'Courbe d\'évolution de votre poids',
+            data: this.defaultWeight,
+            fill: false,
+            cubicInterpolationMode: 'monotone',
+            tension: 0.1
+          },
+        ]
+      };
     });
   }
 }
