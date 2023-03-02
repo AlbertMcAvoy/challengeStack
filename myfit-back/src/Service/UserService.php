@@ -10,6 +10,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use App\Exception\UserExistException;
 use App\Exception\UserFieldFromException;
+use App\Repository\BodyRepository;
+use Symfony\Bridge\Twig\Mime\BodyRenderer;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -22,14 +24,16 @@ class UserService
     private UserRepository $userRepository;
     private TokenStorageInterface $tokenStorage;
     private EncryptService $encryptService;
+    private BodyRepository $bodyRepository;
 
-    public function __construct(UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, TokenStorageInterface $tokenStorage, EncryptService $encryptService)
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, BodyRepository $bodyRepository, TokenStorageInterface $tokenStorage, EncryptService $encryptService)
     {
         $this->userPasswordHasher = $userPasswordHasher;
         $this->entityManager = $entityManager;
         $this->userRepository = $userRepository;
         $this->tokenStorage = $tokenStorage;
         $this->encryptService = $encryptService;
+        $this->bodyRepository = $bodyRepository;
     }
 
     public function getCurrentUser(): UserInterface | null
@@ -41,6 +45,55 @@ class UserService
         }
 
         return null;
+    }
+
+
+    public function update_user(array $data, UserInterface $user)
+    {
+        if (!empty($data)) {
+            $userFinded = $this->userRepository->findOneBy(["id" => $user->getId()]);
+            if (empty($userfinded)) return false;
+            
+            $userFromBdd = $this->encryptService->decryptData($userFinded);
+
+            $userFromBdd->setFirstName($data['firstname'] ?? '');
+            $userFromBdd->setLastName($data['lastname'] ?? '');
+            $userFromBdd->setPhone($data['phone'] ?? '');
+
+            if (isset($data['gender']) && is_int($data['gender'])) {
+                $userFromBdd->setGender(strval($data['gender']));
+            }
+            if (!empty($data['height']) && is_int($data['height'])) {
+                $userFromBdd->setHeight(strval($data['height']));
+            }
+            if (!empty($data['age']) && is_int($data['age'])) {
+                $userFromBdd->setAge(strval($data['age']));
+            }
+
+            if (!empty($data['objectif_weight']) && is_int($data['objectif_weight'])) {
+                $userFromBdd->setObjectifWeight(strval($data['objectif_weight']));
+            }
+
+            if (isset($data['weight']) && is_int($data['weight'])) { 
+                $body = new Body();
+                $body->setWeight($data['weight']);
+                if (!empty($userFromBdd->getObjectifWeight())) {
+                    $body->setObjectifWeight($userFromBdd->getObjectifWeight());
+                }
+                $body->setDateTime(new DateTime());
+                $body->setUser($userFromBdd);
+                $this->bodyRepository->save($body, true);
+            }
+
+
+            $userEncrypted = $this->encryptService->encryptData($userFromBdd);
+
+            $this->userRepository->save($userEncrypted, true);
+
+            return true;
+        }
+
+        return false;
     }
 
 
