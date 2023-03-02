@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {catchError, Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -29,7 +29,9 @@ export class ApiService {
 
     return this.http
       .get(`${this.API_URL}/${url}`, options)
-      .pipe();
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
   }
 
   post(
@@ -49,7 +51,9 @@ export class ApiService {
 
     return this.http
       .post(`${this.API_URL}/${url}`, jsonContentType ? input : params, options)
-      .pipe();
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
   }
 
   private getHttpParams(
@@ -86,5 +90,21 @@ export class ApiService {
     let returnToken: string | null = sessionStorage.getItem('jwt');
 
     return returnToken == null ? '' : returnToken;
+  }
+
+  private handleError(error: any) {
+    console.log(error)
+    if (error.code == '401') {
+      this.get(
+        'auth/refresh',
+        {
+          'refresh_token': sessionStorage.getItem('refresh_token')
+        }
+      ).subscribe((data) => {
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('refresh_token', data.refresh_token);
+      })
+    }
+    return of(error);
   }
 }
