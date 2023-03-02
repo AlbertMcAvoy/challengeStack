@@ -47,7 +47,6 @@ class UserService
     public function register(array $data)
     {
         $user = new User();
-
         try {
             if (!empty($data['email']) && !empty($data['password'])) {
 

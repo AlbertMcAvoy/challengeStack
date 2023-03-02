@@ -17,7 +17,7 @@ class EncryptService
 
     public function encryptData(User $user): User | null
     {
-        if (!empty($user) && !empty($user->getFirstName()) && !empty($user->getLastName())) {
+        if (!empty($user)) {
             $iv = random_bytes(16);
             $data_to_encrypt = [
                 "firstname" => $user->getFirstName(),
