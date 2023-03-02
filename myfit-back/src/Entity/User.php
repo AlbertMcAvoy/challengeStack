@@ -60,6 +60,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Meal::class)]
     private Collection $meals;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $iv = null;
+
     public function __construct()
     {
         $this->bodies = new ArrayCollection();
@@ -290,6 +293,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $meal->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIv(): ?string
+    {
+        return $this->iv;
+    }
+
+    public function setIv(?string $iv): self
+    {
+        $this->iv = $iv;
 
         return $this;
     }

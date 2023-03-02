@@ -32,8 +32,10 @@ class RegisterController extends AbstractController
             $jsonResponse["message"] = $ex->getMessage();
         } catch (\Exception $e) {
             $jsonResponse["status"] = 500;
-            $jsonResponse["message"] = "Error When we register the user";
+            $jsonResponse["message"] = $e->getMessage();
         }
+
+        //"Error When we register the user"
         return $this->json($jsonResponse);
     }
 }

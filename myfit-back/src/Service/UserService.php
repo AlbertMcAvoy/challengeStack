@@ -19,13 +19,14 @@ class UserService {
     private EntityManagerInterface $entityManager;
     private UserRepository $userRepository;
     private TokenStorageInterface $tokenStorage;
+    private EncryptService $encryptService;
 
-
-    public function __construct(UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, TokenStorageInterface $tokenStorage) {
+    public function __construct(UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, UserRepository $userRepository, TokenStorageInterface $tokenStorage, EncryptService $encryptService) {
         $this->userPasswordHasher = $userPasswordHasher;
         $this->entityManager = $entityManager;
         $this->userRepository = $userRepository;
         $this->tokenStorage = $tokenStorage;
+        $this->encryptService = $encryptService;
     }
 
     public function getCurrentUser(): UserInterface | null
@@ -33,7 +34,7 @@ class UserService {
         $token = $this->tokenStorage->getToken();
 
         if ($token instanceof TokenInterface) {
-            return $token->getUser();
+            return $this->encryptService->decryptData($token->getUser());
         }
 
         return null;
@@ -58,6 +59,8 @@ class UserService {
                 ->setAge($data['age'] ?? null)
                 ->setSubscriptionDate(new DateTime());
                 $user->setPassword($this->userPasswordHasher->hashPassword($user, $data['password']));
+
+                $user = $this->encryptService->encryptData($user);
 
                 if (!empty($data['weight']) && !empty($data['objectif_weight'])) {
                     $body = new Body();
