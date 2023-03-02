@@ -24,7 +24,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {DAO} from "./model/DAO";
-import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
 import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
@@ -77,7 +76,7 @@ import {MatDialog, MatDialogModule} from "@angular/material/dialog";
     MatTooltipModule,
     MatButtonModule,
     ApiService,
-    DAO
+    DAO,
     MatDialog,
   ],
   bootstrap: [AppComponent]
