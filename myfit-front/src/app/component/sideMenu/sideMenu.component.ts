@@ -65,20 +65,6 @@ export class SideMenuComponent implements OnInit{
     });
   }
 
-  openEditYesterdayFoodDialog(): void {
-    const dialogRef = this.dialog.open(PopUpComponent , {
-      height: '400px',
-      width: '600px',
-      data: {titleDialog: 'Editer un repas', button: 'Supprimer'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == undefined ||
-        result.name == ''
-      ) return;
-      this.retrieveMeal();
-    });
-  }
 
   retrieveMeal() {
     firstValueFrom(this.dao.retreiveUserMeals())
@@ -96,8 +82,6 @@ export class SideMenuComponent implements OnInit{
       });
   }
 
-
-
   deleteMeal(id: String) {
     firstValueFrom(this.dao.deleteFood(id))
       .then((data) => {
@@ -108,7 +92,7 @@ export class SideMenuComponent implements OnInit{
         console.log(e);
       });
   }
-  
+
   retrieveTodayMeal() {
     firstValueFrom(this.dao.retreiveUserMealsToday()).then(
       (data) => {

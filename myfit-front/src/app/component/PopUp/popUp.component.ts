@@ -12,8 +12,7 @@ export interface DialogData {
   selectedMealId: String,
   selectedMealName: String;
   selectedMealFood: Array<any>,
-  selectedMealMenu: Meal,
-  button: String
+  selectedMealMenu: Meal
 }
 
 @Component({
