@@ -47,4 +47,8 @@ export class DAO {
   getUser(): Observable<UserModel> {
     return this.apiService.get('api/user')
   }
+
+  retreiveUserBodies(): Observable<any> {
+    return this.apiService.get('api/body');
+  }
 }

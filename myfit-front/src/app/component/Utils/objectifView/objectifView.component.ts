@@ -15,6 +15,7 @@ export class ObjectifViewComponent {
   @Input() user: UserModel | undefined;
 
   todayCalories: number = 0;
+  homePage: boolean = false;
 
   constructor(
     private dao: DAO
@@ -33,6 +34,8 @@ export class ObjectifViewComponent {
         });
       })
       .catch((e: HttpErrorResponse) => {
+        this.todayCalories = 2255;
+        this.homePage = true;
         console.log(e);
       });
   }
