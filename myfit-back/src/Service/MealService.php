@@ -113,9 +113,9 @@ class MealService
         return [];
     }
 
-    public function saveMeal($data, UserInterface $user)
+    public function saveMeal($data, UserInterface $user, $idMeal = null)
     {
-        $meal = new Meal();
+        $meal = !empty($idMeal) ? $this->mealRepository->find($idMeal) : new Meal();
 
         foreach ($data['foods'] as $foodId) {
             $food = $this->foodRepository->find($foodId);
