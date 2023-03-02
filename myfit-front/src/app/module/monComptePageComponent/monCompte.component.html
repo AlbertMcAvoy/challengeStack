@@ -1,6 +1,5 @@
 
 <div
-  fxlayout="row"
   class="monCompte-container"
 >
   <div
@@ -8,15 +7,18 @@
     class="content">
     <div
       fxLayout="row"
-      fxLayoutAlign="center center"
+      fxLayoutAlign="space-between center"
+      class="content-objectif"
     >
       <div
+        class="mealsImage"
         style="height: 150px"
       >
         <img style="height: 100%; width: 100%" src="assets/images/Meal_Monochromatic%201.png">
       </div>
       <objectif-view class="aperçu-objectif"></objectif-view>
       <div
+        class="infoUser-card"
       >
         <div
           style="height: 150px"
@@ -30,6 +32,7 @@
           >
             <mat-card-title>Vos Informations</mat-card-title>
           </mat-card-header>
+          <div class="ligne"></div>
           <mat-card-content>
             <div
               fxLayout="column"
@@ -47,7 +50,7 @@
               >
                 <p><span>Votre objectif de poid:</span> 75 kg</p>
               </div>
-              <button mat-button color="primary">Voir plus</button>
+              <button mat-button color="primary" routerLink="/infoUser">Voir plus</button>
             </div>
           </mat-card-content>
         </mat-card>

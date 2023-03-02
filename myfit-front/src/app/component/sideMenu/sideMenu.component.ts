@@ -9,7 +9,7 @@ import {Meal} from "../../class/Meal";
   styleUrls: ['sideMenu.component.scss']
 })
 export class SideMenuComponent {
-  @Input() mealToday: boolean = false;
+  @Input() openSideMenu: boolean = false;
   panelOpenState = false;
   description: string = "";
 selectedMeal: Array<Meal> = [];

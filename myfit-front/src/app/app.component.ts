@@ -47,5 +47,9 @@ export class AppComponent {
 
     componentRef.updateMenuLinkViaParent = this.updateMenuLink;
   }
+
+  openSideMenuEvent() {
+    this.openSideMenu = !this.openSideMenu;
+  }
 }
 

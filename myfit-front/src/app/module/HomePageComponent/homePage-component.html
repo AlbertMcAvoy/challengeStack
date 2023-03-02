@@ -1,7 +1,5 @@
 <div
   class="homePage"
-  fxLayout="row"
-  fxLayoutAlign="center"
 >
   <div
     fxLayout="column"
@@ -29,10 +27,7 @@
       class="bonne-alimentation"
     >
       <p>
-        Une bonne alimentation au quotidien est importante pour
-      </p>
-      <p>atteindre vos objectifs !</p>
-      <p>
+        Une bonne alimentation au quotidien est importante pouratteindre vos objectifs !
         Suivez vos repas, vos objectifs et progressez avec Track’n’fit.
       </p>
     </div>
@@ -66,14 +61,14 @@
 
     <div
       fxLayout="row"
-      fxLayoutAlign="space-between center"
-      style="width: 90%"
+      fxLayoutAlign="center center"
+      class="meal-card"
     >
       <mealCard
         [mealToday]="true"
       ></mealCard>
       <div
-        style="width: 300px; height: 300px; margin: 0 30px"
+        class="sushi-image"
         fxLayout="row"
         fxLayoutAlign="center center"
       >
@@ -86,14 +81,15 @@
     <div
       fxLayout="row"
       fxLayoutAlign="center center"
+      class="graphique-evolution"
     >
       <graphique-evolution></graphique-evolution>
       <div
-        style="width: 300px; height: 300px; margin: 0 30px; align-self: end"
+        class="image-chef"
         fxLayout="row"
         fxLayoutAlign="center center"
       >
-        <img style="width: 100%;" alt="icon" src="http://localhost:4200/assets/images/Chef_Monochromatic.png" class="img-floating">
+        <img style="width: 100%;" alt="icon" src="assets/images/Chef_Monochromatic.png" class="img-floating">
       </div>
     </div>
     <div
@@ -105,6 +101,7 @@
         style="max-width: 800px; padding: 20px;"
         fxLayout="row"
         fxLayoutAlign="space-between center"
+        class="track-fit-info1"
       >
         <div
           fxLayout="row"
@@ -121,7 +118,6 @@
           <p class="title">Mais c’est qui, Track’n’fit ?</p>
           <div
             class="question"
-            style="width: 500px; margin-left: 30px"
           >
             <p>Track’n’fit, à la base, c’est une équipe de 5 personnes
               passionnées par le sport et le développement web !
@@ -132,9 +128,11 @@
       <div
         fxLayout="row"
         fxLayoutAlign="space-between center"
+
+        class="track-fit-info2"
       >
 
-        <div style="width: 500px">
+        <div>
           <p>
             Du coup, on s’est allié avec les meilleurs des meilleurs, la crème de la crème, pour vous proposez cette application web !
             Diététiciens, entraîneurs et nutritionistes ont répondu à notre appel et aujourd’hui nous sommes une équipe de 20 personnes passionnées ! Nous sommes déterminés à vous aider.
@@ -149,25 +147,25 @@
       <div
         fxLayout="row"
         fxLayoutAlign="space-between center"
+        class="track-fit-info3"
       >
         <div
           style="width: 170px"
         >
           <img   alt="icon" style="width: 100%;" src="/assets/images/Fitness App_Outline 1.png" class="img-floating">
         </div>
-        <div style="width: 500px">
-          <p>
-            Bon, jusque là on avait l’expertise technique et les designers...
-            Mais il nous manquait des professionnels de la santé et des conditions physiques.
-          </p>
-        </div>
+        <p>
+          Bon, jusque là on avait l’expertise technique et les designers...
+          Mais il nous manquait des professionnels de la santé et des conditions physiques.
+        </p>
       </div>
       <div
         fxLayout="row"
         fxLayoutAlign="space-between center"
+        class="track-fit-info4"
       >
 
-        <div style="width: 500px">
+        <div>
           <p>
             Cette aventure nous permet de vous proposez une application web enrichie, avec un suivi pertinent de ce que vous mangez, afin de vous guidez dans votre évolution. Nous vous aidons à atteindre votre objectifs... et vous vous aidez entre-vous aussi en rensignant de nouveau plat !
           </p>

@@ -25,11 +25,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import {DAO} from "./model/DAO";
 import {ProfileUtilisateurComponent} from "./component/profileUtilisateur/profileUtilisateur.component";
+import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
 import {SideMenuComponent} from "./component/sideMenu/sideMenu.component";
 import { PopUpComponent } from './component/PopUp/popUp.component';
-import {MatDialogModule} from "@angular/material/dialog";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -41,10 +43,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     GraphiqueEvolutionComponent,
     LoginPageComponent,
     RegisterPageComponent,
-    ProfileUtilisateurComponent,
+    InfoUserComponent,
     MonCompteComponent,
     SideMenuComponent,
-    PopUpComponent
+    PopUpComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +78,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatButtonModule,
     ApiService,
     DAO
+    MatDialog,
   ],
   bootstrap: [AppComponent]
 })

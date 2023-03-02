@@ -4,6 +4,9 @@ import { LoginPageComponent } from "./module/LoginPageComponent/loginPage-compon
 import { HomePageComponent } from "./module/HomePageComponent/homePage-component";
 import { RegisterPageComponent } from "./module/RegisterPageComponent/registerPage-component";
 import {MonCompteComponent} from "./module/monComptePageComponent/monCompte.component";
+import {InfoUserComponent} from "./component/InfoUser/infoUser.component";
+import {ErrorPageComponent} from "./module/ErrorPageComponent/errorPage-component";
+import {AuthGardService} from "./services/authGard/authGard.service";
 
 const routes: Routes = [
   {
@@ -25,6 +28,16 @@ const routes: Routes = [
   {
     path: 'compte',
     component: MonCompteComponent,
+    canActivate: [AuthGardService]
+  },
+  {
+    path: 'infoUser',
+    component: InfoUserComponent,
+    canActivate: [AuthGardService]
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent
   }
 ];
 
