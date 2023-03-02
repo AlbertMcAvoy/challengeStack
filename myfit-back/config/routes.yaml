@@ -1,0 +1,110 @@
+api_login_check:
+    path: /auth/login
+    methods: POST
+
+api_login_refresh:
+    path: /auth/refresh
+    methods: POST
+
+api_register:
+    path: /auth/register
+    controller: App\Controller\RegisterController::register
+    methods: POST
+    format: application/json
+
+app_user_show:
+    path: /api/user
+    controller: App\Controller\UserController::get
+    methods: GET
+    format: application/json
+
+app_user_delete:
+    path: /api/user
+    controller: App\Controller\UserController::delete
+    methods: DELETE
+    format: application/json
+
+app_body_index:
+    path: /api/body
+    methods: GET
+    controller: App\Controller\BodyController::index
+
+app_body_new:
+    path: /api/body/new
+    methods: [GET, POST]
+    controller: App\Controller\BodyController::new
+
+app_body_delete:
+    path: /api/body/{id}
+    methods: DELETE
+    controller: App\Controller\BodyController::delete
+    requirements:
+        id: '\d+'
+
+app_food_show:
+    path: /api/food/{libelle?}
+    controller: App\Controller\FoodController::show
+    methods: GET
+    requirements:
+        libelle: '\D+'
+
+app_meal_show:
+    path: /api/meal/show/{id}
+    controller: App\Controller\MealController::getMealById
+    methods: ["GET"]
+    requirements:
+        id: '\d+'
+
+app_meal_user:
+    path: /api/meal/user
+    controller: App\Controller\MealController::getAllMealByUser
+    methods: GET
+
+app_meal_date:
+    path: /api/meal/date/{date}
+    controller: App\Controller\MealController::getMealByDate
+    methods: GET
+    requirements: 
+        date: '\d{4}-\d{2}-\d{2}'
+
+app_meal_edit:
+    path: /api/meal/edit/{id}
+    controller: App\Controller\MealController::edit
+    methods: POST
+    requirements:
+        id: '\d+'
+
+app_meal_create:
+    path: /api/meal/new
+    controller: App\Controller\MealController::new
+    methods: POST        
+
+app_meal_delete:
+    path: /api/meal/delete/{id}
+    controller: App\Controller\MealController::delete
+    methods: POST
+
+app_profile_index:
+    path: /api/profile
+    methods: GET
+    controller: App\Controller\ProfileController::index
+
+app_profile_new:
+    path: /api/profile/new
+    methods: [GET, POST]
+    controller: App\Controller\ProfileController::new
+
+app_profile_show:
+    path: /api/profile/{id}
+    methods: GET
+    controller: App\Controller\ProfileController::show
+
+app_profile_edit:
+    path: /api/profile/{id}/edit
+    methods: [GET, POST]
+    controller: App\Controller\ProfileController::edit
+
+app_profile_delete:
+    path: /api/profile/{id}
+    methods: POST
+    controller: App\Controller\ProfileController::delete
