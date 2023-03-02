@@ -10,7 +10,7 @@
   }
 
   .meals-container {
-    padding: 0 10px;
+    padding: 20px;
     p {
       margin: 0;
       flex: 1;
@@ -75,4 +75,9 @@
     }
   }
 
+  @media screen and (max-width: 820px) {
+    .titre {
+      font-size: 18px;
+    }
+  }
 }

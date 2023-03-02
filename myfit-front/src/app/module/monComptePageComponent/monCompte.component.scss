@@ -72,14 +72,19 @@
       margin: 200px 0 0 0;
     }
     .content {
-      div {
+      justify-content: center;
+      .content-objectif {
         flex-wrap: wrap;
         width: 100%;
         padding: 30px;
 
+        justify-content: center!important;
         .mealsImage {
           display: none;
         }
+      }
+      .infoUser-card {
+        width: 100%;
       }
     }
   }
