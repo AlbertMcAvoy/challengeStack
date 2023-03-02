@@ -56,6 +56,7 @@
     margin: 200px 30px 0 80px;
   }
   .info-card {
+    background-color: $content-color;
     span {
       font-weight: bold;
       font-size: 16px;
@@ -64,6 +65,11 @@
     button {
       background-color: $primary-color;
       color: white;
+    }
+    .ligne {
+      height: 1px;
+      margin: 10px 30px;
+      background-color: black;
     }
   }
 
