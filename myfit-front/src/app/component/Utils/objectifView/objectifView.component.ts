@@ -19,6 +19,10 @@ export class ObjectifViewComponent {
   constructor(
     private dao: DAO
   ) {
+    this.loadTodayCalories();
+  }
+
+  private loadTodayCalories() {
     firstValueFrom(this.dao.retreiveUserMealsToday())
       .then((data) => {
         data.forEach((meal: Meal) => {
