@@ -5,23 +5,11 @@
     class="side-menu"
   >
     <div
-      *ngIf="openSideMenu && getRoute() == '/compte'"
-      class="side-menu-close">
-      <mat-icon
-        class="cancel-button"
-        (click)="openMenu()"
-      >reorder</mat-icon>
-    </div>
-    <div
       fxLayout="column"
-      fxLayoutAlign="start end"
+      fxLayoutAlign="start center"
       *ngIf="!openSideMenu && getRoute() == '/compte' "
       class="side-menu-open">
-      <mat-icon
-        class="bugrer-button"
-        (click)="openMenu()"
-      >cancel
-      </mat-icon>
+
       <side-menu></side-menu>
     </div>
   </div>

@@ -1,4 +1,7 @@
-<div mat-dialog-content>
+<div mat-dialog-content
+     fxLayout="column"
+     fxFlexAlign="center center"
+>
   <h1>Ajoutez un repas</h1>
 
   <mat-form-field class="example-full-width" appearance="fill">
@@ -17,12 +20,15 @@
   </mat-form-field>
 
   <div *ngFor="let food of currentMealFoods">
-      <p>{{ food.description }}<mat-icon aria-hidden="false" fontIcon="delete" color="warn" (click)="deleteFood(food)"></mat-icon></p>
+      <p fxLayout="row"
+         fxLayoutAlign="space-between"
+      > {{ food.description }}<mat-icon aria-hidden="false" fontIcon="delete" color="warn" (click)="deleteFood(food)"></mat-icon>
+      </p>
   </div>
 
   <mat-form-field appearance="outline">
     <mat-label> Nom de votre repas </mat-label>
-    <input matInput placeholder="Donnez un nom à votre repas !" name="mealname" type="text" [(ngModel)]="mealName" required>
+    <input matInput placeholder="Donnez un nom à votre repas !" name="mealname" type="text" [(ngModel)]="mealName">
   </mat-form-field>
 </div>
 
