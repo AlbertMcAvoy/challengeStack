@@ -37,6 +37,7 @@
   }
 
   .bonne-alimentation {
+    width: 700px;
     font-size: $font-size-content;
     padding: 35px 5px;
 
@@ -55,10 +56,6 @@
     .decouvrir {
       width: 400px;
       font-size: $font-size-content;
-
-      p {
-        text-align: center;
-      }
 
       .ramen-image {
         padding: 30px;
@@ -80,9 +77,6 @@
       font-size: $font-size-content;
     }
 
-    p {
-      text-align: center;
-    }
   }
 
   .meal-card {
@@ -161,6 +155,7 @@
       }
     }
     .bonne-alimentation,  {
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
