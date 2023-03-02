@@ -14,8 +14,8 @@
            [matAutocomplete]="auto"
     >
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let food of allFoods" [value]="food.description" (click)="addFood(food)">
-        {{food.description}}
+      <mat-option *ngFor="let food of allFoods" [value]="food.libelle" (click)="addFood(food)">
+        {{food.libelle}} - {{food.calories}} Cal.
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
@@ -23,7 +23,7 @@
   <div *ngFor="let food of currentMealFoods">
       <p fxLayout="row"
          fxLayoutAlign="space-between"
-      > {{ food.description }}
+      > {{ food.libelle }}
         <mat-icon aria-hidden="false" fontIcon="delete" color="warn" (click)="deleteFood(food)"></mat-icon>
       </p>
   </div>

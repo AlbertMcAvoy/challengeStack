@@ -21,14 +21,7 @@ export class SideMenuComponent {
     public dialog: MatDialog,
     private dao: DAO
   ) {
-
-    firstValueFrom(this.dao.retreiveUserMeals())
-      .then((data) => {
-        this.selectedMeal = data;
-      })
-      .catch((e: HttpErrorResponse) => {
-        console.log(e);
-      });
+    this.retrieveMeal();
   }
 
   openDialog(): void {
@@ -43,7 +36,25 @@ export class SideMenuComponent {
         result.name == ''
       ) return;
 
-      this.selectedMeal.push(result);
+      this.retrieveMeal();
     });
+  }
+
+  retrieveMeal() {
+
+    firstValueFrom(this.dao.retreiveUserMeals())
+      .then((data) => {
+        data.forEach((meal: Meal) => {
+          meal.calorieTot = 0;
+          meal.foods.forEach(food => {
+            meal.calorieTot += food.calories;
+          })
+        });
+
+        this.selectedMeal = data;
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e);
+      });
   }
 }

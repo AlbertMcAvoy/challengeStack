@@ -81,15 +81,15 @@ export class ApiService {
   }
 
   private getJWT(): string {
-    let returnToken: string | null = sessionStorage.getItem('jwt');
+    let returnToken: string | null = sessionStorage.getItem('token');
 
     return returnToken == null ? '' : returnToken;
   }
 
   private handleError(error: any) {
     console.log(error)
-    if (error.code == '401') {
-      this.get(
+    if (error.status == '401') {
+      this.post(
         'auth/refresh',
         {
           'refresh_token': sessionStorage.getItem('refresh_token')

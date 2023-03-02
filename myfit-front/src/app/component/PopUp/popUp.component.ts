@@ -23,19 +23,23 @@ export class PopUpComponent {
   allFoods: Array<Food> = [
     {
       'id' : 1000,
-      'description' : 'Pastis 1'
+      'libelle' : 'Pastis 1',
+      'calories': 520
     },
     {
       'id' : 1010,
-      'description' : 'Pastis 2'
+      'libelle' : 'Pastis 2',
+      'calories': 520
     },
     {
       'id' : 1019,
-      'description' : 'Pastis 3'
+      'libelle' : 'Pastis 3',
+      'calories': 520
     },
     {
       'id' : 1031,
-      'description' : 'Pastis 4'
+      'libelle' : 'Pastis 4',
+      'calories': 520
     }
   ];
 
@@ -49,8 +53,8 @@ export class PopUpComponent {
 
   private _filter(value: string): string | undefined {
     const filterValue = value.toLowerCase();
-    let found = this.foods.find(option => option.description.toLowerCase().includes(filterValue));
-    return found?.description;
+    let found = this.foods.find(option => option.libelle.toLowerCase().includes(filterValue));
+    return found?.libelle;
   }
 
   addFood(food: Food) {
