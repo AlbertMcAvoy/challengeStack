@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from "@angular/core";
-import {MatDialog} from "@angular/material/dialog";
+import {Component, Inject, Input, OnInit} from "@angular/core";
+import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
 import {DAO} from "../../model/DAO";
@@ -28,7 +28,6 @@ export class SideMenuComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.retrieveTodayMeal();
     this.retrieveYesterdayMeal();
     this.retrieveBeforeYesterdayMeal();
   }
@@ -75,6 +74,7 @@ export class SideMenuComponent implements OnInit{
             meal.calorieTot += food.calories;
           })
         });
+        this.selectedMeal = data;
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
@@ -93,22 +93,9 @@ export class SideMenuComponent implements OnInit{
       });
   }
 
-  retrieveTodayMeal() {
-    firstValueFrom(this.dao.retreiveUserMealsToday()).then(
-      (data) => {
-        console.log(data)
-        this.selectedMeal = data;
-      },
-      (error) => {
-
-      }
-    )
-  }
-
   retrieveYesterdayMeal() {
     firstValueFrom(this.dao.retrieveUserMealsYesterday()).then(
       (data) => {
-        console.log(data)
         this.yesterdayMeal = data;
       },
       (error) => {
@@ -121,6 +108,12 @@ export class SideMenuComponent implements OnInit{
     firstValueFrom(this.dao.retrieveUserMealsBeforeYesterday()).then(
       (data) => {
         console.log(data);
+        data.forEach((meal: Meal) => {
+          meal.calorieTot = 0;
+          meal.foods.forEach(food => {
+            meal.calorieTot += food.calories;
+          })
+        });
         this.beforeYesterdayMeal = data
       },
       (error) => {
