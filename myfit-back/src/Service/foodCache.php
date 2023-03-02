@@ -21,6 +21,9 @@ class foodCache
             $item->set($data);
             return $data;
         });
-        return $foods;
+        $filteredFoods = array_filter((array) $foods, function ($food) use ($libelle) {
+            return stristr($food->getLibelle(), $libelle) ? $food : false;
+        });
+        return $filteredFoods;
     }
 }
