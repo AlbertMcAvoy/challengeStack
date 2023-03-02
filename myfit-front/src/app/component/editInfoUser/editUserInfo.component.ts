@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {GenreEnum} from "../../model/genreEnum";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserModel} from "../../model/user.model";
+import {DAO} from "../../model/DAO";
+import {firstValueFrom} from "rxjs";
 
 @Component({
   selector: 'edit-user',
@@ -31,7 +33,8 @@ export class EditUserInfoComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<EditUserInfoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserModel,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dao: DAO,
   ) {
     this.userInforGroup = this.fb.group({
       nom: this.nom,
@@ -65,28 +68,40 @@ export class EditUserInfoComponent implements OnInit{
 
   }
 
+  updateUser() {
+
+    firstValueFrom(this.dao.updateUser(this.getUserPayload())).then(
+      (value) => {
+        console.log(value);
+      }
+    ).then(
+      () => {
+        this.dialogRef.close();
+      }
+    )
+  }
+
   getUserPayload(): UserModel {
-    this.dialogRef.close();
     return {
       age: this.age.value ?? '',
       firstname: this.prenom.value ?? '',
       gender: parseInt(this.genre.value ?? ''),
-      height: this.data.height,
+      height: parseInt(this.taille.value ?? ''),
       id: this.data.id,
       lastname: this.nom.value ?? '',
       objectif_weight: parseInt(this.objectifPoid.value ?? ''),
       subscription_date: this.data.subscription_date,
       weight: parseInt(this.poids.value ?? '') ,
       phone: this.phone.value ?? '',
-      email: this.data.email,
     }
   }
   initUserInfo() {
+    console.log(this.data);
     this.userInforGroup.setValue({
       nom: this.data.lastname ?? '',
       prenom: this.data.firstname ?? '',
       age: this.data.age ?? '',
-      genre: this.data.gender ?? '',
+      genre: this.data.gender.toString() ??  '1',
       phone: this.data.phone ?? '',
       taille: this.data.height ?? '',
       objectifPoid: this.data.objectif_weight ?? '',

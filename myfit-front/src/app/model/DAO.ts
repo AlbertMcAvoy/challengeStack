@@ -47,4 +47,13 @@ export class DAO {
   getUser(): Observable<UserModel> {
     return this.apiService.get('api/user')
   }
+
+  updateUser(data: UserModel): Observable<any> {
+    return this.apiService.post('api/user/edit', data)
+  }
+
+  deleteUser(): Observable<any> {
+    return this.apiService.delete('api/user')
+  }
+
 }

@@ -9,5 +9,5 @@ export interface UserModel {
   subscription_date: string
   weight: number;
   phone: string;
-  email: string;
+  email?: string;
 }

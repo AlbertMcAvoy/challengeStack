@@ -4,6 +4,7 @@ import {UserModel} from "../../model/user.model";
 import {DAO} from "../../model/DAO";
 import {MatDialog} from "@angular/material/dialog";
 import {EditUserInfoComponent} from "../editInfoUser/editUserInfo.component";
+import {GenreEnum} from "../../model/genreEnum";
 
 @Component({
   selector: 'infoUser',
@@ -11,6 +12,8 @@ import {EditUserInfoComponent} from "../editInfoUser/editUserInfo.component";
   styleUrls: ['infoUser.component.scss']
 })
 export class InfoUserComponent implements OnInit{
+
+  genre = GenreEnum;
 
   constructor(private dao: DAO, public dialog: MatDialog) {
   }
@@ -36,13 +39,7 @@ export class InfoUserComponent implements OnInit{
   };
 
   ngOnInit() {
-    firstValueFrom(this.dao.getUser()).then(
-      (res) => {
-        this.userInfo = res;
-      },
-      (error) => {
-      }
-    )
+    this.getUser();
   }
 
   profileEmpty (): boolean {
@@ -56,6 +53,17 @@ export class InfoUserComponent implements OnInit{
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      this.getUser();
     });
+  }
+
+  getUser() {
+    firstValueFrom(this.dao.getUser()).then(
+      (res) => {
+        this.userInfo = res;
+      },
+      (error) => {
+      }
+    )
   }
 }

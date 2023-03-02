@@ -69,10 +69,10 @@
               </mat-form-field>
               <mat-form-field appearance="outline">
                 <mat-label>Genre</mat-label>
-                <select matNativeControl required>
-                  <option [value]="sexEnum.Homme">Homme</option>
-                  <option [value]="sexEnum.Femme">Femme</option>
-                  <option [value]="sexEnum.Autre">Autre</option>
+                <select  name="genre" formControlName="genre"  matNativeControl required>
+                  <option [ngValue]="sexEnum.Homme">Homme</option>
+                  <option [ngValue]="sexEnum.Femme">Femme</option>
+                  <option [ngValue]="sexEnum.Autre">Autre</option>
                 </select>
               </mat-form-field>
             </div>
@@ -80,7 +80,7 @@
             <p>* : champs obligatoires</p>
 
             <div class="actions">
-              <button mat-raised-button color="primary" (click)="getUserPayload()"> Enregistrer </button>
+              <button mat-raised-button color="primary" (click)="updateUser()"> Enregistrer </button>
             </div>
           </form>
         </mat-card-content>
