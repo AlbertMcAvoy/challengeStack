@@ -22,6 +22,11 @@ class EncryptService
             $data_to_encrypt = [
                 "firstname" => $user->getFirstName(),
                 "lastname" => $user->getLastName(),
+                "age" => $user->getAge(),
+                "gender" => $user->getGender(),
+                "phone" => $user->getPhone(),
+                "height" => $user->getHeight(),
+                "objectif_weight" => $user->getObjectifWeight()
             ];
 
             $data_encrypted = [];
@@ -32,6 +37,11 @@ class EncryptService
             if (!empty($data_encrypted)) {
                 $user->setFirstname(base64_encode($data_encrypted["firstname"]))
                     ->setLastname(base64_encode($data_encrypted["lastname"]))
+                    ->setAge(base64_encode($data_encrypted["age"]))
+                    ->setGender(base64_encode($data_encrypted["gender"]))
+                    ->setPhone(base64_encode($data_encrypted["phone"]))
+                    ->setHeight(base64_encode($data_encrypted["height"]))
+                    ->setObjectifWeight(base64_encode($data_encrypted["objectif_weight"]))
                     ->setIv(base64_encode($iv));
                 return $user;
             }
@@ -41,12 +51,18 @@ class EncryptService
         return null;
     }
 
-    public function decryptData(UserInterface $userInterface): UserInterface {
-        if(!empty($userInterface) && !empty($userInterface->getFirstName()) && !empty($userInterface->getLastName())) {
+    public function decryptData(UserInterface $userInterface): UserInterface
+    {
+        if (!empty($userInterface) && !empty($userInterface->getFirstName()) && !empty($userInterface->getLastName())) {
             $iv = base64_decode($userInterface->getIv());
             $data_to_decrypt = [
                 "firstname" => base64_decode($userInterface->getFirstName()),
                 "lastname" => base64_decode($userInterface->getLastName()),
+                "age" => base64_decode($userInterface->getAge()),
+                "gender" => base64_decode($userInterface->getGender()),
+                "phone" => base64_decode($userInterface->getPhone()),
+                "height" => base64_decode($userInterface->getHeight()),
+                "objectif_weight" => base64_decode($userInterface->getObjectifWeight())
             ];
 
 
@@ -56,12 +72,15 @@ class EncryptService
             }
 
 
-            if(!empty($data_decrypted)) {
+            if (!empty($data_decrypted)) {
                 return $userInterface->setFirstname($data_decrypted["firstname"])
-                ->setLastname($data_decrypted["lastname"]);
+                    ->setLastname($data_decrypted["lastname"])
+                    ->setAge($data_decrypted["age"])
+                    ->setGender($data_decrypted["gender"])
+                    ->setPhone($data_decrypted["phone"])
+                    ->setHeight($data_decrypted["height"])
+                    ->setObjectifWeight($data_decrypted["objectif_weight"]);
             }
-
         }
     }
-
 }
