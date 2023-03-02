@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Null_;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -36,11 +37,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    private ?int $gender = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $gender = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $age = null;
+    private ?string $age = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $phone = null;
@@ -49,16 +50,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeInterface $subscription_date = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $objectif_weight = null;
+    private ?string $objectif_weight = null;
 
     #[ORM\Column]
-    private ?int $height = null;
+    private ?string $height = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Body::class)]
     private Collection $bodies;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Meal::class)]
     private Collection $meals;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $iv = null;
 
     public function __construct()
     {
@@ -160,28 +164,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getGender(): ?int
+    public function getGender(): ?string
     {
         return $this->gender;
     }
 
-    public function setGender(?int $gender=null): self
+    public function setGender(?string $gender=null): self
     {
 
-       !empty($gender) ? $this->gender = $gender : '';
-
+        $this->gender = $gender;
         return $this;
     }
 
-    public function getAge(): ?int
+    public function getAge(): ?string
     {
         return $this->age;
     }
 
-    public function setAge(?int $age=null): self
-    {
-        
-        !empty($age) ? $this->age = $age : '';
+    public function setAge(?string $age=null): self
+    {       
+        $this->age = $age;
 
         return $this;
     }
@@ -193,7 +195,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setPhone(?string $phone=null): self
     {
-        !empty($phone) ? $this->phone = $phone : '';
+        $this->phone = $phone;
 
         return $this;
     }
@@ -210,24 +212,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getObjectifWeight(): ?int
+    public function getObjectifWeight(): ?string
     {
         return $this->objectif_weight;
     }
 
-    public function setObjectifWeight(?int $objectif_weight): self
+    public function setObjectifWeight(?string $objectif_weight): self
     {
         $this->objectif_weight = $objectif_weight;
 
         return $this;
     }
 
-    public function getHeight(): ?int
+    public function getHeight(): ?string 
     {
         return $this->height;
     }
 
-    public function setHeight(int $height): self
+    public function setHeight(string $height): self
     {
         $this->height = $height;
 
@@ -290,6 +292,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $meal->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIv(): ?string
+    {
+        return $this->iv;
+    }
+
+    public function setIv(?string $iv): self
+    {
+        $this->iv = $iv;
 
         return $this;
     }
