@@ -16,6 +16,7 @@ export class SideMenuComponent {
   panelOpenState = false;
   description: string = "";
   selectedMeal: Array<Meal> = [];
+
   constructor(
     public dialog: MatDialog,
     private dao: DAO
@@ -23,15 +24,14 @@ export class SideMenuComponent {
     this.retrieveMeal();
   }
 
-  openDialogForAddMeal(): void {
+  openDialog(): void {
     const dialogRef = this.dialog.open(PopUpComponent , {
       height: '400px',
       width: '600px',
-      data: {description: this.description, title : this.titleForAddMeal}
+      data: {description: this.description}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-
       if (result == undefined ||
         result.name == ''
       ) return;
@@ -57,17 +57,4 @@ export class SideMenuComponent {
         console.log(e);
       });
   }
-
-  /*openDialogForEditMeal(): void {
-    const dialogRef = this.dialog.open(PopUpComponent, {
-      height: '400px',
-      width: '600px',
-      data: {description: this.description, title: this.titleForEditMeal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.selectedMeal = JSON.parse(localStorage.getItem('repas')!) ;
-    });
-  }*/
-
 }

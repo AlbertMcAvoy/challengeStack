@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
 import {firstValueFrom, map, Observable, startWith} from "rxjs";
 import {DAO} from "../../model/DAO";
@@ -47,7 +47,7 @@ export class PopUpComponent implements OnInit{
 
   myControl = new FormControl('');
   valueInputSearch: String = "";
-  filteredOptions: Observable<Meal[]> = new Observable<Meal[]>();
+  filteredOptions: Observable<Food[]> = new Observable<Food[]>();
 
   ngOnInit(): void {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -60,7 +60,7 @@ export class PopUpComponent implements OnInit{
     return this.allFoods;
   }
 
-   private filter(value: string): Meal[] {
+   private filter(value: string): Food[] {
      const filterValue = value.toLowerCase();
      return this.foods.filter(option => option.libelle.toLowerCase().includes(filterValue));
    }
