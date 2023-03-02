@@ -59,12 +59,15 @@ class UserService
                 if (empty($userFinded)) throw new UserExistException();
 
                 $userFromBdd = $this->encryptService->decryptData($userFinded);
-                $userFromBdd->setFirstName($data['firstname'] ?? '');
-                $userFromBdd->setLastName($data['lastname'] ?? '');
+                if (!empty($data['firstname'])) {
+                    $userFromBdd->setFirstName($data['firstname'] ?? '');
+                }
+                if (!empty($data['lastname'])) {
+                    $userFromBdd->setLastName($data['lastname'] ?? '');
+                }
                 if (!empty($data['phone'])) {
                     $userFromBdd->setPhone($data['phone'] ?? '');
                 }
-
                 if (isset($data['gender']) && is_int($data['gender'])) {
                     $userFromBdd->setGender(strval($data['gender']));
                 }
