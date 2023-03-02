@@ -78,3 +78,16 @@
   }
 
 }
+@media screen and (max-width: 820px) {
+  .aperçu-objectif {
+    width: 100%;
+
+    .objectif-titre, .calories-titre {
+      font-size: 20px;
+    }
+    .poids, .calories {
+      font-size: 16px !important;
+      padding: 18px 0;
+    }
+  }
+}
