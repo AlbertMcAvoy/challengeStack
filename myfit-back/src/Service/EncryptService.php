@@ -17,7 +17,7 @@ class EncryptService
 
     public function encryptData(User $user): User | null
     {
-        if (!empty($user) && !empty($user->getFirstName()) && !empty($user->getLastName())) {
+        if (!empty($user)) {
             $iv = random_bytes(16);
             $data_to_encrypt = [
                 "firstname" => $user->getFirstName(),
@@ -28,7 +28,6 @@ class EncryptService
                 "height" => $user->getHeight(),
                 "objectif_weight" => $user->getObjectifWeight()
             ];
-
 
             $data_encrypted = [];
             foreach ($data_to_encrypt as $key => $data) {
@@ -67,7 +66,6 @@ class EncryptService
                 "objectif_weight" => base64_decode($userInterface->getObjectifWeight())
             ];
 
-
             $data_decrypted = [];
             foreach ($data_to_decrypt as $key => $data) {
                 $data_decrypted[$key] = unserialize(openssl_decrypt($data, 'aes-256-cbc', $this->encryptKey, OPENSSL_RAW_DATA, $iv));
@@ -81,7 +79,6 @@ class EncryptService
                     ->setPhone($data_decrypted["phone"] ?? '')
                     ->setHeight($data_decrypted["height"] ?? '')
                     ->setObjectifWeight($data_decrypted["objectif_weight"] ?? '');
-                    dd($data_decrypted);
             }
         }
     }

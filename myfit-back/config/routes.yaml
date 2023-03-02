@@ -18,6 +18,12 @@ app_user_show:
     methods: GET
     format: application/json
 
+app_user_edit:
+    path: /api/user/edit
+    controller: App\Controller\UserController::edit
+    methods: POST
+    format: application/json
+
 app_user_delete:
     path: /api/user
     controller: App\Controller\UserController::delete
