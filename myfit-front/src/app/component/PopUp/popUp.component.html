@@ -1,5 +1,5 @@
 <div mat-dialog-content>
-  <h1>Ajoutez un repas</h1>
+  <h1>{{data.title}}</h1>
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>Rechercher un aliment...</mat-label>
@@ -16,7 +16,7 @@
     </mat-autocomplete>
   </mat-form-field>
   <div *ngFor="let meal of selected">
-      <p>{{meal.description}}<mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
+      <p> <mat-icon aria-hidden="false" fontIcon="delete" (click)="deleteMeal(meal)"></mat-icon></p>
   </div>
 </div>
 

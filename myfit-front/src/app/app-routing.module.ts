@@ -29,7 +29,7 @@ const routes: Routes = [
     component: MonCompteComponent,
   },
   {
-    path: 'infoUser',
+    path: 'infouser',
     component: InfoUserComponent
   },
   {

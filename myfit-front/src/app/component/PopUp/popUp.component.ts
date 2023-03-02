@@ -5,6 +5,7 @@ import {map, Observable, startWith} from "rxjs";
 
 export interface Meal {
   description: string;
+  title : string;
 }
 
 @Component({
@@ -12,25 +13,26 @@ export interface Meal {
   templateUrl: 'popUp.component.html',
   styleUrls: ['popUp.component.scss']
 })
-export class PopUpComponent {
+export class PopUpComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<PopUpComponent>,
-    @Inject(MAT_DIALOG_DATA) public newMeal: Meal,
+    @Inject(MAT_DIALOG_DATA) public data: Meal,
   ) {}
 
   allMeals:Array<Meal> =
   [
-    {'description' : 'Petit déjeuner - 650 cal.'},
-    {'description': 'Déjeuner - 650 cal.'},
-    {'description': 'Collation - 650 cal.'},
-    {'description': 'Diner - 650 cal.'},
-    {'description': 'Petit déjeuner - 650 cal.'}
+    {'description' : 'Petit déjeuner - 650 cal.' , 'title' : ''},
+    {'description': 'Déjeuner - 650 cal.', 'title' : ''},
+    {'description': 'Collation - 650 cal.', 'title' : ''},
+    {'description': 'Diner - 650 cal.', 'title' : ''},
+    {'description': 'Petit déjeuner - 650 cal.', 'title' : ''}
   ];
 
   selectedMeal:Array<Meal> = [];
+  filteredOptions: any[] = [];// TODO : regarde ici
 
   addMeals(description: string) {
-    let meal: Meal = { description: description}
+    let meal: Meal = { description: description, title: '' }
     this.allMeals.push(meal);
   }
 
@@ -39,6 +41,13 @@ export class PopUpComponent {
   }
 
   myControl = new FormControl('');
+
+  ngOnInit() {
+    /*this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );*/
+  }
 
   private _filter(value: string): string | undefined {
     const filterValue = value.toLowerCase();
