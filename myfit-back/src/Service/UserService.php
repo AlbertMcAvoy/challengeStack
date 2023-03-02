@@ -11,6 +11,9 @@ use App\Repository\UserRepository;
 use App\Exception\UserExistException;
 use App\Exception\UserFieldFromException;
 use App\Repository\BodyRepository;
+use Doctrine\Common\Cache\Cache;
+use Exception;
+use Lexik\Bundle\JWTAuthenticationBundle\Exception\UserNotFoundException;
 use Symfony\Bridge\Twig\Mime\BodyRenderer;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -50,50 +53,59 @@ class UserService
 
     public function update_user(array $data, UserInterface $user)
     {
-        if (!empty($data)) {
-            $userFinded = $this->userRepository->findOneBy(["id" => $user->getId()]);
-            if (empty($userfinded)) return false;
-            
-            $userFromBdd = $this->encryptService->decryptData($userFinded);
-
-            $userFromBdd->setFirstName($data['firstname'] ?? '');
-            $userFromBdd->setLastName($data['lastname'] ?? '');
-            $userFromBdd->setPhone($data['phone'] ?? '');
-
-            if (isset($data['gender']) && is_int($data['gender'])) {
-                $userFromBdd->setGender(strval($data['gender']));
-            }
-            if (!empty($data['height']) && is_int($data['height'])) {
-                $userFromBdd->setHeight(strval($data['height']));
-            }
-            if (!empty($data['age']) && is_int($data['age'])) {
-                $userFromBdd->setAge(strval($data['age']));
-            }
-
-            if (!empty($data['objectif_weight']) && is_int($data['objectif_weight'])) {
-                $userFromBdd->setObjectifWeight(strval($data['objectif_weight']));
-            }
-
-            if (isset($data['weight']) && is_int($data['weight'])) { 
-                $body = new Body();
-                $body->setWeight($data['weight']);
-                if (!empty($userFromBdd->getObjectifWeight())) {
-                    $body->setObjectifWeight($userFromBdd->getObjectifWeight());
+        try{
+            if (!empty($data)) {
+                $userFinded = $this->userRepository->findOneBy(["id" => $user->getId()]);
+                if (empty($userfinded)) throw new UserExistException();
+                
+                $userFromBdd = $this->encryptService->decryptData($userFinded);
+    
+                $userFromBdd->setFirstName($data['firstname'] ?? '');
+                $userFromBdd->setLastName($data['lastname'] ?? '');
+                $userFromBdd->setPhone($data['phone'] ?? '');
+    
+                if (isset($data['gender']) && is_int($data['gender'])) {
+                    $userFromBdd->setGender(strval($data['gender']));
                 }
-                $body->setDateTime(new DateTime());
-                $body->setUser($userFromBdd);
-                $this->bodyRepository->save($body, true);
+                if (!empty($data['height']) && is_int($data['height'])) {
+                    $userFromBdd->setHeight(strval($data['height']));
+                }
+                if (!empty($data['age']) && is_int($data['age'])) {
+                    $userFromBdd->setAge(strval($data['age']));
+                }
+    
+                if (!empty($data['objectif_weight']) && is_int($data['objectif_weight'])) {
+                    $userFromBdd->setObjectifWeight(strval($data['objectif_weight']));
+                }
+    
+                if (isset($data['weight']) && is_int($data['weight'])) { 
+                    $body = new Body();
+                    $body->setWeight($data['weight']);
+                    if (!empty($userFromBdd->getObjectifWeight())) {
+                        $body->setObjectifWeight($userFromBdd->getObjectifWeight());
+                    }
+                    $body->setDateTime(new DateTime());
+                    $body->setUser($userFromBdd);
+                    $this->bodyRepository->save($body, true);
+                }
+    
+    
+                $userEncrypted = $this->encryptService->encryptData($userFromBdd);
+    
+                $this->userRepository->save($userEncrypted, true);
+    
+                return true;
+            }else {
+                throw new UserFieldFromException();
             }
-
-
-            $userEncrypted = $this->encryptService->encryptData($userFromBdd);
-
-            $this->userRepository->save($userEncrypted, true);
-
-            return true;
+        } catch (UserExistException $e){
+            throw new UserExistException();
+        } catch (UserFieldFromException $e) {
+            throw new UserFieldFromException();
+        } catch (Exception $e) {
+            throw new Exception();
         }
-
-        return false;
+        
     }
 
 

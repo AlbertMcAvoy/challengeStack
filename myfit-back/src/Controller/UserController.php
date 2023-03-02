@@ -53,7 +53,7 @@ class UserController extends AbstractController
         return $this->json(['status' => 404, 'message' => "Error on user delete"]);
     }
 
-    public function edit(Request $request, UserService $userService, UserRepository $userRepository) {
+    public function edit(Request $request, UserService $userService) {
         $user = $userService->getCurrentUser();
         if ($user == null) {
             return $this->json(["status" => 404, "message" => "Not find user with this token!"]);
@@ -62,7 +62,7 @@ class UserController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         try {
-            $userService->update_user($data, $user, $userRepository);
+            $userService->update_user($data, $user);
         
             return $this->json(["status" => 200, "message" => "User updated"]);
         } catch (UserExistException $e){
