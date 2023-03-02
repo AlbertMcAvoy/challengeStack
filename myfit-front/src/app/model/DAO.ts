@@ -48,6 +48,10 @@ export class DAO {
     return this.apiService.get('api/user')
   }
 
+  retreiveUserBodies(): Observable<any> {
+    return this.apiService.get('api/body');
+  }
+
   updateUser(data: UserModel): Observable<any> {
     return this.apiService.post('api/user/edit', data)
   }
