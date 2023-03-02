@@ -17,6 +17,7 @@ export class SideMenuComponent {
   panelOpenState = false;
   selectedMeal: Array<Meal> = [];
   selectedMealMenu: any = [];
+  selectedMealId: string= '';
 
   constructor(
     public dialog: MatDialog,
@@ -74,17 +75,16 @@ export class SideMenuComponent {
       });
   }
 
-  /*editMeal(meal: Meal) {
-    this.selectedMealId = meal.id;
-    this.selectedMealName= meal.name;
-    this.selectedMealFood = [meal.foods[0].id];
-    firstValueFrom(this.dao.editFood(this.selectedMealId, this.selectedMealName, this.selectedMealFood))
+  deleteMeal(id: String) {
+    firstValueFrom(this.dao.deleteFood(id))
       .then((data) => {
         console.log(data);
+        this.retrieveMeal();
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
       });
-  }*/
+  }
+
 
 }

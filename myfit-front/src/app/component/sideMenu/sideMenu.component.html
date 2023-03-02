@@ -22,6 +22,7 @@
         >
           <p> {{meal.name}} - {{meal.calorieTot}} Cal. </p>
           <mat-icon (click)="openAddEditFoodDialog(meal)">edit</mat-icon>
+          <mat-icon (click)="deleteMeal(meal.id)">delete</mat-icon>
         </div>
         <div class="ligne"></div>
       <div
