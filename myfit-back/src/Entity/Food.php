@@ -6,6 +6,7 @@ use App\Repository\FoodRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FoodRepository::class)]
 class Food
@@ -13,12 +14,15 @@ class Food
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('meal_date')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('meal_date')]
     private ?string $libelle = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('meal_date')]
     private ?int $calories = null;
 
     #[ORM\Column(nullable: true)]
