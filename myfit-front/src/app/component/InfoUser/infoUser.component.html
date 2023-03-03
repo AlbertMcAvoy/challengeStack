@@ -1,0 +1,108 @@
+<div
+  class="infoUser-container"
+>
+  <div
+    fxLayout="row wrap"
+    fxLayoutAlign="center center"
+  >
+    <mat-card class="info-card">
+      <mat-card-header
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-card-title>Ma carte d'indentité</mat-card-title>
+      </mat-card-header>
+      <div class="ligne"></div>
+      <mat-card-content>
+        <div
+          fxLayout="column wrap"
+          fxLayoutAlign="center center"
+          *ngIf="profileEmpty()"
+        >
+          <div
+          >
+            <p><span>Prénom:</span> {{this.userInfo.firstname}}</p>
+          </div>
+          <div
+          >
+            <p><span>Nom:</span> {{this.userInfo.lastname}}</p>
+          </div>
+          <div
+          >
+            <p><span>Genre:</span> {{getGender()}}</p>
+          </div>
+          <div
+          >
+            <p><span>Téléphone:</span> {{this.userInfo.phone}}</p>
+          </div>
+          <div
+            fxLayout="row"
+            fxLayoutAlign="center center"
+          >
+            <button mat-raised-button color="primary" (click)="openEditUserPopUp()">Editer mon profile</button>
+          </div>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          *ngIf="!profileEmpty()"
+        >
+          <p >Renseignez vos informations</p>
+          <button (click)="openEditUserPopUp()" mat-raised-button color="primary">Editer mon profil</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="info-card monprofil">
+      <mat-card-header
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <mat-card-title>Vos Informations</mat-card-title>
+      </mat-card-header>
+      <div class="ligne"></div>
+      <mat-card-content>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+        >
+          <div
+          >
+            <p><span>Taille:</span> {{this.userInfo.height}} cm</p>
+          </div>
+          <div
+          >
+            <p>
+                  <span>
+                  {{this.userInfo.weight ? 'Votre poid actuel: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre poids dans votre profil'}}
+                  </span>
+            </p>
+          </div>
+          <div
+          >
+            <p>
+                  <span>
+                     {{this.userInfo.objectif_weight ? 'Votre objectif de poid: '.concat(this.userInfo.objectif_weight.toString())  : 'Renseignez votre objectif de poid dans votre profil'}}
+                  </span>
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <div
+        class="vosDonne"
+      >
+        <p style="text-align: center">Vos donnée chez nous</p>
+        <div class="ligne"></div>
+
+        <p>Vos données sont bien protégées dans notre coffre fort !
+          Elles permettent à de multiples  utilisateurs d’obtenir des suivis plus pertinents, et nous permettent aussi de mieux vous connaître !
+          Si toutefois un doute persiste chez vous, le bouton en-dessous vous permet de supprimer toutes les données que nous avons sur vous (et votre compte aussi !)</p>
+      </div>
+      <button class="delete-compte" mat-raised-button (click)="deleteUser()">Supprimer mon compte</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+<div
+  class="monCompte-container"
+>
+  <div
+    [ngClass]="{'menu-open': openSideMenu}"
+    class="content">
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      class="content-objectif"
+    >
+      <div class="mealsImage" style="width: 250px">
+        <img style="height: 100%; width: 100%" src="assets/images/Meal_Monochromatic%201.png">
+      </div>
+
+      <objectif-view class="aperçu-objectif"
+        [user]="userInfo"
+      ></objectif-view>
+
+      <div class="profilImage" style="width: 250px">
+        <p> Vous pouvez consulter votre profil juste ici ! </p>
+        <a href="/infoUser">
+          <img style="width: 100%" src="assets/images/Profiling_Outline.svg">
+        </a>
+      </div>
+    </div>
+    <graphique-evolution></graphique-evolution>
+  </div>
+
+</div>

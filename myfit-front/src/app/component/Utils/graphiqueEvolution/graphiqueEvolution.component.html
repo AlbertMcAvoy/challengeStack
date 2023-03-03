@@ -1,0 +1,34 @@
+
+<div
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  style="margin-top: 50px"
+  class="graphique-container"
+>
+  <mat-card class="graphique-container-card" *ngIf="weightLess != -1">
+      <canvas
+        style="height: 100%; width: 100%"
+        baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="'line'">
+      </canvas>
+    <mat-card-content
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      style="padding: 10px; font-size: 16px"
+    >
+      <p> Votre objectif se trouve à seulement à {{ weightLess }} kg ! </p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="graphique-container-card" *ngIf="weightLess == -1">
+    <mat-card-content
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      style="padding: 10px; font-size: 16px"
+    >
+      Aucune données à afficher !
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,28 @@
+<mat-card class="aperçu-objectif">
+  <mat-card-header
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    class="calories-cercle-container"
+  >
+    <div
+      fxLayout="column"
+      class="calories-cercle"
+    >
+      <p class="calorie"> {{ todayCalories }} </p>
+      <p class="margin-p"> Vos calories consommées </p>
+      <p class="margin-p text-secondary"> aujourd'hui </p>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <p class="objectif-titre">Votre objectif de poids</p>
+    <p *ngIf="!homePage" class="poids text-secondary"> {{ user?.objectif_weight ? user?.objectif_weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="homePage" class="poids text-secondary"> 72Kg </p>
+    <p class="objectif-titre">Votre poids actuel</p>
+    <p *ngIf="!homePage" class="poids text-secondary"> {{ user?.weight ? user?.weight : 'Inconnu pour le moment !' }} </p>
+    <p *ngIf="homePage" class="poids text-secondary"> 65Kg </p>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,183 @@
+<div
+  class="homePage"
+>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center end"
+      class="main-image"
+    >
+      <div
+        class="esprit-saint"
+      >
+        <p>Un esprit sain dans </p>
+        <p>un corps sain...</p>
+        <p> et bien alimenté !</p>
+      </div>
+      <div
+        class="raspberries"
+      >
+        <img alt="image-framboises" src="/assets/images/raspberries.png">
+      </div>
+    </div>
+    <div
+      class="bonne-alimentation"
+    >
+      <p>
+        Une bonne alimentation au quotidien est importante pouratteindre vos objectifs !
+        Suivez vos repas, vos objectifs et progressez avec Track’n’fit.
+      </p>
+    </div>
+    <button class="inscription" mat-raised-button  routerLink="/register">Je crée un compte</button>
+    <div
+      fxLayout="row"
+      class="coup-oeil"
+    >
+      <div
+        fxLayout="column"
+        class="decouvrir"
+      >
+        <p>Découvrez au premier coup d’oeil combien de calorie vous avez consommées, afin de vous guidez dans votre journée !</p>
+        <div
+          class="ramen-image"
+          fxLayout="row"
+        >
+          <img alt="bol de ramen" src="/assets/images/Ramen_Flatline.png" class="img-floating">
+        </div>
+      </div>
+      <div
+        style="margin-top: 110px;"
+      >
+        <objectif-view></objectif-view>
+      </div>
+    </div>
+
+    <div class="historique-container">
+      <p class="historique-titre">Gardez un historique de vos repas, et accédez à un graphique pour voir votre progression !</p>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      class="meal-card"
+    >
+      <mealCard
+        [mealToday]="true"
+      ></mealCard>
+      <div
+        class="sushi-image"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <img style="width: 100%;" alt="icon" src="/assets/images/Sushi roll_Monochromatic 1.png">
+      </div>
+      <mealCard
+        [mealToday]="false"
+      ></mealCard>
+    </div>
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      class="graphique-evolution"
+    >
+      <graphique-evolution></graphique-evolution>
+      <div
+        class="image-chef"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+      >
+        <img style="width: 100%;" alt="icon" src="assets/images/Chef_Monochromatic.png" class="img-floating">
+      </div>
+    </div>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      class="who-section"
+    >
+      <div
+        style="max-width: 800px; padding: 20px;"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="track-fit-info1"
+      >
+        <div
+          fxLayout="row"
+          fxLayoutAlign="space-between center"
+          style="height: 170px; width: 170px"
+        >
+          <img
+            style="width: 100%;"  alt="icon" src="/assets/images/Question_Monochromatic.png">
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign
+        >
+          <p class="title">Mais c’est qui, Track’n’fit ?</p>
+          <div
+            class="question"
+          >
+            <p>Track’n’fit, à la base, c’est une équipe de 5 personnes
+              passionnées par le sport et le développement web !
+              Alors on s’est dit “et si on liait nos passions ?”</p>
+          </div>
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+
+        class="track-fit-info2"
+      >
+
+        <div>
+          <p>
+            Du coup, on s’est allié avec les meilleurs des meilleurs, la crème de la crème, pour vous proposez cette application web !
+            Diététiciens, entraîneurs et nutritionistes ont répondu à notre appel et aujourd’hui nous sommes une équipe de 20 personnes passionnées ! Nous sommes déterminés à vous aider.
+          </p>
+        </div>
+        <div
+          style="width: 170px"
+        >
+          <img  alt="icon" style="width: 100%;" src="/assets/images/Doctor_Monochromatic 1.png">
+        </div>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="track-fit-info3"
+      >
+        <div
+          style="width: 170px"
+        >
+          <img   alt="icon" style="width: 100%;" src="/assets/images/Fitness App_Outline 1.png" class="img-floating">
+        </div>
+        <p>
+          Bon, jusque là on avait l’expertise technique et les designers...
+          Mais il nous manquait des professionnels de la santé et des conditions physiques.
+        </p>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        class="track-fit-info4"
+      >
+
+        <div>
+          <p>
+            Cette aventure nous permet de vous proposez une application web enrichie, avec un suivi pertinent de ce que vous mangez, afin de vous guidez dans votre évolution. Nous vous aidons à atteindre votre objectifs... et vous vous aidez entre-vous aussi en rensignant de nouveau plat !
+          </p>
+        </div>
+        <div
+          style="height: 170px; width: 170px"
+        >
+          <img style="width: 100%;" alt="icon" src="/assets/images/Team work_Two Color 1.png">
+        </div>
+      </div>
+    </div>
+
+    <button class="inscription" mat-raised-button routerLink="/register">Je m'inscris</button>
+  </div>
+</div>

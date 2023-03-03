@@ -88,7 +88,6 @@ class UserService
                 if (!empty($data['age']) && is_int($data['age'])) {
                     $userFromBdd->setAge(strval($data['age']));
                 }
-
                 if (!empty($data['objectif_weight']) && is_int($data['objectif_weight'])) {
                     $userFromBdd->setObjectifWeight(strval($data['objectif_weight']));
                 }
