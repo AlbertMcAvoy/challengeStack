@@ -15,6 +15,12 @@ class EncryptService
         $this->encryptKey = $encryptKey;
     }
 
+    /**
+     * Encrypt user in bdd
+     *
+     * @param User $user
+     * @return void
+     */
     public function encryptData(User $user): User | null
     {
         if (!empty($user)) {
@@ -52,6 +58,12 @@ class EncryptService
         return null;
     }
 
+    /**
+     * Decrypt user from bdd
+     *
+     * @param UserInterface $userInterface
+     * @return UserInterface
+     */
     public function decryptData(UserInterface $userInterface): UserInterface
     {
         if (!empty($userInterface) && !empty($userInterface->getFirstName()) && !empty($userInterface->getLastName())) {

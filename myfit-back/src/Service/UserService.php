@@ -39,6 +39,11 @@ class UserService
         $this->bodyRepository = $bodyRepository;
     }
 
+    /**
+     * Get User with token 
+     *
+     * @return void
+     */
     public function getCurrentUser(): UserInterface | null
     {
         $token = $this->tokenStorage->getToken();
@@ -50,7 +55,13 @@ class UserService
         return null;
     }
 
-
+    /**
+     * update data user
+     *
+     * @param array $data
+     * @param UserInterface $user
+     * @return void
+     */
     public function update_user(array $data, UserInterface $user)
     {
         try {
@@ -108,7 +119,12 @@ class UserService
         }
     }
 
-
+    /**
+     * Add new user to bdd
+     *
+     * @param array $data
+     * @return void
+     */
     public function register(array $data)
     {
         $user = new User();
