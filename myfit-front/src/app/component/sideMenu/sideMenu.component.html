@@ -49,7 +49,7 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Hier - 2777 cal
+              Hier - {{getTotal(yesterdayMeal)}} cal
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div
@@ -67,7 +67,7 @@
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Avant hier - 2756 cal
+              Avant hier - {{getTotal(beforeYesterdayMeal)}} cal
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div

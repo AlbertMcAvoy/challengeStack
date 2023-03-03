@@ -64,10 +64,9 @@ export class GraphiqueEvolutionComponent {
           labels.push(new Date(body.date).toLocaleDateString());
           weight.push(body.weight);
         });
-
-        this.weightLess = (data.length != 0) ? data.slice(-1).objectif_weight - data.slice(-1).weight : -1;
-
-        this.barChartData = {
+        console.log(data.pop().weight - data.pop().objectif_weight)
+        this.weightLess =  data.pop().objectif_weight - data.pop().weight ;
+;        this.barChartData = {
           labels: (labels.length > 0) ? labels : this.defaultLabels,
           datasets: [
             {

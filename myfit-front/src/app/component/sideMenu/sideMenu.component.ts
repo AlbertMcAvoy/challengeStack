@@ -1,10 +1,11 @@
-import {Component, Inject, Input, OnInit} from "@angular/core";
-import {MAT_DIALOG_DATA, MatDialog} from "@angular/material/dialog";
+import {ChangeDetectorRef, Component, Inject, Input, OnInit} from "@angular/core";
+import {MatDialog} from "@angular/material/dialog";
 import {PopUpComponent} from "../PopUp/popUp.component";
 import {Meal} from "../../class/Meal";
 import {DAO} from "../../model/DAO";
 import {firstValueFrom} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
+import {DatStoreService} from "../../services/dataStore/datStore.service";
 
 
 @Component({
@@ -22,7 +23,9 @@ export class SideMenuComponent implements OnInit{
 
   constructor(
     public dialog: MatDialog,
-    private dao: DAO
+    private dao: DAO,
+    private dataStore: DatStoreService,
+    private cdr: ChangeDetectorRef
   ) {
     this.retrieveMeal();
   }
@@ -75,6 +78,8 @@ export class SideMenuComponent implements OnInit{
           })
         });
         this.selectedMeal = data;
+        this.loadTodayCalories();
+        this.cdr.markForCheck();
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
@@ -87,6 +92,8 @@ export class SideMenuComponent implements OnInit{
       .then((data) => {
         console.log(data);
         this.retrieveMeal();
+        this.loadTodayCalories();
+        this.cdr.markForCheck();
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
@@ -96,6 +103,17 @@ export class SideMenuComponent implements OnInit{
   retrieveYesterdayMeal() {
     firstValueFrom(this.dao.retrieveUserMealsYesterday()).then(
       (data) => {
+        data.forEach((meal) => {
+          this.dao.getMealInfo
+          firstValueFrom(this.dao.getMealInfo(meal.id)).then(
+            (value: Meal) => {
+              meal.calorieTot = 0;
+              value.foods.forEach(food => {
+                meal.calorieTot += food.calories;
+              })
+            }
+          )
+        })
         this.yesterdayMeal = data;
       },
       (error) => {
@@ -107,7 +125,6 @@ export class SideMenuComponent implements OnInit{
   retrieveBeforeYesterdayMeal() {
     firstValueFrom(this.dao.retrieveUserMealsBeforeYesterday()).then(
       (data) => {
-        console.log(data);
         data.forEach((meal: Meal) => {
           meal.calorieTot = 0;
           meal.foods.forEach(food => {
@@ -122,4 +139,15 @@ export class SideMenuComponent implements OnInit{
     )
   }
 
+  getTotal(arrayMeal: Array<Meal>): number {
+    let somme = 0;
+    for (let i = 0; i < arrayMeal.length; i++) {
+      somme += arrayMeal[i].calorieTot;
+    }
+    return somme;
+  }
+
+  private loadTodayCalories() {
+    this.dataStore.totalCalories = this.getTotal(this.selectedMeal)
+  }
 }

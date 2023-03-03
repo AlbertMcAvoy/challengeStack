@@ -36,6 +36,7 @@ import { RGPDPopupComponent } from './component/rgpdpopup/rgpdpopup.component';
 import { FooterComponent } from './component/utils/footer/footer.component';
 import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
 import {DeleteUserPopUp} from "./component/deleteUserPopup/deleteUserPopUp";
+import {DatStoreService} from "./services/dataStore/datStore.service";
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import {DeleteUserPopUp} from "./component/deleteUserPopup/deleteUserPopUp";
     ApiService,
     DAO,
     MatDialog,
+    DatStoreService,
   ],
   bootstrap: [AppComponent]
 })

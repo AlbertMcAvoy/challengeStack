@@ -39,12 +39,12 @@ export class DAO {
     return this.apiService.get('api/meal/user');
   }
 
-  retreiveUserMealsToday(): Observable<any> {
+  retreiveUserMealsToday(): Observable<Array<any>> {
     let today = formatDate(new Date(), 'YYYY-MM-dd', 'en');
     return this.apiService.get(`api/meal/date/${today}`);
   }
 
-  retrieveUserMealsYesterday(): Observable<any> {
+  retrieveUserMealsYesterday(): Observable<Array<any>> {
     let dateCourante = new Date();
 
     let hier = new Date(dateCourante);
@@ -54,7 +54,7 @@ export class DAO {
     return this.apiService.get(`api/meal/date/${yesterday}`)
   }
 
-  retrieveUserMealsBeforeYesterday(): Observable<any> {
+  retrieveUserMealsBeforeYesterday(): Observable<Array<any>> {
     let dateCourante = new Date();
 
     let hier = new Date(dateCourante);
