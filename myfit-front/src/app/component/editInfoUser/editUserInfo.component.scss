@@ -1,0 +1,42 @@
+@import "src/assets/sass/variable";
+
+.editUser {
+
+  padding: 40px;
+  max-width: 800px;
+  .form-container {
+    justify-content: center;
+    margin: 2% 0;
+
+    h1 {
+      text-align: center;
+    }
+
+    .form {
+      flex-direction: column;
+      justify-content: center;
+
+      .field-full-width {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        gap: 30px;
+      }
+      .margin-right {
+        margin-right: 5px;
+      }
+    }
+
+    @media screen and (max-width: 820px) {
+      .img-context {
+        display: none;
+      }
+    }
+  }
+}

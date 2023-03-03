@@ -1,0 +1,84 @@
+@import "src/assets/sass/_variable";
+
+.menu-container {
+  background-color: $primary-color;
+  width: 400px;
+  border-radius: 50px;
+
+  display: flex;
+  gap: 50px;
+
+  &.menu-small {
+    width: 200px;
+  }
+
+  .nav-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: white;
+
+    .icon-user {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 76%;
+      width: 100%;
+      background-position: center;
+      background-image: url('/assets/icon/icon-user.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+
+    .icon-home {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 76%;
+      width: 100%;
+      background-position: center;
+      background-image: url('/assets/icon/icon-home.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+
+    .icon-food {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 76%;
+      width: 100%;
+      background-position: center;
+      background-image: url('/assets/icon/icon-food.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+    }
+
+    .icon-disconnect {
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 76%;
+      width: 100%;
+      background-position: center;
+      background-image: url('/assets/icon/icon-disconnect.svg');
+      filter: invert(73%) sepia(38%) saturate(272%) hue-rotate(125deg) brightness(88%) contrast(90%);
+      transform: rotateY(180deg);
+    }
+  }
+
+  .nav-item:hover {
+    background-color: $secondary-color;
+
+    .icon-user,
+    .icon-home,
+    .icon-food,
+    .icon-disconnect {
+      filter: invert(32%) sepia(26%) saturate(1316%) hue-rotate(144deg) brightness(94%) contrast(89%);
+    }
+  }
+
+  .activated {
+    border: 2px solid $dark-color;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .menu-container {
+    width: 275px;
+  }
+}

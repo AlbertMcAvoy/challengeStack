@@ -1,0 +1,37 @@
+
+<div
+  class="side-menu"
+>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    *ngIf="!openSideMenu && getRoute() == '/compte' "
+    class="side-menu-open">
+    <mat-icon
+      class="bugrer-button"
+      style="margin-left: auto"
+      (click)="openMenu()"
+    >cancel
+    </mat-icon>
+    <side-menu></side-menu>
+  </div>
+</div>
+
+<div class="menu">
+  <menu-component
+    [redirectionPath]="menuAccountLink"
+    (openSideMenu)="openSideMenuEvent()"
+  ></menu-component>
+</div>
+
+<div class="logo">
+  <a href="/">
+    <img alt="Image du logo" src="assets/logo/logo.png">
+  </a>
+</div>
+
+<router-outlet
+  (activate)="passUpdateMenuLinkToLoginComponent($event)"
+></router-outlet>
+
+<app-footer></app-footer>
