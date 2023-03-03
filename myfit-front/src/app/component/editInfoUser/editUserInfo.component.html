@@ -1,12 +1,88 @@
 <div
-  fxLayout="colum"
-  fxLayoutAlign="center center"
+  fxLayout="column"
+  fxLayoutAlign="center end"
   class="editUser"
 >
-  <div>
+  <div
+    style="padding: 10px; cursor: pointer"
+    (click)="closePopup()"
+  >
     <mat-icon>cancel</mat-icon>
   </div>
   <div>
+    <div class="form-container">
+      <mat-card
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+      >
+        <mat-card-content>
+          <h3>
+            Renseignez vos informations
+          </h3>
+          <form class="form" [formGroup]="userInforGroup" style="margin: auto">
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline" color="accent">
+                <mat-label>Prénom</mat-label>
+                <input matInput placeholder="Entrez votre prénom" name="prenom" type="text" formControlName="prenom" >
+              </mat-form-field>
+              <mat-form-field class="field-full-width " appearance="outline">
+                <mat-label>Nom</mat-label>
+                <input matInput placeholder="Entrez votre nom" name="nom" type="text" formControlName="nom" >
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Âge</mat-label>
+                <input matInput placeholder="Entez votre âge" name="age" type="number" formControlName="age" >
+              </mat-form-field>
+              <mat-form-field class="field-full-width" appearance="outline">
+                <mat-label>Votre objectif de poids(kg)</mat-label>
+                <input matInput placeholder="Entrez votre objectif de poids" value="" name="objectifPoid" type="number" formControlName="objectifPoid" >
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Votre poids(kg)</mat-label>
+                <input matInput placeholder="Entrez votre de poid" value="" name="poids" type="number" formControlName="poids" >
+              </mat-form-field>
+              <mat-form-field class="field-full-width " appearance="outline">
+                <mat-label>Taille(cm)</mat-label>
+                <input matInput placeholder="Entez votre taille" name="taille" type="number" formControlName="taille" >
+              </mat-form-field>
+            </div>
+            <div
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+            >
+              <mat-form-field class="field-full-width margin-right" appearance="outline">
+                <mat-label>Téléphone</mat-label>
+                <input matInput placeholder="Entez votre téléphone" name="phone" type="text" formControlName="phone" >
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Genre</mat-label>
+                <select  name="genre" formControlName="genre"  matNativeControl >
+                  <option [ngValue]="sexEnum.Homme">Homme</option>
+                  <option [ngValue]="sexEnum.Femme">Femme</option>
+                  <option [ngValue]="sexEnum.Autre">Autre</option>
+                </select>
+              </mat-form-field>
+            </div>
 
+            <div class="actions">
+              <button mat-raised-button color="primary" (click)="updateUser()"> Enregistrer </button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

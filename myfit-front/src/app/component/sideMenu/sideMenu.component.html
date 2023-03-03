@@ -49,39 +49,17 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Hier - 2777 cal
+              Hier - {{getTotal(yesterdayMeal)}} cal
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div
             fxLayout="row"
             fxLayoutAlign="center center"
+            *ngFor="let meal of yesterdayMeal"
           >
-            <p>Petit déjeuner - 650 cal.</p>
-            <mat-icon (click)="openEditYesterdayFoodDialog()">edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Déjeuner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Collation - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Diner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
+            <p> {{meal.name}} - {{meal.calorieTot}} Cal. </p>
+            <mat-icon (click)="openEditFoodDialog(meal)">edit</mat-icon>
+            <mat-icon (click)="deleteMeal(meal.id)">delete</mat-icon>
           </div>
           <div class="ligne"></div>
         </mat-expansion-panel>
@@ -89,39 +67,17 @@
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Avant hier - 2756 cal
+              Avant hier - {{getTotal(beforeYesterdayMeal)}} cal
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div
             fxLayout="row"
             fxLayoutAlign="center center"
+            *ngFor="let meal of beforeYesterdayMeal"
           >
-            <p>Petit déjeuner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Déjeuner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Collation - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
-          </div>
-          <div class="ligne"></div>
-          <div
-            fxLayout="row"
-            fxLayoutAlign="center center"
-          >
-            <p>Diner - 650 cal.</p>
-            <mat-icon>edit</mat-icon>
+            <p> {{meal.name}} - {{meal.calorieTot}} Cal. </p>
+            <mat-icon (click)="openEditFoodDialog(meal)">edit</mat-icon>
+            <mat-icon (click)="deleteMeal(meal.id)">delete</mat-icon>
           </div>
           <div class="ligne"></div>
         </mat-expansion-panel>

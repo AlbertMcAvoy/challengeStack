@@ -81,6 +81,7 @@ export class RegisterPageComponent {
       'phone': this.phone,
       'email': this.email,
       'height': this.taille,
+      'weight': this.poids,
       'age': this.age,
       'password': this.password
     })).then((data) => {

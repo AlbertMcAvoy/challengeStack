@@ -39,17 +39,37 @@ export class DAO {
     return this.apiService.get('api/meal/user');
   }
 
-  retreiveUserMealsToday(): Observable<any> {
+  retreiveUserBodies(): Observable<any> {
+    return this.apiService.get('api/body');
+  }
+
+  retreiveUserMealsToday(): Observable<Array<any>> {
     let today = formatDate(new Date(), 'YYYY-MM-dd', 'en');
     return this.apiService.get(`api/meal/date/${today}`);
   }
 
-  getUser(): Observable<UserModel> {
-    return this.apiService.get('api/user')
+  retrieveUserMealsYesterday(): Observable<Array<any>> {
+    let dateCourante = new Date();
+
+    let hier = new Date(dateCourante);
+    hier.setDate(dateCourante.getDate() - 1);
+
+    let yesterday = formatDate(hier , 'YYYY-MM-dd', 'en');
+    return this.apiService.get(`api/meal/date/${yesterday}`)
   }
 
-  retreiveUserBodies(): Observable<any> {
-    return this.apiService.get('api/body');
+  retrieveUserMealsBeforeYesterday(): Observable<Array<any>> {
+    let dateCourante = new Date();
+
+    let hier = new Date(dateCourante);
+    hier.setDate(dateCourante.getDate() - 2);
+
+    let yesterday = formatDate(hier , 'YYYY-MM-dd', 'en');
+    return this.apiService.get(`api/meal/date/${yesterday}`)
+  }
+
+  getUser(): Observable<UserModel> {
+    return this.apiService.get('api/user')
   }
 
   getFoods(value: string): Observable<any> {
@@ -67,6 +87,19 @@ export class DAO {
         'name': name,
         'foods': foodId
       });
+  }
+
+
+  updateUser(data: UserModel): Observable<any> {
+    return this.apiService.post('api/user/edit', data)
+  }
+
+  deleteUser(): Observable<any> {
+    return this.apiService.delete('api/user')
+  }
+
+  getMealInfo(id: string): Observable<any> {
+    return this.apiService.get(`api/meal/show/${id}`)
   }
 
 }

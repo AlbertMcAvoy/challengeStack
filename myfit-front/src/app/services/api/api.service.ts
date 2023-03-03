@@ -47,6 +47,19 @@ export class ApiService {
       .pipe();
   }
 
+  delete(
+    url: string,
+  ): Observable<any> {
+    let headers: HttpHeaders = this.getHeaders();
+    let options = { headers };
+
+
+
+    return this.http
+      .delete(`${this.API_URL}/${url}`, options)
+      .pipe();
+  }
+
   private getHttpParams(
     input: any,
     jsonContent: boolean = true,

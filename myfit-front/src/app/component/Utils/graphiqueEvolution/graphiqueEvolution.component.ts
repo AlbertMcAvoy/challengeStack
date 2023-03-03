@@ -8,6 +8,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   templateUrl: 'graphiqueEvolution.component.html',
   styleUrls: ['graphiqueEvolution.component.scss']
 })
+
 export class GraphiqueEvolutionComponent {
   barChartData: any = null
   barChartOptions: any = {
@@ -44,16 +45,17 @@ export class GraphiqueEvolutionComponent {
 
   }
 
-  private defaultLabels: string[] = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai','Juin'];
+  private defaultLabels: string[] = ['20/01/2023', '26/01/2023', '05/02/2023', '15/02/2023', '25/02/2023','03/03/2023'];
   private defaultWeight: number[] = [61, 63, 65, 68, 72,];
   weightLess: number = 0;
 
   constructor(
     private dao: DAO
-  ) {}
+  ) {
+    this.retreiveUserBodies();
+  }
 
-  ngOnInit() {
-
+  retreiveUserBodies() {
     let labels: string[] = [];
     let weight: number[] = [];
 
@@ -61,11 +63,11 @@ export class GraphiqueEvolutionComponent {
       .then(data => {
 
         data.forEach((body: any) => {
-          labels.push(body.date);
+          labels.push(new Date(body.date).toLocaleDateString());
           weight.push(body.weight);
         });
 
-        this.weightLess = (data.length != 0) ? data.slice(-1).objectif_weight - data.slice(-1).weight : -1;
+        this.weightLess = (data.length != 0) ? data.at(-1).objectif_weight - data.at(-1).weight : -1;
 
         this.barChartData = {
           labels: (labels.length > 0) ? labels : this.defaultLabels,
@@ -80,22 +82,23 @@ export class GraphiqueEvolutionComponent {
           ]
         };
 
-      }).catch((e: HttpErrorResponse) => {
-      console.log(e)
-      this.weightLess = 3;
+      })
+      .catch((e: HttpErrorResponse) => {
+        console.log(e)
+        this.weightLess = 3;
 
-      this.barChartData = {
-        labels: this.defaultLabels,
-        datasets: [
-          {
-            label: 'Courbe d\'évolution de votre poids',
-            data: this.defaultWeight,
-            fill: false,
-            cubicInterpolationMode: 'monotone',
-            tension: 0.1
-          },
-        ]
-      };
-    });
+        this.barChartData = {
+          labels: this.defaultLabels,
+          datasets: [
+            {
+              label: 'Courbe d\'évolution de votre poids',
+              data: this.defaultWeight,
+              fill: false,
+              cubicInterpolationMode: 'monotone',
+              tension: 0.1
+            },
+          ]
+        };
+      });
   }
 }

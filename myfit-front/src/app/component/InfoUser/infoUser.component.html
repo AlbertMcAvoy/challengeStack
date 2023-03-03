@@ -11,7 +11,6 @@
         fxLayoutAlign="center center"
       >
         <mat-card-title>Ma carte d'indentité</mat-card-title>
-        <mat-icon>edit</mat-icon>
       </mat-card-header>
       <div class="ligne"></div>
       <mat-card-content>
@@ -22,30 +21,25 @@
         >
           <div
           >
-            <p><span>Prénom:</span> {{this.userInfo.firstname ?? ''}}</p>
+            <p><span>Prénom:</span> {{this.userInfo.firstname}}</p>
           </div>
           <div
           >
-            <p><span>Nom:</span> {{this.userInfo.lastname ?? ''}}</p>
+            <p><span>Nom:</span> {{this.userInfo.lastname}}</p>
           </div>
           <div
           >
-            <p><span>Genre:</span> {{this.userInfo.gender ?? ''}}</p>
+            <p><span>Genre:</span> {{getGender()}}</p>
           </div>
           <div
           >
-            <p><span>Téléphone:</span> {{this.userInfo.phone ?? ''}}</p>
-          </div>
-          <div
-          >
-            <p><span>Email:</span> {{this.userInfo.email ?? ''}}</p>
+            <p><span>Téléphone:</span> {{this.userInfo.phone}}</p>
           </div>
           <div
             fxLayout="row"
             fxLayoutAlign="center center"
           >
-            <p><span>Mot de passe:</span> </p>
-            <button mat-raised-button color="primary">Modifier</button>
+            <button mat-raised-button color="primary" (click)="openEditUserPopUp()">Editer mon profile</button>
           </div>
         </div>
         <div
@@ -54,7 +48,7 @@
           *ngIf="!profileEmpty()"
         >
           <p >Renseignez vos informations</p>
-          <button (click)="openEditUserPopUp()" mat-raised-button color="primary">Editer mon profile</button>
+          <button (click)="openEditUserPopUp()" mat-raised-button color="primary">Editer mon profil</button>
         </div>
       </mat-card-content>
     </mat-card>
@@ -87,7 +81,7 @@
           >
             <p>
                   <span>
-                     {{this.userInfo.weight ? 'Votre objectif de poid: '.concat(this.userInfo.weight.toString())  : 'Renseignez votre objectif de poid dans votre profil'}}
+                     {{this.userInfo.objectif_weight ? 'Votre objectif de poid: '.concat(this.userInfo.objectif_weight.toString())  : 'Renseignez votre objectif de poid dans votre profil'}}
                   </span>
             </p>
           </div>
@@ -108,7 +102,7 @@
           Elles permettent à de multiples  utilisateurs d’obtenir des suivis plus pertinents, et nous permettent aussi de mieux vous connaître !
           Si toutefois un doute persiste chez vous, le bouton en-dessous vous permet de supprimer toutes les données que nous avons sur vous (et votre compte aussi !)</p>
       </div>
-      <button class="delete-compte" mat-raised-button color="primary">Supprimer mon compte</button>
+      <button class="delete-compte" mat-raised-button (click)="deleteUser()">Supprimer mon compte</button>
     </div>
   </div>
 </div>

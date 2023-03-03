@@ -35,6 +35,8 @@ import {EditUserInfoComponent} from "./component/editInfoUser/editUserInfo.compo
 import { RGPDPopupComponent } from './component/rgpdpopup/rgpdpopup.component';
 import { FooterComponent } from './component/utils/footer/footer.component';
 import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
+import {DeleteUserPopUp} from "./component/deleteUserPopup/deleteUserPopUp";
+import {DatStoreService} from "./services/dataStore/datStore.service";
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
     EditUserInfoComponent,
     RGPDPopupComponent,
     FooterComponent,
-    CGUPopupComponent
+    CGUPopupComponent,
+    DeleteUserPopUp,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ import { CGUPopupComponent } from './component/cgupopup/cgupopup.component';
     ApiService,
     DAO,
     MatDialog,
+    DatStoreService,
   ],
   bootstrap: [AppComponent]
 })
