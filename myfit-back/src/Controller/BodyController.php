@@ -13,6 +13,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class BodyController extends AbstractController
 {
+    /**
+     * Get body from user with token 
+     *
+     * @param UserService $userService
+     * @param BodyRepository $bodyRepository
+     * @return JsonResponse
+     */
     public function index(UserService $userService, BodyRepository $bodyRepository): JsonResponse
     {
         $user = $userService->getCurrentUser();
@@ -34,6 +41,14 @@ class BodyController extends AbstractController
         return $this->json($jsonToReturn);
     }
 
+    /**
+     * Add new body for user 
+     *
+     * @param UserService $userService
+     * @param Request $request
+     * @param BodyRepository $bodyRepository
+     * @return JsonResponse
+     */
     public function new(UserService $userService, Request $request, BodyRepository $bodyRepository): JsonResponse
     {
         $body = new Body();
@@ -56,7 +71,14 @@ class BodyController extends AbstractController
         return $this->json(["status" => 400, "message" => "Error when the data is enter"]);
     }
 
-
+    /**
+     * Delete body from user with index body
+     *
+     * @param UserService $userService
+     * @param Request $request
+     * @param BodyRepository $bodyRepository
+     * @return Response
+     */
     public function delete(UserService $userService, Request $request, BodyRepository $bodyRepository): Response
     {
         $user = $userService->getCurrentUser();
