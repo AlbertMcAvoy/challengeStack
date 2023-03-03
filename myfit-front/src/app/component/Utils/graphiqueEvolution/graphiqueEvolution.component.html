@@ -5,7 +5,7 @@
   style="margin-top: 50px"
   class="graphique-container"
 >
-  <mat-card class="graphique-container-card" *ngIf="weightLess != -1">
+  <mat-card class="graphique-container-card" *ngIf="weightLess > 0">
       <canvas
         style="height: 100%; width: 100%"
         baseChart
@@ -22,11 +22,11 @@
     </mat-card-content>
   </mat-card>
 
-  <mat-card class="graphique-container-card" *ngIf="weightLess == -1">
+  <mat-card class="graphique-container-card" *ngIf="weightLess < 0">
     <mat-card-content
       fxLayout="row"
       fxLayoutAlign="center center"
-      style="padding: 10px; font-size: 16px"
+      style="padding: 10px; font-size: 16px; height: 100%"
     >
       Aucune données à afficher !
     </mat-card-content>
