@@ -46,7 +46,6 @@ export class ObjectifViewComponent implements  OnInit{
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
-        this.retrieveMeal();
       });
   }
 

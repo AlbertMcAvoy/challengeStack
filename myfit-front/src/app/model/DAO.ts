@@ -39,6 +39,10 @@ export class DAO {
     return this.apiService.get('api/meal/user');
   }
 
+  retreiveUserBodies(): Observable<any> {
+    return this.apiService.get('api/body');
+  }
+
   retreiveUserMealsToday(): Observable<Array<any>> {
     let today = formatDate(new Date(), 'YYYY-MM-dd', 'en');
     return this.apiService.get(`api/meal/date/${today}`);
@@ -66,10 +70,6 @@ export class DAO {
 
   getUser(): Observable<UserModel> {
     return this.apiService.get('api/user')
-  }
-
-  retreiveUserBodies(): Observable<any> {
-    return this.apiService.get('api/body');
   }
 
   getFoods(value: string): Observable<any> {

@@ -83,7 +83,6 @@ export class SideMenuComponent implements OnInit{
       })
       .catch((e: HttpErrorResponse) => {
         console.log(e);
-        this.retrieveMeal();
       });
   }
 

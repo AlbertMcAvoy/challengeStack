@@ -21,15 +21,15 @@ export class EditUserInfoComponent implements OnInit{
 
   userInforGroup: FormGroup;
 
-  nom =  this.fb.control('', [Validators.required]);
-  prenom = this.fb.control('',[Validators.required]);
-  age = this.fb.control('',[Validators.required]);
-  genre = this.fb.control('',[Validators.required]);
-  phone = this.fb.control('',[Validators.required]);
-  taille = this.fb.control('',[Validators.required]);
-  objectifPoid = this.fb.control('',[Validators.required]);
-  poids = this.fb.control('',[Validators.required]);
-  email = this.fb.control('',[Validators.required]);
+  nom =  this.fb.control('');
+  prenom = this.fb.control('');
+  age = this.fb.control('');
+  genre = this.fb.control('');
+  phone = this.fb.control('');
+  taille = this.fb.control('');
+  objectifPoid = this.fb.control('');
+  poids = this.fb.control('');
+  email = this.fb.control('');
 
   constructor(
     public dialogRef: MatDialogRef<EditUserInfoComponent>,
