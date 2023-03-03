@@ -10,6 +10,14 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class FoodController extends AbstractController
 {
 
+    /**
+     * Get food with libelle
+     *
+     * @param FoodRepository $foodRepository
+     * @param [type] $libelle
+     * @param foodCache $foodCache
+     * @return JsonResponse
+     */
     public function show(FoodRepository $foodRepository, $libelle, foodCache $foodCache): JsonResponse
     {
         if (empty($libelle)) return $this->json(["status" => 404, "messages" => "No parameters libelle found in url"]);

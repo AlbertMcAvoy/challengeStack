@@ -16,7 +16,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class UserController extends AbstractController
 {
-
+    /**
+     * Get User 
+     *
+     * @param UserService $userService
+     * @param EncryptService $encryptService
+     * @return JsonResponse
+     */
     public function get(UserService $userService, EncryptService $encryptService): JsonResponse
     {
         $user = $encryptService->decryptData($userService->getCurrentUser());
@@ -38,6 +44,13 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * Delete User 
+     *
+     * @param UserService $userService
+     * @param UserRepository $userRepository
+     * @return void
+     */
     public function delete(UserService $userService, UserRepository $userRepository) {
         $user = $userService->getCurrentUser();
         if ($user == null) {
@@ -53,6 +66,13 @@ class UserController extends AbstractController
         return $this->json(['status' => 404, 'message' => "Error on user delete"]);
     }
 
+    /**
+     * edit user 
+     *
+     * @param Request $request
+     * @param UserService $userService
+     * @return void
+     */
     public function edit(Request $request, UserService $userService) {
         $user = $userService->getCurrentUser();
         if ($user == null) {

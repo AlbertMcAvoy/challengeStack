@@ -17,6 +17,12 @@ class RegisterController extends AbstractController
         $this->user_service = $user_service;
     }
 
+    /**
+     * Register User
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function register(Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -32,10 +38,10 @@ class RegisterController extends AbstractController
             $jsonResponse["message"] = $ex->getMessage();
         } catch (\Exception $e) {
             $jsonResponse["status"] = 500;
-            $jsonResponse["message"] = $e->getMessage();
+            $jsonResponse["message"] = "Error When we register the user";
         }
 
-        //"Error When we register the user"
+        
         return $this->json($jsonResponse);
     }
 }
