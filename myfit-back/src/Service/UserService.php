@@ -140,12 +140,13 @@ class UserService
 
                     $user = $this->encryptService->encryptData($user);
 
-                    if (!empty($data['weight']) && !empty($data['objectif_weight'])) {
+                    if (!empty($data['weight'])) {
                         $body = new Body();
                         $body->setWeight($data['weight'])
-                            ->setObjectifWeight($data['objectif_weight'])
+                            ->setObjectifWeight(0)
                             ->setDateTime(new DateTime());
                         $user->addBody($body);
+                        $this->bodyRepository->save($body);
                     }
 
                     $this->entityManager->persist($user);
